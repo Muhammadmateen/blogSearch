@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs Search</title>
+
+    <!--Include CSS bower_components-->
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <!--<link rel="stylesheet" href="./bower_components/angular-material-icons/angular-material-icons.css">-->
+
+    <!--Include JS bower_components-->
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="bower_components/ng-csv-import/angular-csv-import.js"></script>
+
+    <!---->
+    <script src="./app.js"></script>
+    <script src="./config/appRoutes.js"></script>
+
+    <!--Controllers-->
+    <script src="./components/nav-loginBar/nav-loginBar.js"></script>
+    <script src="./components/nav-toolBar/nav-toolBar.js"></script>
+    <script src="./components/login/login.js"></script>
+    <script src="./components/sign-up/sign-up.js"></script>
+    <script src="./components/dashboard/dashboard.js"></script>
+    <script src="./components/searchBlogs/searchBlogs.js"></script>
+    <script src="./components/addBlogs/addBlogs.js"></script>
+
+
+    <!--Services-->
+    <script src="./services/alert_dialog.js"></script>
+    <script src="./services/md_toast.js"></script>
+    <script src="./services/authService.js"></script>
+    <script src="./services/addBlogsService.js"></script>
+</head>
+<body ng-app="blogApp">
+<ui-view name="nav"></ui-view>
+<ui-view name="main"></ui-view>
+</body>
+</html>

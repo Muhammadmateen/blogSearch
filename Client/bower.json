@@ -1,0 +1,24 @@
+{
+  "name": "SearchBlogs",
+  "description": "Search and maintain different list of blogs",
+  "main": "index.html",
+  "moduleType": [],
+  "authors": [
+    "Muhammad Mateen"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.0.5",
+    "angular-ui-router": "^0.2.18",
+    "angular-material-icons": "^0.6.0",
+    "ng-csv-import":"^0.0.29"
+  }
+}

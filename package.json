@@ -1,0 +1,18 @@
+{
+  "name": "searchblogs",
+  "version": "1.0.0",
+  "description": "maintain and search of different kinds of blogs",
+  "main": "./Server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Mateen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.5",
+    "morgan": "^1.7.0",
+    "bcrypt-nodejs": "0.0.3"
+  }
+}

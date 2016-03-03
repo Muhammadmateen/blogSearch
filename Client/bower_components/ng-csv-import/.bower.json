@@ -1,0 +1,14 @@
+{
+  "name": "ng-csv-import",
+  "homepage": "https://github.com/bairaginath/ng-csv-import",
+  "_release": "c9d6496546",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c9d6496546f6cd2731a5b702f88a01aad12a6260"
+  },
+  "_source": "git://github.com/bairaginath/ng-csv-import.git",
+  "_target": "*",
+  "_originalSource": "ng-csv-import",
+  "_direct": true
+}

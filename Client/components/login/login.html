@@ -1,0 +1,39 @@
+
+
+<div>
+    <form name="loginForm" ng-submit="login.login_auth(loginForm)">
+        <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <input type="email" name="email" ng-model="login.user.email" required autofocus/>
+        </md-input-container>
+
+
+        <span style="color: red" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
+                        <span ng-show="loginForm.email.$error.required">Email address is required</span>
+                        <span ng-show="loginForm.email.$error.email">Invalid Email address</span>
+        </span>
+
+
+
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Password</label>
+            <input type="password" name="pass" ng-model="login.user.pass" required autofocus/>
+        </md-input-container>
+
+
+        <span style="color: red" ng-show="loginForm.pass.$invalid && loginForm.pass.$dirty">
+                        <span ng-show="loginForm.pass.$error.required">Password is required</span>
+        </span>
+
+        <br>
+
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="loginForm.$invalid">login</md-button>
+    </form>
+    <br>
+    <br>
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="100px" ng-show="login.loader"></md-progress-circular>
+
+    <md-button class="md-raised md-primary" ng-click="login.abcdef()">Go</md-button>
+
+</div>

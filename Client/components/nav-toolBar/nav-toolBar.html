@@ -1,0 +1,71 @@
+<div>
+    <!--Dashboard Side Navbar-->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2 sidenav_back_color" md-component-id="left">
+
+        <div class="backgroundImage">
+            <div class="profilePic" layout="row" layout-align="start center" layout-padding>
+                <img class="hidesquarebox" ng-src="{{navToolBar.user_details.profilePic}}" alt="Profile Picture"
+                     ng-click="navToolBar.pictureDialog()">
+                <span class="txt_color md-headline">{{navToolBar.user_details.firstName}} {{navToolBar.user_details.lastName}}</span>
+            </div>
+        </div>
+
+
+        <md-list>
+            <md-list-item>
+                <md-button aria-label="dashboard" class="md-primary">
+                    <ng-md-icon icon="dashboard"></ng-md-icon>
+                    <span class="txt_color">Dashboard</span>
+                </md-button>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button aria-label="logout" class="md-primary" ui-sref="dashboard.addBlogs">
+                    <ng-md-icon icon="logout"></ng-md-icon>
+                    <span class="txt_color">Add Blogs</span>
+                </md-button>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button aria-label="logout" class="md-primary" ng-click="">
+                    <ng-md-icon icon="logout"></ng-md-icon>
+                    <span class="txt_color">Import File</span>
+                </md-button>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button aria-label="logout" class="md-primary" ui-sref="dashboard.searchBlogs">
+                    <ng-md-icon icon="logout"></ng-md-icon>
+                    <span class="txt_color">Search Blogs</span>
+                </md-button>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button aria-label="logout" class="md-primary" ng-click="navToolBar.logout()">
+                    <ng-md-icon icon="logout"></ng-md-icon>
+                    <span class="txt_color">Logout</span>
+                </md-button>
+            </md-list-item>
+
+        </md-list>
+    </md-sidenav>
+
+
+    <!--Dashboard Page-->
+    <div>
+        <!--Dashboard Toolbar-->
+        <md-toolbar>
+            <md-button aria-label="Menu" ng-click="navToolBar.toggleLeft()" class="md-icon-button">
+                <ng-md-icon icon="menu" style="fill:white" layout="row" layout-align="center center"></ng-md-icon>
+                <md-tooltip>
+                    Menu
+                </md-tooltip>
+            </md-button>
+        </md-toolbar>
+
+
+        <ui-view></ui-view>
+
+
+    </div>
+</div>

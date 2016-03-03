@@ -1,0 +1,79 @@
+<div>
+
+
+    <form name="signUpForm" method="post" layout="column" layout-align="center center"
+          ng-submit="signUp.sign_up($event)">
+
+        <md-input-container class="md-icon-float md-block">
+            <label>First Name</label>
+            <input type="text" name="firstName" ng-model="signUp.user.firstName" required autofocus/>
+        </md-input-container>
+
+
+        <span style="color: red" ng-show="signUpForm.firstName.$invalid && signUpForm.firstName.$dirty">
+                        <span ng-show="signUpForm.firstName.$error.required">First Name is required</span>
+        </span>
+
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Last Name</label>
+            <input type="text" name="lastName" ng-model="signUp.user.lastName" required/>
+        </md-input-container>
+
+        <span style="color: red" ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$dirty">
+                        <span ng-show="signUpForm.lastName.$error.required">Last Name is required</span>
+        </span>
+
+
+        <div layout="row" layout-align="center center">
+            <md-input-container class="md-icon-float md-block">
+                <label>Email</label>
+                <input type="email" name="email" ng-model="signUp.user.email"
+                       ng-blur="signUp.checkEmail(signUp.user.email)" required/>
+            </md-input-container>
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="40px"
+                                  ng-show="signUp.email_loader"></md-progress-circular>
+        </div>
+
+        <span style="color: red" ng-show="signUpForm.email.$invalid && signUpForm.email.$dirty">
+                        <span ng-show="signUpForm.email.$error.required">Email is required</span>
+                        <span ng-show="signUpForm.email.$error.email">Invalid email address</span>
+        </span>
+        <p style="color: red" ng-show="signUp.email_in_used">This email address is already exist. Please use another
+            email address</p>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Password</label>
+            <input type="password" name="pass" ng-model="signUp.user.pass" required/>
+        </md-input-container>
+
+        <span style="color: red" ng-show="signUpForm.pass.$invalid && signUpForm.pass.$dirty">
+                        <span ng-show="signUpForm.pass.$error.required">Password is required</span>
+        </span>
+
+
+        <!-- <md-input-container class="md-icon-float md-block">
+             <label>Confirm Password</label>
+             <input type="password" name="cnfrm_Pass" ng-model="signUp.user.confirm_pass" required/>
+         </md-input-container>
+             <span style="color: red" ng-show="signUpForm.cnfrm_Pass.$invalid && signUpForm.cnfrm_Pass.$dirty">
+                             <span ng-show="signUpForm.cnfrm_Pass.$error.required">Confirm Password is required</span>
+             </span>-->
+
+
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="signUpForm.$invalid || signUp.email_in_used">
+            Sign Up
+        </md-button>
+
+
+    </form>
+
+
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="100px"
+                          ng-show="signUp.loader"></md-progress-circular>
+
+    <md-button class="md-raised md-primary" ng-click="signUp.setLocal()">
+        Set Local Storage
+    </md-button>
+
+</div>
