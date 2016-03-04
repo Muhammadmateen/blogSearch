@@ -1,9 +1,6 @@
 /**
  * Created by MUHAMMAD MATEEN on 02-Mar-16.
  */
-/**
- * Created by Mateen Bhai on 2/8/2016.
- */
 
 
 var express = require("express");

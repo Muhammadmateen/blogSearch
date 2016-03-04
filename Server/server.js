@@ -12,7 +12,7 @@ var morgan = require("morgan");
 var mongoose = require("mongoose");
 
 /*Local connection*/
-/*mongoose.connect("mongodb://localhost/blogs")*/
+/*mongoose.connect("mongodb://localhost/blogs");*/
 /*Mongolab connection*/
 mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
 
@@ -22,6 +22,8 @@ mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash')
 var signUp_api = require("./api/signUp.js");
 var login_api = require("./api/login.js");
 var addBlogs_api = require("./api/addBlogs.js");
+var getUsers_api = require("./api/getUsers.js");
+var updateUsers_api = require("./api/updateUsers.js")
 
 
 
@@ -49,8 +51,15 @@ app.post('/check_email',signUp_api);
 
 /*User authentication (Login) */
 app.post('/login',login_api);
+
 /*Add CSV Blogs*/
 app.post('/addBlogs',addBlogs_api);
+
+/*Get all new users request for approval*/
+app.post('/getUsers',getUsers_api);
+
+/**/
+app.post('/updateUsers',updateUsers_api);
 
 /*Search Blogs*/
 /*app.post('/search',searchBlogs_api);*/

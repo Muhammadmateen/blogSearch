@@ -36,6 +36,11 @@ var schema = mongoose.Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    role: {
+        type:Number,
+        required: true,
+        default: 3
     }
 });
 

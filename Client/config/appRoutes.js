@@ -96,6 +96,12 @@
                     controller: 'addBlogsController',
                     controllerAs: 'addBlogs'
                 })
+                .state('dashboard.invitations', {
+                    url: '/invitations',
+                    templateUrl: 'components/invitations/invitations.html',
+                    controller: 'invitationsController',
+                    controllerAs: 'invitations'
+                })
 
                 /*//Skip
                 .state('convert-to-json', {

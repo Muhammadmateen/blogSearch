@@ -9,7 +9,9 @@ var app = angular.module("blogApp",
                 'ngMdIcons',
                 'ngMaterial',
                 'ui.router',
-                'ngCsvImport'
+                'ngCsvImport',
+                'ngFileSaver',
+                'ngMdIcons'
             ]);
 
 
