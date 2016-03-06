@@ -7,16 +7,44 @@
 {
     angular.module("blogApp")
 
-        .controller("searchBlogsController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','exportExcelService',searchBlogsController])
+        .controller("searchBlogsController",['$http','toast_service','exportExcelService',searchBlogsController])
 
-    function searchBlogsController($http,$mdToast,toast_service,$timeout,$mdSidenav,exportExcelService)
+    function searchBlogsController($http,toast_service,exportExcelService)
     {
         var _self = this;
+        _self.loader = false;
 
         _self.exportExcelFile = function()
         {
             exportExcelService.exportExcel();
         }
+
+        _self.searchBy = {
+            blogUrl:"Blog Url",
+            siteCategory:"Site category",
+            DA:"DA",
+            PR:"PR",
+            TF:"TF",
+            siteType:"Site Type",
+            preWrittenRate:"Pre Written Rate",
+            bloggerWriteRate:"Blogger Write Rate",
+            acceptDofollow:"Accept Dofollow",
+            negotiated:"Negotiated",
+            bloggerName:"Blogger Name",
+            contactDetails:"Contact Details",
+            blogSource:"Blog Source",
+            comments:"Comments",
+            participated:"Participated"
+        }
+
+        _self.getSelectedItem = function()
+        {
+            console.log(_self.val);
+        }
+
+
+
+
 
         _self.items = [{
             name: "John Smith",
@@ -42,7 +70,7 @@
             name: "Jessie Smith",
             email: "jess@example.com",
             dob: "2004-10-12"
-        }]
+        }];
     }
 
 }());

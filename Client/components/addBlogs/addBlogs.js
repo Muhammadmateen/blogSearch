@@ -42,15 +42,23 @@
 
         _self.seeData = function()
         {
-            if($scope.csv.result == "[]")
+            if($scope.csv.result)
             {
-                toast_service.showSimpleToast("Provided File is empty");
+                if($scope.csv.result == "[]")
+                {
+                    toast_service.showSimpleToast("Provided File is empty");
+                }
+                else
+                {
+                    addBlogsService.csvImportData($scope.csv.result);
+                }
             }
-            else {
-                addBlogsService.csvImportData($scope.csv.result);
-                //console.log($scope.csv.result);
+            else
+            {
+                toast_service.showSimpleToast("Select the file first");
             }
         }
+
 
         _self.addData = function()
         {

@@ -5,6 +5,15 @@
 
     <button ng-click="searchBlogs.exportExcelFile()">Export</button>
 
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Select</label>
+        <md-select ng-model="searchBlogs.val" ng-change="searchBlogs.getSelectedItem()">
+            <md-option ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}">
+                {{searchVal}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
     <div id="exportable">
         <table width="100%">
             <thead>
