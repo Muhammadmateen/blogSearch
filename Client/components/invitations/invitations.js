@@ -11,38 +11,58 @@
     {
         var _self = this;
         _self.users ;
+        _self.loader = true;
+        _self.noDataFound = false;
+        _self.dataFound = false;
+
 
         function userData()
         {
             $http.post("/getUsers").then(function(data)
             {
-                if(data.data != "No data found")
+                _self.loader  = false;
+                if(data.status == 200)
                 {
+                    _self.dataFound = true;
                     _self.users = data.data;
-                    console.log("Data in controller ",data);
+                }
+                else if(data.status == 204)
+                {
+                    _self.noDataFound = true;
                 }
                 else
                 {
-                    console.log("No record found");
+                    toast_service.showSimpleToast(data.data);
                 }
-
             },function(err)
             {
-                console.log("Request not send",err);
+                _self.loader  = false;
+                toast_service.showSimpleToast("Internal Server Error");
+                console.log(err);
             });
         };
         userData();
 
+
+        //Update User Details
         _self.updateDetails = function(a,b)
         {
             $http.post("/updateUsers",{id:a,role:b}).then(function(data)
             {
-                console.log("Updated Data ",data);
-                $state.go($state.current,{},{reload:true});
+                if(data.status != 500)
+                {
+                    toast_service.showSimpleToast("User data updated");
+                    $state.go($state.current,{},{reload:true});
+                }
+                else
+                {
+                    toast_service.showSimpleToast(data.data);
+                }
 
             },function(err)
             {
-                console.log("Request not send",err);
+                toast_service.showSimpleToast("Internal Server Error");
+                console.log(err)
             });
         }
 

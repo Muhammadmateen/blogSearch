@@ -8,25 +8,19 @@ var getUsers_model = model.sign_up_schema;
 
 var api = express.Router();
 
-
-/*api.use("/getUsers",function(req,res,next)
- {
- console.log("Api Middleware of getUsers");
- next();
- })*/
-
 api.post("/updateUsers",function(req,res)
 {
     getUsers_model.update({_id:req.body.id},{$set:{role:req.body.role}},function(err,data)
     {
         if (data)
         {
-            console.log("Data",data);
+            // 200 Data found
             res.status(200).send(data);
         }
         else
         {
-            res.status(404).send("No data updated",err);
+            // 500 Server Error
+            res.status(500).send(err);
         }
     });
 })

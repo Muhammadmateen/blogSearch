@@ -9,35 +9,30 @@ var getUsers_model = model.sign_up_schema;
 
 var api = express.Router();
 
-
-/*api.use("/getUsers",function(req,res,next)
-{
-    console.log("Api Middleware of getUsers");
-    next();
-})*/
-
 api.post("/getUsers",function(req,res)
 {
+    // role 3 value is user
     getUsers_model.find({role:3},function(err,data)
     {
         if (data)
         {
             if(data.length == 0)
             {
-                console.log("Data come empty",data);
-                res.status(200).send("No data found");
+                // 204 No Data Found (No content found)
+                res.status(204).send(data);
             }
             else
             {
-                console.log("Data fill",data);
+                // 200 Data Found
                 res.status(200).send(data);
             }
         }
         else
         {
-            res.status(404).send("No New Request Found",err);
+            //  Server Error
+            res.status(500).send(err);
         }
     });
-})
+});
 
 module.exports = api;

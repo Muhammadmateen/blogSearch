@@ -66,6 +66,20 @@
                     }
                 })
 
+                .state('verify-account',{
+                    url:'/verify-account/:id',
+                    views:{
+                        'nav' : {
+                            templateUrl:'components/simple-toolBar/simple-toolBar.html'
+                        },
+                        'main':{
+                            templateUrl:'components/verifyUser/verifyUser.html',
+                            controller:'verifyUserController',
+                            controllerAs:'verifyUser'
+                        }
+                    }
+                })
+
                 .state('dashboard', {
                     abstract: true,
                     url: '/dashboard',
@@ -77,7 +91,6 @@
                             controllerAs: 'dashboard'
                         }
                     }
-                    //isLoggedIn: true,
                 })
 
                 .state('dashboard.searchBlogs', {
@@ -90,12 +103,14 @@
                         }
                     }
                 })
+
                 .state('dashboard.addBlogs', {
                     url: '/addblogs',
                     templateUrl: 'components/addBlogs/addBlogs.html',
                     controller: 'addBlogsController',
                     controllerAs: 'addBlogs'
                 })
+
                 .state('dashboard.invitations', {
                     url: '/invitations',
                     templateUrl: 'components/invitations/invitations.html',
@@ -103,13 +118,6 @@
                     controllerAs: 'invitations'
                 })
 
-                /*//Skip
-                .state('convert-to-json', {
-                    url: '/convertExcel',
-                    templateUrl: 'components/excel-to-json/excel-to-json.html',
-                    controller: 'convertToJson_controller',
-                    controllerAs: 'ctrl'
-                })*/
 
                 .state('404', {
                     url: '/404',

@@ -24,6 +24,7 @@ var login_api = require("./api/login.js");
 var addBlogs_api = require("./api/addBlogs.js");
 var getUsers_api = require("./api/getUsers.js");
 var updateUsers_api = require("./api/updateUsers.js")
+var verifyUser_api = require("./api/verifyUser.js");
 
 
 
@@ -58,15 +59,17 @@ app.post('/addBlogs',addBlogs_api);
 /*Get all new users request for approval*/
 app.post('/getUsers',getUsers_api);
 
-/**/
+/*Access user to as A Member or admin*/
 app.post('/updateUsers',updateUsers_api);
+
+/*Verify user Account*/
+app.post('/verifyUser',verifyUser_api);
+
 
 /*Search Blogs*/
 /*app.post('/search',searchBlogs_api);*/
 
-/*app.post('/verify_account',verify_account_api);
-
-
+/*
  app.post('/fileConversion',conversionApi);*/
 
 

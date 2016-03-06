@@ -66,7 +66,7 @@ function sendMail_func(email,id)
 {
     var verifyUrl = "http://localhost:3000/#/verify-account/"+id;
     var mailOptions = {
-        to: "muhammadmateen02@gmail.com",
+        to: email,
         subject: 'Blog Search',
         html: "<h1 style='color: blue'>Welcome To Blog Search</h1><br><br><b>Open this link and verify the account : "+verifyUrl+"</b>"
     };
