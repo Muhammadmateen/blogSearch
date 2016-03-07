@@ -13,7 +13,7 @@
     {
         var _self = this;
         _self.loader = false;
-
+        var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
         _self.login_auth =   function()
         {
@@ -21,10 +21,28 @@
             $http.post("/login",_self.user).then(function(data)
             {
                 _self.loader = false;
-                if(data.status == 200)
+                if(data.status == 200 )
                 {
+                    localStorage.setItem("loggedInUser",JSON.stringify(data.data));
                     toast_service.showSimpleToast("Welcome "+data.data.name);
-                    $state.go("dashboard.searchBlogs");
+                    if(data.data.role == 1)
+                    {
+                        $state.go("dashboard.searchBlogs");
+                        console.log(data.data);
+                        console.log("Localstorage",loggedInUser);
+                    }
+                    else if(data.data.role == 2)
+                    {
+                        $state.go("dashboard.searchBlogs");
+                        console.log(data.data);
+                        console.log("Localstorage",loggedInUser);
+                    }
+                    else
+                    {
+                        $state.go("dashboard.searchBlogs");
+                        console.log(data.data);
+                        console.log("Localstorage",loggedInUser);
+                    }
                 }
                 else
                 {

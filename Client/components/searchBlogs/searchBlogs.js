@@ -46,7 +46,7 @@
 
 
 
-        _self.items = [{
+        /*_self.items = [{
             name: "John Smith",
             email: "j.smith@example.com",
             dob: "1985-10-10"
@@ -70,7 +70,7 @@
             name: "Jessie Smith",
             email: "jess@example.com",
             dob: "2004-10-12"
-        }];
+        }];*/
     }
 
 }());

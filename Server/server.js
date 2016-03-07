@@ -10,6 +10,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
+var session = require('express-session');
 
 /*Local connection*/
 /*mongoose.connect("mongodb://localhost/blogs");*/
@@ -32,6 +33,14 @@ var verifyUser_api = require("./api/verifyUser.js");
 var app = express();
 
 
+/*=====================Sessions====================================*/
+app.use(session({
+    secret:"ksdf5i01siu8sdfj7mjsdi",
+    resave:false,
+    saveUninitialized: true
+}))
+
+
 
 //Path of files
 var viewsPath = path.resolve(__dirname,"../client");
@@ -52,6 +61,13 @@ app.post('/check_email',signUp_api);
 
 /*User authentication (Login) */
 app.post('/login',login_api);
+
+/*User logout*/
+app.post('/logout',function(req,res)
+{
+    delete req.session.loginUserDetails;
+    res.status(200).send("ok");
+})
 
 /*Add CSV Blogs*/
 app.post('/addBlogs',addBlogs_api);

@@ -14,6 +14,98 @@
         </md-select>
     </md-input-container>
 
+
+    <div ng-switch on="searchBlogs.val">
+        <div ng-switch-when="blogUrl">
+            <md-input-container>
+                <md-input-container>
+                    <label>Blog URL</label>
+                    <input ng-model="searchBlogs.blogUrl">
+                </md-input-container>
+            </md-input-container>
+        </div>
+
+        <div ng-switch-when="siteCategory">
+            <md-select ng-model="searchBlogs.val" aria-label="Site Category">
+                <md-option value="fashion">
+                Fashion
+                </md-option>
+                <md-option value="technology">
+                Technology
+                </md-option>
+                <md-option value="sports">
+                Sports
+                </md-option>
+            </md-select>
+        </div>
+
+        <div ng-switch-when="DA">
+            <md-input-container>
+                <md-input-container>
+                    <label>Blog URL</label>
+                    <input ng-model="searchBlogs.daOne">
+                </md-input-container>
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <md-input-container>
+                    <label>Blog URL</label>
+                    <input ng-model="searchBlogs.daTwo">
+                </md-input-container>
+            </md-input-container>
+        </div>
+
+        <!--<div ng-switch-when="PR">
+
+        </div>
+
+        <div ng-switch-when="TF">
+
+        </div>
+
+        <div ng-switch-when="siteType">
+
+        </div>
+
+        <div ng-switch-when="preWrittenRate">
+
+        </div>
+
+        <div ng-switch-when="bloggerWriteRate">
+
+        </div>
+
+        <div ng-switch-when="acceptDofollow">
+
+        </div>
+
+        <div ng-switch-when="negotiated">
+
+        </div>
+
+        <div ng-switch-when="bloggerName">
+
+        </div>
+
+        <div ng-switch-when="contactDetails">
+
+        </div>
+
+        <div ng-switch-when="blogSource">
+
+        </div>
+
+        <div ng-switch-when="comments">
+
+        </div>
+
+        <div ng-switch-when="participated">
+
+        </div>-->
+
+    </div>
+
+
     <div id="exportable">
         <table width="100%">
             <thead>

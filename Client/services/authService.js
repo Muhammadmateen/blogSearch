@@ -5,30 +5,18 @@
 
 
     angular.module("blogApp")
-        .factory("authService",['$state','$q',function($state,$q)
+        .factory("authService",['$state','$q','$http',function($state,$q,$http)
         {
-            var user = localStorage.getItem("uid");
+            var authServiceObj = {};
+            var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-            return true
-            /*{
+            authServiceObj.userStatus = function()
+            {
+                if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
+                {
 
-                auth : function abc() {
-                    var deferred = $q.defer();
-                    if(user)
-                    {
-                        console.log("/")
-                        $state.go("/");
-                        deferred.resolve();
-                    }
-                    else
-                    {
-                        console.log("Sign up");
-                        $state.go("sign-up");
-                        deferred.resolve();
-                    }
-                    return deferred.promise;
                 }
-            }*/
+            }
 
-
+            return authServiceObj;
         }]);

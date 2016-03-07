@@ -19,7 +19,15 @@
         //Logout function
         _self.logout = function()
         {
-            console.log("Logout");
+            $http.post("/logout").then(function(data)
+            {
+               localStorage.removeItem("loggedInUser");
+                console.log(localStorage.removeItem("loggedInUser"));
+            },function(err)
+            {
+                toast_service.showSimpleToast("Error ",err);
+            })
+
         }
 
 

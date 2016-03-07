@@ -19,7 +19,6 @@ api.use("/login",function(req,res,next)
 
 api.post("/login",function(req,res)
 {
-    console.log("Post request");
     login_model.findOne({email:req.body.email},function(err,data)
     {
         if (data)
@@ -28,13 +27,14 @@ api.post("/login",function(req,res)
             {
                 if(isMatch)
                 {
-
                     if(data.verified)
                     {
                         var userDetails = {
                             uid:data._id,
-                            name:data.firstName+" "+data.lastName
+                            name:data.firstName+" "+data.lastName,
+                            role:data.role
                         }
+                        req.session.loginUserDetails = userDetails;
                         //200 authorized user
                         res.status(200).send(userDetails);
                     }
@@ -42,8 +42,6 @@ api.post("/login",function(req,res)
                     {
                         res.status(401).send("Your account verification is in pending");
                     }
-
-
                 }
                 else
                 {

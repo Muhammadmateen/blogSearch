@@ -131,24 +131,11 @@
 
             $urlRouterProvider.otherwise('404');
         })
-        /*.run(['$rootScope', '$state',function($rootScope,$state)
+        .run(['authService','$rootScope', '$state',function(authService,$rootScope,$state)
         {
-            $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams){
-                var abc = localStorage.getItem("uid");
-
-                console.log(abc);
-                if(abc == "mateen")
-                {
-                    $state.transitionTo('/');
-                    e.preventDefault();
-                }
-                else
-                {
-                    $state.go("sign-up");
-                    e.preventDefault();
-                }
-
+            $rootScope.$on("$stateChangeStart", function(e, toState,toParams, fromState, fromParams){
+                authService.userStatus();
             });
-        }])*/
+        }])
 
 })();
