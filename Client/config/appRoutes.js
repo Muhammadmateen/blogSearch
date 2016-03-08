@@ -83,6 +83,7 @@
                 .state('dashboard', {
                     abstract: true,
                     url: '/dashboard',
+                    isLoggedIn:true,
                     views: {
                         'nav': navToolBar,
                         'main': {
@@ -95,6 +96,7 @@
 
                 .state('dashboard.searchBlogs', {
                     url: '/searchBlogs',
+                    isLoggedIn:true,
                     views: {
                         'main': {
                             templateUrl: 'components/searchBlogs/searchBlogs.html',
@@ -106,6 +108,7 @@
 
                 .state('dashboard.addBlogs', {
                     url: '/addblogs',
+                    isLoggedIn:true,
                     templateUrl: 'components/addBlogs/addBlogs.html',
                     controller: 'addBlogsController',
                     controllerAs: 'addBlogs'
@@ -113,6 +116,7 @@
 
                 .state('dashboard.invitations', {
                     url: '/invitations',
+                    isLoggedIn:true,
                     templateUrl: 'components/invitations/invitations.html',
                     controller: 'invitationsController',
                     controllerAs: 'invitations'
@@ -134,7 +138,12 @@
         .run(['authService','$rootScope', '$state',function(authService,$rootScope,$state)
         {
             $rootScope.$on("$stateChangeStart", function(e, toState,toParams, fromState, fromParams){
-                authService.userStatus();
+                if(toState.isLoggedIn)
+                {
+                    authService.userStatus();
+                    e.preventDefault();
+                }
+
             });
         }])
 

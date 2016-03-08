@@ -20,6 +20,7 @@ mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash')
 
 /*=========================Require Api=========================*/
 
+var userStatus_api = require("./api/userStatus.js")
 var signUp_api = require("./api/signUp.js");
 var login_api = require("./api/login.js");
 var addBlogs_api = require("./api/addBlogs.js");
@@ -53,6 +54,8 @@ app.use(bodyParser.json());
 
 /*==================Post request on server using Api===========================*/
 
+app.post('/userStatus',userStatus_api);
+
 /*Sign up*/
 app.post('/sign_up_user',signUp_api);
 
@@ -80,7 +83,6 @@ app.post('/updateUsers',updateUsers_api);
 
 /*Verify user Account*/
 app.post('/verifyUser',verifyUser_api);
-
 
 /*Search Blogs*/
 /*app.post('/search',searchBlogs_api);*/
