@@ -5,33 +5,31 @@
 
 
     angular.module("blogApp")
-        .factory("authService",['$state','$q','$http',function($state,$q,$http)
+        .factory("authService",['$state','$q','$http','$location',function($state,$q,$http,$location)
         {
             var authServiceObj = {};
 
-            function localData()
+           /* authServiceObj.localData =  function()
             {
                 return JSON.parse(localStorage.getItem("loggedInUser"));
             };
 
-            authServiceObj.userStatus = function()
+            authServiceObj.userStatus = function(stateName)
             {
-                var loggedInUser = localData();
-                if(loggedInUser)
-                {
+                var loggedInUser = authServiceObj.localData();
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
                         $http.post("/userStatus",loggedInUser).then(function(data)
                         {
                             if(data.data == true)
                             {
-                                console.log(data.data);
-                                console.log("User login");
+                                $location.url("dashboard.searchBlogs");
+
                             }
                             else
                             {
-                                console.log(data.data);
-                                console.log("User not login");
+                                //console.log(data.data);
+                                $location.url("login");
                             }
 
                         },function(err)
@@ -42,24 +40,9 @@
                     }
                     else
                     {
-                        //console.log("loggedIn user property not defined");
-                        if($state.current == '/')
-                         {
-                         console.log("State go /");
-                         //$state.go("/");
-                         }
-                         else
-                         {
-                         console.log("State go login");
-                         //$state.go("login");
-                         }
+                       $location.url("login");
                     }
-                }
-                else
-                {
-                    //console.log("loggedIn user not defined");
-                }
-            }
+            }*/
 
             return authServiceObj;
         }]);

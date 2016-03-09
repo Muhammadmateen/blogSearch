@@ -7,10 +7,8 @@ var express = require("express");
 var api = express.Router();
 
 
-
 api.use("/userStatus",function(req,res,next)
 {
-    console.log(req.body);
     if(req.session.loginUserDetails)
     {
         if(req.body.uid == req.session.loginUserDetails.uid && req.body.name == req.session.loginUserDetails.name && req.body.role == req.session.loginUserDetails.role)

@@ -83,7 +83,7 @@
                 .state('dashboard', {
                     abstract: true,
                     url: '/dashboard',
-                    isLoggedIn:true,
+                    //isLoggedIn:true,
                     views: {
                         'nav': navToolBar,
                         'main': {
@@ -96,7 +96,7 @@
 
                 .state('dashboard.searchBlogs', {
                     url: '/searchBlogs',
-                    isLoggedIn:true,
+                    //isLoggedIn:true,
                     views: {
                         'main': {
                             templateUrl: 'components/searchBlogs/searchBlogs.html',
@@ -108,7 +108,7 @@
 
                 .state('dashboard.addBlogs', {
                     url: '/addblogs',
-                    isLoggedIn:true,
+                    //isLoggedIn:true,
                     templateUrl: 'components/addBlogs/addBlogs.html',
                     controller: 'addBlogsController',
                     controllerAs: 'addBlogs'
@@ -116,7 +116,7 @@
 
                 .state('dashboard.invitations', {
                     url: '/invitations',
-                    isLoggedIn:true,
+                    //isLoggedIn:true,
                     templateUrl: 'components/invitations/invitations.html',
                     controller: 'invitationsController',
                     controllerAs: 'invitations'
@@ -133,18 +133,38 @@
                     }
                 })
 
-            $urlRouterProvider.otherwise('404');
+            $urlRouterProvider.otherwise( function($injector, $location) {
+                		var $state = $injector.get("$state");
+                		$state.go("404");
+                	});
+
+            //$urlRouterProvider.otherwise('404');
         })
-        .run(['authService','$rootScope', '$state',function(authService,$rootScope,$state)
+       /* .run(['authService','$rootScope','$state','$location',function(authService,$rootScope,$state,$location)
         {
-            $rootScope.$on("$stateChangeStart", function(e, toState,toParams, fromState, fromParams){
-                if(toState.isLoggedIn)
+            $rootScope.$on("$stateChangeStart", function(event,toState,toParams, fromState, fromParams){
+
+                if(authService.localData())
                 {
-                    authService.userStatus();
-                    e.preventDefault();
+                    console.log("Auth service call here");
+                    console.log("Data found");
+                    authService.userStatus(toState.name);
+                }
+                else
+                {
+                    if(toState.isLoggedIn)
+                    {
+                        console.log("isloggedin required here so redirect to /");
+                        $location.url("/");
+                    }
+                    else
+                    {
+                        console.log("Redirecting to requested url here isloggedin not required");
+                        $location.url(toState.name);
+                    }
                 }
 
             });
-        }])
+        }])*/
 
 })();

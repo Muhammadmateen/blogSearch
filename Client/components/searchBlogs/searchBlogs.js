@@ -37,9 +37,22 @@
             participated:"Participated"
         }
 
+        _self.hundredNo = [];
+
+        for(var i=0;i<100;i++)
+        {
+            _self.hundredNo.push(i);
+        }
+
+        _self.checkSelectedBoxes = function(a)
+        {
+            console.log(a);
+            //console.log(_self.selectedBox);
+        }
+
         _self.getSelectedItem = function()
         {
-            console.log(_self.val);
+            /*console.log(_self.val);*/
         }
 
 

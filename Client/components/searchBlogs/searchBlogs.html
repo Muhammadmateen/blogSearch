@@ -8,14 +8,79 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Select</label>
         <md-select ng-model="searchBlogs.val" ng-change="searchBlogs.getSelectedItem()">
-            <md-option ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}">
+            <!--<md-option ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}">
                 {{searchVal}}
+            </md-option>-->
+            <md-option ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}">
+                <md-checkbox ng-model="searchBlogs.selectedBox[$index]" ng-click="searchBlogs.checkSelectedBoxes(searchKey)">
+                    {{searchVal}}
+                </md-checkbox>
             </md-option>
         </md-select>
     </md-input-container>
 
+    <!--<div>{{searchBlogs.selectedBox}}<div>-->
 
-    <div ng-switch on="searchBlogs.val">
+    <div>
+        <!--Blog URL-->
+        <div ng-if="searchBlogs.selectedBox[0]">
+            <md-input-container>
+                <md-input-container>
+                    <label>Blog URL</label>
+                    <input ng-model="searchBlogs.blogUrl">
+                </md-input-container>
+            </md-input-container>
+        </div>
+        <!--Site Category-->
+        <div ng-if="searchBlogs.selectedBox[1]">
+            <md-input-container>
+                <label>To</label>
+                    <md-select ng-model="searchBlogs.siteCategoryTo">
+                        <md-option ng-repeat="to in searchBlogs.hundredNo">
+                            {{$index}}
+                        </md-option>
+                    </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>From</label>
+                    <md-select ng-model="searchBlogs.siteCategoryFrom">
+                        <md-option ng-repeat="from in searchBlogs.hundredNo">
+                            {{$index}}
+                        </md-option>
+                    </md-select>
+            </md-input-container>
+        </div>
+
+       To :{{searchBlogs.siteCategoryTo}} <br>
+        Form : {{searchBlogs.siteCategoryFrom}}
+       <!-- &lt;!&ndash;DA&ndash;&gt;
+        <div ng-if="searchBlogs.selectedBox[2]">
+            <md-input-container>
+                <label>Strat</label>
+                <md-select>
+                    <md-option>
+
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>End</label>
+                <md-select>
+                    <md-option>
+
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>-->
+       <!-- &lt;!&ndash;PR&ndash;&gt;
+        <div ng-if="searchBlogs.selectedBox[3]">
+
+        </div>-->
+    </div>
+
+
+
+    <!--<div ng-switch on="searchBlogs.val">
         <div ng-switch-when="blogUrl">
             <md-input-container>
                 <md-input-container>
@@ -54,8 +119,7 @@
                 </md-input-container>
             </md-input-container>
         </div>
-
-        <!--<div ng-switch-when="PR">
+        <div ng-switch-when="PR">
 
         </div>
 
@@ -101,9 +165,9 @@
 
         <div ng-switch-when="participated">
 
-        </div>-->
+        </div>
 
-    </div>
+    </div>-->
 
 
     <div id="exportable">
