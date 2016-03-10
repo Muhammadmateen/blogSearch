@@ -39,12 +39,31 @@
 
         _self.hundredNo = [];
 
-        for(var i=0;i<100;i++)
+        for(var i=0;i<=100;i++)
+         {
+         _self.hundredNo.push(i);
+         }
+
+        /*_self.hundredNo =   [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+                            21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+                            41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,
+                            61,62,53,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,
+                            81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100];
+*/
+
+        _self.checkSelectedItem = function()
         {
-            _self.hundredNo.push(i);
+            angular.forEach(_self.selectedItem,function(key,val)
+            {
+                if(key)
+                {
+                    console.log("Selected Keys : ",key);
+                    console.log("Selected Val : ",val);
+                }
+            })
         }
 
-        _self.checkSelectedBoxes = function(a)
+       /* _self.checkSelectedBoxes = function(a)
         {
             console.log(a);
             //console.log(_self.selectedBox);
@@ -52,8 +71,8 @@
 
         _self.getSelectedItem = function()
         {
-            /*console.log(_self.val);*/
-        }
+            /!*console.log(_self.val);*!/
+        }*/
 
 
 
