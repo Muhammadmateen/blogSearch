@@ -10,21 +10,26 @@ var addBlogs_schema = schema.addBlogs;
 
 var api = express.Router();
 
+var noRecordInserted = 0;
+
 
 api.post("/addBlogs", function (req, res) {
 
-    //var save_blogsData = new addBlogs_schema(req.body);
     addBlogs_schema.collection.insert(req.body, function (err, success) {
         if (err) {
-            console.log("Error : ", err);
-            res.send("Error : "+err);
-
+            if(err.index == 0)
+            {
+                res.status(202).send("Duplicate URL Error : No record inserted");
+            }
+            else
+            {
+                res.status(202).send("Duplicate URL Error : First "+err.index+" records data uploaded");
+            }
         }
         else {
-            console.log("Sucess : ", success);
-            res.send("Sucess : "+success);
+            res.status(200).send("File data uploaded successfully");
         }
-    })
+    });
 
 
 })

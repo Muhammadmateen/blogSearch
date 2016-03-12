@@ -7,21 +7,23 @@
 {
     'use strict';
     angular.module('blogApp')
-        .factory('addBlogsService',function($http,toast_service)
+        .factory('addBlogsService',function($http,toast_service,$q)
         {
             var obj = {};
 
             obj.csvImportData = function(fileData)
             {
+               var deffer = $q.defer();
                 $http.post("/addBlogs",fileData).then(function(data)
                 {
-                    toast_service.showSimpleToast(data);
-                    console.log(data);
+                    deffer.resolve(false);
+                    toast_service.showSimpleToast(data.data);
                 },function(err)
                 {
-                    toast_service.showSimpleToast(err);
-                    console.log(err);
+                    deffer.resolve(false);
+                    toast_service.showSimpleToast(err.data);
                 })
+                return deffer.promise;
             }
 
             return obj;

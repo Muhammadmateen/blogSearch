@@ -68,6 +68,11 @@
                     });
             }
         }
+
+        _self.closeMenu = function()
+        {
+            $mdSidenav('left').close();
+        }
         //Expand more logo appearance
         _self.openMenu = function($mdOpenMenu, ev) {
             originatorEv = ev;

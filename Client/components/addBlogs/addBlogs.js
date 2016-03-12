@@ -11,6 +11,8 @@
     {
         var _self = this;
         _self.abcdef = [];
+        //_self.loader = addBlogsService.loader;
+        _self.loader = false;
 
         $scope.csv = {
             content: null,
@@ -50,7 +52,14 @@
                 }
                 else
                 {
-                    addBlogsService.csvImportData($scope.csv.result);
+                    _self.loader = true;
+                    addBlogsService.csvImportData($scope.csv.result).then(function(data)
+                    {
+                        _self.loader = data;
+                    },function(err)
+                    {
+                        _self.loader = data;
+                    });
                 }
             }
             else

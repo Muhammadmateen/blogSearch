@@ -10,6 +10,10 @@
                                    separator="csv.separator"
                                    result="csv.result"
                                    accept="csv.accept"></ng-csv-import>
+
+                    <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
                     <button ng-click="addBlogs.seeData()">CSV File Data</button>
 
                 </md-content>
