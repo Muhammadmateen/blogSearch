@@ -10,7 +10,6 @@ var addBlogs_schema = schema.addBlogs;
 
 var api = express.Router();
 
-var noRecordInserted = 0;
 
 
 api.post("/addBlogs", function (req, res) {
@@ -27,7 +26,7 @@ api.post("/addBlogs", function (req, res) {
             }
         }
         else {
-            res.status(200).send("File data uploaded successfully");
+            res.status(200).send("Data Saved successfully");
         }
     });
 

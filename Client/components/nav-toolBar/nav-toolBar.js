@@ -6,9 +6,9 @@
 {
     angular.module("blogApp")
 
-        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav',navToolBarController])
+        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','$state',navToolBarController])
 
-    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav)
+    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav,$state)
     {
         var _self = this;
         _self.loader = false;
@@ -22,7 +22,7 @@
             $http.post("/logout").then(function(data)
             {
                localStorage.removeItem("loggedInUser");
-                console.log(localStorage.removeItem("loggedInUser"));
+                $state.go("login");
             },function(err)
             {
                 toast_service.showSimpleToast("Error ",err);

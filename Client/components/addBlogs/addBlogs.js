@@ -5,13 +5,11 @@
 {
     angular.module("blogApp")
 
-        .controller("addBlogsController",['$http','toast_service','$timeout','$mdSidenav','$scope','addBlogsService',addBlogsController])
+        .controller("addBlogsController",['$http','toast_service','$timeout','$mdSidenav','$scope','addBlogsService','$state',addBlogsController])
 
-    function addBlogsController($http,toast_service,$timeout,$mdSidenav,$scope,addBlogsService)
+    function addBlogsController($http,toast_service,$timeout,$mdSidenav,$scope,addBlogsService,$state)
     {
         var _self = this;
-        _self.abcdef = [];
-        //_self.loader = addBlogsService.loader;
         _self.loader = false;
 
         $scope.csv = {
@@ -42,7 +40,7 @@
             return result;
         };
 
-        _self.seeData = function()
+        _self.blogFileUpload = function()
         {
             if($scope.csv.result)
             {
@@ -69,11 +67,19 @@
         }
 
 
-        _self.addData = function()
+        _self.addBlog = function()
         {
-            if(_self.data.blogUrl)
+            if(_self.data.blogUrl != undefined)
             {
-                addBlogsService.csvImportData(_self.data);
+                addBlogsService.csvImportData(_self.data).then(function(data)
+                {
+                    _self.loader = data;
+                    $state.go($state.current,{},{reload:true});
+                },function(err)
+                {
+                    $state.go($state.current,{},{reload:true});
+                    _self.loader = data;
+                });
             }
             else
             {
