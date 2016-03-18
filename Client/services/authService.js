@@ -9,7 +9,7 @@
         {
             var authServiceObj = {};
 
-           /* authServiceObj.localData =  function()
+            authServiceObj.localData =  function()
             {
                 return JSON.parse(localStorage.getItem("loggedInUser"));
             };
@@ -17,32 +17,55 @@
             authServiceObj.userStatus = function(stateName)
             {
                 var loggedInUser = authServiceObj.localData();
+                if(loggedInUser)
+                {
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
                         $http.post("/userStatus",loggedInUser).then(function(data)
                         {
-                            if(data.data == true)
+                            if(data.status == 200)
                             {
-                                $location.url("dashboard.searchBlogs");
-
+                                if(stateName.isLoggedIn)
+                                {
+                                    console.log("Redirecting to user page")
+                                }
+                                else
+                                {
+                                    event.preventDefault();
+                                    $state.go("dashboard.searchBlogs");
+                                }
                             }
-                            else
-                            {
-                                //console.log(data.data);
-                                $location.url("login");
-                            }
-
                         },function(err)
                         {
-                            console.log("Request not send for check user status");
-                            console.log("Error",err);
+                            if(stateName.isLoggedIn)
+                            {
+                                event.preventDefault();
+                                $state.go("login");
+                                localStorage.removeItem("loggedInUser");
+                            }
                         })
                     }
                     else
                     {
-                       $location.url("login");
+                        if(stateName.isLoggedIn)
+                        {
+                            event.preventDefault();
+                            $state.go("login");
+                            localStorage.removeItem("loggedInUser");
+                        }
                     }
-            }*/
+
+                }
+                else
+                {
+                    if(stateName.isLoggedIn)
+                    {
+                        event.preventDefault();
+                        $state.go("login");
+                    }
+                }
+
+            }
 
             return authServiceObj;
         }]);
