@@ -27,6 +27,9 @@ var addBlogs_api = require("./api/addBlogs.js");
 var getUsers_api = require("./api/getUsers.js");
 var updateUsers_api = require("./api/updateUsers.js")
 var verifyUser_api = require("./api/verifyUser.js");
+var searchBlogs_api = require("./api/searchBlogs.js");
+var deleteBlogItem_api = require("./api/deleteBlogItem.js");
+var updateBlogItem_api = require("./api/updateBlogItem.js");
 
 
 
@@ -38,7 +41,8 @@ var app = express();
 app.use(session({
     secret:"ksdf5i01siu8sdfj7mjsdi",
     resave:false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    expire:8.64e+7
 }))
 
 
@@ -85,7 +89,17 @@ app.post('/updateUsers',updateUsers_api);
 app.post('/verifyUser',verifyUser_api);
 
 /*Search Blogs*/
-/*app.post('/search',searchBlogs_api);*/
+app.post('/searchBlogs',searchBlogs_api);
+
+
+/*Update Blog Item*/
+app.post('/updateBlogItem',updateBlogItem_api);
+
+
+/*Delete Blog Item*/
+app.delete('/deleteBlogItem/:id',deleteBlogItem_api);
+
+
 
 /*
  app.post('/fileConversion',conversionApi);*/

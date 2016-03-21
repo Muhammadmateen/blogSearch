@@ -7,12 +7,13 @@
 {
     angular.module("blogApp")
 
-        .controller("searchBlogsController",['$http','toast_service','exportExcelService',searchBlogsController])
+        .controller("searchBlogsController",['$http','toast_service','exportExcelService','$scope',searchBlogsController])
 
-    function searchBlogsController($http,toast_service,exportExcelService)
+    function searchBlogsController($http,toast_service,exportExcelService,$scope)
     {
         var _self = this;
         _self.loader = false;
+        _self.matchedItem = [] ;
 
         _self.exportExcelFile = function()
         {
@@ -51,29 +52,77 @@
                             81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100];
 */
 
-        _self.checkSelectedItem = function()
+
+
+
+        _self.checkSelectedItem = function(a)
         {
-            angular.forEach(_self.selectedItem,function(key,val)
-            {
-                if(key)
+            if (_self.selectedItem[a] == false) {
+                if(_self.blog)
                 {
-                    console.log("Selected Keys : ",key);
-                    console.log("Selected Val : ",val);
+                    delete _self.blog[a];
                 }
+            }
+        }
+
+
+        _self.search = function()
+        {
+            console.log(_self.blog);
+            $http.post("/searchBlogs",_self.blog).then(function(data)
+            {
+                if(data.status == 200)
+                {
+                    _self.matchedItem = data.data;
+                    console.log("Data found ",_self.matchedItem);
+                }
+                else
+                {
+                    toast_service.showSimpleToast("No record found");
+                    console.log("No data found",data.data);
+                }
+
+            },function(err)
+            {
+                toast_service.showSimpleToast(data.status+" : Internal server error");
+                console.log("Error ",err);
             })
         }
 
-       /* _self.checkSelectedBoxes = function(a)
+        _self.deleteBlog = function(id,index)
         {
-            console.log(a);
-            //console.log(_self.selectedBox);
+            $http.delete("/deleteBlogItem/"+id).then(function(data)
+            {
+                if(data.status == 200)
+                {
+                    _self.matchedItem.splice(index,1);
+                    toast_service.showSimpleToast("Deleted Successfully");
+                }
+                else
+                {
+                    toast_service.showSimpleToast("Error : No data deleted");
+                }
+
+            },function(err)
+            {
+                toast_service.showSimpleToast(data.status+" : Internal server error");
+            });
+        };
+
+        _self.updateBlog = function(id)
+        {
+
         }
 
-        _self.getSelectedItem = function()
-        {
-            /!*console.log(_self.val);*!/
-        }*/
 
+        /*angular.forEach(_self.selectedItem,function(key,val)
+         {
+         if(key)
+         {
+         console.log("Selected Keys : ",key);
+         console.log("Selected Val : ",val);
+         }
+         })*/
 
 
 
@@ -103,6 +152,13 @@
             email: "jess@example.com",
             dob: "2004-10-12"
         }];*/
+
+
+
+        _self.openMenu = function($mdOpenMenu, ev) {
+            originatorEv = ev;
+            $mdOpenMenu(ev);
+        };
     }
 
 }());

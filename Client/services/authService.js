@@ -14,7 +14,7 @@
                 return JSON.parse(localStorage.getItem("loggedInUser"));
             };
 
-            authServiceObj.userStatus = function(stateName)
+            authServiceObj.userStatus = function(stateName,event)
             {
                 var loggedInUser = authServiceObj.localData();
                 if(loggedInUser)

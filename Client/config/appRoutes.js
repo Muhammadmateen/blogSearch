@@ -138,9 +138,9 @@
                 	});
 
         })
-        .run(function ($rootScope, $state,authService) {
+        /*.run(function ($rootScope, $state,authService) {
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-                authService.userStatus(toState);
+                authService.userStatus(toState,event);
             });
-        })
+        })*/
 })();
