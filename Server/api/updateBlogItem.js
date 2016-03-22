@@ -11,17 +11,45 @@ var Blog_schema = schema.addBlogs;
 
 var api = express.Router();
 
-api.post("/updateBlogItem",function(req,res)
+api.put("/updateBlogItem",function(req,res)
 {
-    Blog_schema.update({_id:req.body.id},function(err,data)
-    {
+
+   // console.log(req.body);
+   // res.send("OK");
+    Blog_schema.update({_id:req.body._id},
+        {$set:
+                {
+                    blogUrl:req.body.blogUrl,
+                    siteCategory:req.body.siteCategory,
+                    DA:req.body.DA,
+                    PR:req.body.PR,
+                    TF:req.body.TF,
+                    siteType:req.body.siteType,
+                    preWrittenRate:req.body.preWrittenRate,
+                    bloggerWriteRate:req.body.bloggerWriteRate,
+                    acceptDofollow:req.body.acceptDofollow,
+                    negotiated:req.body.negotiated,
+                    bloggerName:req.body.bloggerName,
+                    contactDetails:req.body.contactDetails,
+                    blogSource:req.body.blogSource,
+                    comments:req.body.comments,
+                    participated:req.body.participated
+                }
+        },{multi:true},function(err,data) {
         if (data)
         {
-            console.log("Data : ",data);
+            if(data.nModified == 1)
+            {
+                res.status(200).send("Data Updated");
+            }
+            else
+            {
+                res.send(data);
+            }
         }
         else
         {
-            console.log("Error : ",err);
+            res.status(500).send("Internal Server Error");
         }
     });
 });

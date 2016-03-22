@@ -1,0 +1,91 @@
+
+
+<md-dialog aria-label="Update Blog"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Update Blog</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-input-container>
+                <label>Blog Url</label>
+                <input name="blogUrl" ng-model="updateBlog.data.blogUrl" autofocus required>
+            </md-input-container>
+                            <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
+                                <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
+                            </span>
+            <md-input-container>
+                <label>Site Category</label>
+                <input ng-model="updateBlog.data.siteCategory">
+            </md-input-container>
+            <md-input-container>
+                <label>DA</label>
+                <input ng-model="updateBlog.data.DA" type="number">
+            </md-input-container>
+            <md-input-container>
+                <label>PR</label>
+                <input ng-model="updateBlog.data.PR" type="number">
+            </md-input-container>
+            <md-input-container>
+                <label>TF</label>
+                <input ng-model="updateBlog.data.TF" type="number">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <label>Web Type</label>
+                <input ng-model="updateBlog.data.siteType">
+            </md-input-container>
+            <md-input-container>
+                <label>Pre Written Rate</label>
+                <input ng-model="updateBlog.data.preWrittenRate" type="number">
+            </md-input-container>
+            <md-input-container>
+                <label>Blog Write Rate</label>
+                <input ng-model="updateBlog.data.bloggerWriteRate" type="number">
+            </md-input-container>
+            <md-input-container>
+                <label>Accept Do Follow</label>
+                <input ng-model="updateBlog.data.acceptDofollow">
+            </md-input-container>
+            <md-input-container>
+                <label>Negotiated</label>
+                <input ng-model="updateBlog.data.negotiated">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <label>Blogger Name</label>
+                <input ng-model="updateBlog.data.bloggerName">
+            </md-input-container>
+            <md-input-container>
+                <label>Contact Details</label>
+                <input ng-model="updateBlog.data.contactDetails">
+            </md-input-container>
+            <md-input-container>
+                <label>Blog Source</label>
+                <input ng-model="updateBlog.data.blogSource">
+            </md-input-container>
+            <md-input-container>
+                <label>Comments</label>
+                <input ng-model="updateBlog.data.comments">
+            </md-input-container>
+            <md-input-container>
+                <label>Participated</label>
+                <input ng-model="updateBlog.data.participated">
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="updateBlog.updateCancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="updateBlog.updateBlogData()" style="margin-right:20px;">
+                Update
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

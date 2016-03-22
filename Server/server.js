@@ -93,7 +93,7 @@ app.post('/searchBlogs',searchBlogs_api);
 
 
 /*Update Blog Item*/
-app.post('/updateBlogItem',updateBlogItem_api);
+app.put('/updateBlogItem',updateBlogItem_api);
 
 
 /*Delete Blog Item*/

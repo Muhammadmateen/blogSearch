@@ -7,9 +7,9 @@
 {
     angular.module("blogApp")
 
-        .controller("searchBlogsController",['$http','toast_service','exportExcelService','$scope',searchBlogsController])
+        .controller("searchBlogsController",['$http','toast_service','exportExcelService','$scope','$mdMedia','$mdDialog',searchBlogsController])
 
-    function searchBlogsController($http,toast_service,exportExcelService,$scope)
+    function searchBlogsController($http,toast_service,exportExcelService,$scope,$mdMedia,$mdDialog)
     {
         var _self = this;
         _self.loader = false;
@@ -109,9 +109,31 @@
             });
         };
 
-        _self.updateBlog = function(id)
+        _self.updateBlog = function(ev,item,$index)
         {
+            //console.log("Data ",item);
+                var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+                $mdDialog.show({
+                        controller:'updateBlogController',
+                        controllerAs:'updateBlog',
+                        templateUrl: 'components/updateBlog/updateBlog.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        fullscreen: useFullScreen,
+                        local:item,
+                    })
+                   /* .then(function(answer) {
+                        console.log("ABCD ",answer);
 
+                    }, function() {
+                        console.log("DEFG : ",answer);
+                    });*/
+               /* $scope.$watch(function() {
+                    return $mdMedia('xs') || $mdMedia('sm');
+                }, function(wantsFullScreen) {
+                    $scope.customFullscreen = (wantsFullScreen === true);
+                });*/
         }
 
 
