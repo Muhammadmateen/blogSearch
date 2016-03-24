@@ -29,18 +29,26 @@ api.post("/login",function(req,res)
                 {
                     if(data.verified)
                     {
-                        var userDetails = {
-                            uid:data._id,
-                            name:data.firstName+" "+data.lastName,
-                            role:data.role
+                        if(data.role != 3)
+                        {
+                            var userDetails = {
+                                uid:data._id,
+                                name:data.firstName+" "+data.lastName,
+                                role:data.role
+                            }
+                            req.session.loginUserDetails = userDetails;
+                            //200 authorized user
+                            res.status(200).send(userDetails);
                         }
-                        req.session.loginUserDetails = userDetails;
-                        //200 authorized user
-                        res.status(200).send(userDetails);
+                        else
+                        {
+                            res.status(401).send("Request is in pending to admin for approval");
+                        }
+
                     }
                     else
                     {
-                        res.status(401).send("Your account verification is in pending");
+                        res.status(401).send("Your e-mail verification is in pending, Please verify your e-mail.");
                     }
                 }
                 else

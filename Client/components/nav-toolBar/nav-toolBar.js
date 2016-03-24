@@ -31,15 +31,14 @@
         //Logout function
         _self.logout = function()
         {
-            console.log("Logout")
-           /* $http.post("/logout").then(function(data)
+            $http.post("/logout").then(function(data)
             {
                localStorage.removeItem("loggedInUser");
                 $state.go("login");
             },function(err)
             {
                 toast_service.showSimpleToast("Error ",err);
-            })*/
+            })
 
         }
 

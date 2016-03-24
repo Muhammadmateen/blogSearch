@@ -5,6 +5,10 @@
 
 <div>
 
+    <div  ng-show="verifyUser.loader">
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+    Please wait...
+    </div>
     <h1>{{verifyUser.result}}</h1>
 
 </div>
