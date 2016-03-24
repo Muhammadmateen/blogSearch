@@ -1,0 +1,55 @@
+<table width="100%" border="1">
+    <thead>
+    <tr>
+        <th>S.No</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Request Date</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody ng-hide="invitations.loader">
+    <tr ng-repeat="user in invitations.users track by $index" ng-show="invitations.dataFound" ng-if="user.role == 3">
+            <td>{{$index+1}}</td>
+            <td>{{user.firstName +" "+ user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.date | date:'dd/MMM/yyyy'}}</td>
+            <td>{{user.role | roleFilter}}</td>
+            <td>{{user.verified}}</td>
+
+            <td>
+                <md-menu>
+                    <md-button ng-click="invitations.openMenu($mdOpenMenu, $event)">
+                        <ng-md-icon size="30" icon="expand_more"></ng-md-icon>
+                        <md-tooltip>
+                            Expand
+                        </md-tooltip>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="invitations.updateDetails(user._id,2)">
+                                Accept as Member
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="invitations.updateDetails(user._id,1)">
+                                Accept as Admin
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </td>
+        </div>
+    </tr>
+    <tr ng-show="invitations.noDataFound">
+        <td colspan="7"><h3>No New Request Found</h3></td>
+    </tr>
+    </tbody>
+</table>
+
+<div ng-show="invitations.loader">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>

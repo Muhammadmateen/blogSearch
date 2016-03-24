@@ -3,98 +3,12 @@
         <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Add CSV File">
                 <md-content class="md-padding">
-                    <h1 class="md-display-2">Add CSV File</h1>
-
-                    <ng-csv-import content="csv.content"
-                                   header="csv.header"
-                                   separator="csv.separator"
-                                   result="csv.result"
-                                   accept="csv.accept"></ng-csv-import>
-
-                    <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">
-                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                    </div>
-                    <button ng-click="addBlogs.blogFileUpload()">Upload File</button>
-
+                    <ng-include src="'./components/addBlogs/csvFileUpload.html'"></ng-include>
                 </md-content>
             </md-tab>
             <md-tab label="Add Record">
                 <md-content class="md-padding">
-                    <h1 class="md-display-2">Add Record</h1>
-                    <div>
-                        <form name="blogDataForm" ng-submit="addBlogs.addBlog()">
-                            <md-input-container>
-                                <label>Blog Url</label>
-                                <input name="blogUrl" ng-model="addBlogs.data.blogUrl" autofocus required>
-                            </md-input-container>
-                            <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
-                                <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
-                            </span>
-                            <md-input-container>
-                                <label>Site Category</label>
-                                <input ng-model="addBlogs.data.siteCategory">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>DA</label>
-                                <input ng-model="addBlogs.data.DA" type="number">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>PR</label>
-                                <input ng-model="addBlogs.data.PR" type="number">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>TF</label>
-                                <input ng-model="addBlogs.data.TF" type="number">
-                            </md-input-container>
-                            <br>
-                            <md-input-container>
-                                <label>Web Type</label>
-                                <input ng-model="addBlogs.data.siteType">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Pre Written Rate</label>
-                                <input ng-model="addBlogs.data.preWrittenRate" type="number">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Blog Write Rate</label>
-                                <input ng-model="addBlogs.data.bloggerWriteRate" type="number">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Accept Do Follow</label>
-                                <input ng-model="addBlogs.data.acceptDofollow">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Negotiated</label>
-                                <input ng-model="addBlogs.data.negotiated">
-                            </md-input-container>
-                            <br>
-                            <md-input-container>
-                                <label>Blogger Name</label>
-                                <input ng-model="addBlogs.data.bloggerName">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Contact Details</label>
-                                <input ng-model="addBlogs.data.contactDetails">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Blog Source</label>
-                                <input ng-model="addBlogs.data.blogSource">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Comments</label>
-                                <input ng-model="addBlogs.data.comments">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Participated</label>
-                                <input ng-model="addBlogs.data.participated">
-                            </md-input-container>
-                            <br>
-                            <button type="submit" ng-disabled="blogDataForm.$invalid">Add Blog</button>
-                        </form>
-                    </div>
-                    <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">
-                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                    </div>
+                    <ng-include src="'./components/addBlogs/addBlogItem.html'"></ng-include>
                 </md-content>
             </md-tab>
         </md-tabs>

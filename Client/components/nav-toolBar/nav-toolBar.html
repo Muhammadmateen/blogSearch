@@ -40,7 +40,7 @@
                 </md-button>
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item ng-if="navToolBar.checkUser()">
                 <md-button aria-label="User Invitations" class="md-primary" ui-sref="dashboard.invitations" ng-click="navToolBar.closeMenu()">
                     <ng-md-icon icon=""></ng-md-icon>
                     <span class="txt_color">Invitations</span>

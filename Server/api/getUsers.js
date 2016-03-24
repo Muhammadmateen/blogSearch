@@ -12,7 +12,7 @@ var api = express.Router();
 api.post("/getUsers",function(req,res)
 {
     // role 3 value is user
-    getUsers_model.find({role:3},function(err,data)
+    getUsers_model.find({},{pass:0},function(err,data)
     {
         if (data)
         {
@@ -23,6 +23,7 @@ api.post("/getUsers",function(req,res)
             }
             else
             {
+                console.log("Users data",data)
                 // 200 Data Found
                 res.status(200).send(data);
             }

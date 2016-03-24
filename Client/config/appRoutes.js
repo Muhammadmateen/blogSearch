@@ -6,7 +6,8 @@
 (function () {
     'use strict';
     angular.module("blogApp")
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
+
             var navLoginBar = {
                 templateUrl: 'components/nav-loginBar/nav-loginBar.html',
                 controller: 'navLoginBarController',
@@ -137,6 +138,12 @@
                 		$state.go("404");
                 	});
 
+            //$locationProvider.html5Mode(true);
+
+            /*$locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });*/
         })
         /*.run(function ($rootScope, $state,authService) {
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {

@@ -44,6 +44,24 @@
         userData();
 
 
+
+        //_self.sNo = 0;
+       /* _self.checkRole = function(role)
+        {
+            //console.log("Value :",role)
+            if(role == 3)
+            {
+                return true;
+            }
+            else
+            {
+                //console.log("2")
+                return false;
+            }
+
+        }
+*/
+
         //Update User Details
         _self.updateDetails = function(a,b)
         {

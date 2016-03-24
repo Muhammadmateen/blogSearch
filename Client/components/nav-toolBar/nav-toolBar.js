@@ -6,12 +6,24 @@
 {
     angular.module("blogApp")
 
-        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','$state',navToolBarController])
+        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','$state','authService',navToolBarController])
 
-    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav,$state)
+    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav,$state,authService)
     {
         var _self = this;
         _self.loader = false;
+
+        _self.checkUser = function()
+        {
+            if(authService.localData().role == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
 
@@ -19,14 +31,15 @@
         //Logout function
         _self.logout = function()
         {
-            $http.post("/logout").then(function(data)
+            console.log("Logout")
+           /* $http.post("/logout").then(function(data)
             {
                localStorage.removeItem("loggedInUser");
                 $state.go("login");
             },function(err)
             {
                 toast_service.showSimpleToast("Error ",err);
-            })
+            })*/
 
         }
 

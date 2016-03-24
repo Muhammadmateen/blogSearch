@@ -37,6 +37,47 @@ var updateBlogItem_api = require("./api/updateBlogItem.js");
 var app = express();
 
 
+/*=====================Files Path====================================*/
+//Path of files
+var viewsPath = path.resolve(__dirname,"../client");
+app.use(express.static(viewsPath));
+
+
+
+/*=====================Files Path====================================*/
+/*
+// serve all asset files from necessary directories
+app.use("../client/components/404", express.static(__dirname + "../client/components/404"));
+app.use("../client/components/addBlogs", express.static(__dirname + "../client/components/addBlogs"));
+app.use("../client/components/dashboard", express.static(__dirname + "../client/components/dashboard"));
+app.use("../client/components/forgot", express.static(__dirname + "../client/components/forgot"));
+app.use("../client/components/home", express.static(__dirname + "../client/components/home"));
+app.use("../client/components/invitations", express.static(__dirname + "../client/components/invitations"));
+app.use("../client/components/login", express.static(__dirname + "../client/components/login"));
+app.use("../client/components/nav-loginBar", express.static(__dirname + "../client/components/nav-loginBar"));
+app.use("../client/components/nav-toolBar", express.static(__dirname + "../client/components/nav-toolBar"));
+app.use("../client/components/searchBlogs", express.static(__dirname + "../client/components/searchBlogs"));
+app.use("../client/components/sign-up", express.static(__dirname + "../client/components/sign-up"));
+app.use("../client/components/simple-toolBar", express.static(__dirname + "../client/components/simple-toolBar"));
+app.use("../client/components/updateBlog", express.static(__dirname + "../client/components/updateBlog"));
+app.use("../client/components/verifyUser", express.static(__dirname + "../client/components/verifyUser"));
+
+
+// serve index.html for all remaining routes, in order to leave routing up to angular
+app.all("/!*", function(req, res, next) {
+    res.sendfile("index.html", { root: __dirname + "../client" });
+});
+*/
+
+
+
+/*=====================Body Parser====================================*/
+
+// Using body parser
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+
 /*=====================Sessions====================================*/
 app.use(session({
     secret:"ksdf5i01siu8sdfj7mjsdi",
@@ -44,17 +85,6 @@ app.use(session({
     saveUninitialized: true,
     expire:8.64e+7
 }))
-
-
-
-//Path of files
-var viewsPath = path.resolve(__dirname,"../client");
-app.use(express.static(viewsPath));
-
-// Using body parser
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-
 
 /*==================Post request on server using Api===========================*/
 
@@ -98,7 +128,6 @@ app.put('/updateBlogItem',updateBlogItem_api);
 
 /*Delete Blog Item*/
 app.delete('/deleteBlogItem/:id',deleteBlogItem_api);
-
 
 
 /*

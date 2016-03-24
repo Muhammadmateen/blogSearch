@@ -1,0 +1,14 @@
+    <h1 class="md-display-2">Add CSV File</h1>
+
+    <ng-csv-import content="csv.content"
+                   header="csv.header"
+                   separator="csv.separator"
+                   result="csv.result"
+                   accept="csv.accept"></ng-csv-import>
+
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <button ng-click="addBlogs.blogFileUpload()">Upload File Data</button>
+
+
