@@ -68,7 +68,7 @@
                 <input ng-model="addBlogs.data.participated">
             </md-input-container>
             <br>
-            <button type="submit">Add Blog</button>
+            <button type="submit" ng-disabled="blogDataForm.$invalid">Add Blog</button>
         </form>
     </div>
     <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">

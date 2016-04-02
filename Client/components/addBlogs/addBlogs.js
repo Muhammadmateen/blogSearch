@@ -40,6 +40,7 @@
             return result;
         };
 
+        //CSV blog file
         _self.blogFileUpload = function()
         {
             if($scope.csv.result)
@@ -51,7 +52,7 @@
                 else
                 {
                     _self.loader = true;
-                    addBlogsService.csvImportData($scope.csv.result).then(function(data)
+                    addBlogsService.csvFile($scope.csv.result).then(function(data)
                     {
                         _self.loader = data;
                     },function(err)
@@ -66,19 +67,15 @@
             }
         }
 
-        _self.blogData = [];
+
+        //Single blog item
         _self.addBlog = function()
         {
             if(_self.data.blogUrl != undefined)
             {
-                _self.blogData.push(_self.data);
-                //console.log(_self.blogData);
-                addBlogsService.csvImportData(_self.blogData).then(function(data)
+                addBlogsService.blogItem(_self.singleBlogData4).then(function(data)
                 {
                     _self.loader = data;
-                    console.log("Data : ",data)
-                    _self.blogData = null;
-                    console.log("Blog Value : ", _self.blogData);
                     $state.go($state.current,{},{reload:true});
                 },function(err)
                 {
@@ -92,7 +89,7 @@
             }
         };
 
-        _self.correctSampleData = [
+       /* _self.correctSampleData = [
             {
                 blogUrl:"www.yahoo.com",
                 siteCategory:['technology','social'],
@@ -177,9 +174,9 @@
                 comments:null,
                 participated:null
             }
-        ];
+        ];*/
 
-        _self.wrongSampleData = [
+        /*_self.wrongSampleData = [
             {
                 blogUrl:'www.google.com',           //Error here duplicate value passes
                 siteCategory:null,
@@ -245,12 +242,11 @@
                 comments:null,
                 participated:null
             }
-        ]
+        ];*/
 
 
-
-        _self.singleBlogData1 = [
-            {
+        //Working on single
+        /*_self.singleBlogData1 = {
                 blogUrl:123,        //Error data type number passed
                 siteCategory:null,
                 DA:85,
@@ -266,12 +262,10 @@
                 blogSource:null,
                 comments:null,
                 participated:null
-            }
-        ];
+            };*/
 
 
-        _self.singleBlogData2 = [
-            {
+        /*_self.singleBlogData2 = {
                 blogUrl:'www.olx2.com',
                 siteCategory:'abcd',        //Error data type string passed here array required in string
                 DA:85,
@@ -287,11 +281,9 @@
                 blogSource:null,
                 comments:null,
                 participated:null
-            }
-        ];
+            };*/
 
-        _self.singleBlogData3 = [
-            {
+        /*_self.singleBlogData3 = {
                 blogUrl:'www.olx3.com',
                 siteCategory:[25,30],        //Error data type int passed here array required in string
                 DA:85,
@@ -307,11 +299,9 @@
                 blogSource:null,
                 comments:null,
                 participated:null
-            }
-        ];
+            };*/
 
-        _self.singleBlogData4 = [
-            {
+        /*_self.singleBlogData4 = {
                 blogUrl:'www.olx4.com',
                 siteCategory:['ab','cd'],
                 DA:'Ab',        //Error data type string passed
@@ -327,8 +317,8 @@
                 blogSource:null,
                 comments:null,
                 participated:null
-            }
-        ];
+            };*/
+
     }
 
 }());

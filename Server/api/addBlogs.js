@@ -12,29 +12,71 @@ var api = express.Router();
 
 
 
-api.post("/addBlogs", function (req, res) {
+api.post("/addBlogsFile", function (req, res) {
 
     addBlogs_schema.insertMany(req.body, function (err, success) {
         if (err) {
-            res.send("Error : ",err);
-           /* if(err.index == 0)
+            console.log("Error : ",err);
+            if(err.errors)
             {
-                res.status(202).send("Duplicate URL Error : No record inserted");
+                console.log("Error : ",err);
+                //10.4.16 415 Unsupported Media Type (content type)
+                res.status(415).send("Invalid data in file");
+            }
+            else if(err.code == 11000)
+            {
+                console.log("Error : ",err);
+                res.status(202).send("Duplicate URL Error : First "+err.index+" records data save");
             }
             else
             {
-                res.status(202).send("Duplicate URL Error : First "+err.index+" records data uploaded");
-            }*/
+
+                console.log("Error : ",err);
+                res.status(500).send(err.message);
+            }
         }
         else {
-            res.send("Sucess : ",success);
-
-           /* res.status(200).send("Data Saved successfully");*/
+            console.log("Success : ",success);
+            //res.status(200).send(success);
+            res.status(200).send("File Data uploaded");
         }
     });
 
 
 })
+
+api.post("/addBlogsItem",function(req,res)
+{
+    var blog_schema = new addBlogs_schema(req.body);
+    blog_schema.save(function(err,success)
+    {
+        if(err)
+        {
+            if(err.errors)
+            {
+                console.log("Error : ",err);
+                //10.4.16 415 Unsupported Media Type (content type)
+                res.status(415).send("Invalid data provided");
+            }
+            else if(err.code == 11000)
+            {
+                console.log("Error : ",err);
+                res.status(415).send("Provided Url already exist");
+            }
+            else
+            {
+
+                console.log("Error : ",err);
+                res.status(500).send(err.message);
+            }
+        }
+        else
+        {
+            console.log("Success : ",success);
+            res.status(200).send("Data save successfully");
+        }
+    })
+});
 
 //Export the Api
 module.exports = api;

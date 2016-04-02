@@ -106,8 +106,11 @@ app.post('/logout',function(req,res)
     res.status(200).send("ok");
 })
 
-/*Add CSV Blogs*/
-app.post('/addBlogs',addBlogs_api);
+/*Add CSV Blogs file*/
+app.post('/addBlogsFile',addBlogs_api);
+
+/*Add blog item*/
+app.post('/addBlogsItem',addBlogs_api);
 
 /*Get all new users request for approval*/
 app.post('/getUsers',getUsers_api);

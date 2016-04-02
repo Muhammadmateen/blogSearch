@@ -56,4 +56,4 @@ var schema = new mongoose.Schema({
 
 
 //Export the schema
-exports.addBlogs = mongoose.model("BlogCampaigns",schema);
+exports.addBlogs = mongoose.model("blogCampaigns",schema);
