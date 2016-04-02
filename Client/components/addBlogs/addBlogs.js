@@ -66,14 +66,19 @@
             }
         }
 
-
+        _self.blogData = [];
         _self.addBlog = function()
         {
             if(_self.data.blogUrl != undefined)
             {
-                addBlogsService.csvImportData(_self.data).then(function(data)
+                _self.blogData.push(_self.data);
+                //console.log(_self.blogData);
+                addBlogsService.csvImportData(_self.blogData).then(function(data)
                 {
                     _self.loader = data;
+                    console.log("Data : ",data)
+                    _self.blogData = null;
+                    console.log("Blog Value : ", _self.blogData);
                     $state.go($state.current,{},{reload:true});
                 },function(err)
                 {
@@ -85,8 +90,245 @@
             {
                 toast_service.showSimpleToast("Please Enter URL");
             }
-        }
+        };
 
+        _self.correctSampleData = [
+            {
+                blogUrl:"www.yahoo.com",
+                siteCategory:['technology','social'],
+                DA:32,
+                PR:7,
+                TF:52,
+                siteType:'ab site',
+                preWrittenRate:300,
+                bloggerWriteRate:250,
+                acceptDofollow:'no',
+                negotiated:'no',
+                bloggerName:'Joshef',
+                contactDetails:'UK',
+                blogSource:'yahoo',
+                comments:'good blogger',
+                participated:'yes'
+            },{
+                blogUrl:"www.google.com",
+                siteCategory:['fashion','technology','medical'],
+                DA:22,
+                PR:8,
+                TF:42,
+                siteType:'bc site',
+                preWrittenRate:220,
+                bloggerWriteRate:200,
+                acceptDofollow:'no',
+                negotiated:'yes',
+                bloggerName:'Michel',
+                contactDetails:'USA',
+                blogSource:'google',
+                comments:'responisble blooger',
+                participated:'yes'
+            },
+            {
+                blogUrl:'www.facebook.com',
+                siteCategory:['social'],
+                DA:65,
+                PR:3,
+                TF:88,
+                siteType:'de site',
+                preWrittenRate:430,
+                bloggerWriteRate:380,
+                acceptDofollow:'yes',
+                negotiated:'yes',
+                bloggerName:'johny',
+                contactDetails:'AUS',
+                blogSource:'facebook',
+                comments:null,
+                participated:null
+            },
+            {
+                blogUrl:'www.twitter.com',
+                siteCategory:['style','jwellery','gold'],
+                DA:85,
+                PR:10,
+                TF:89,
+                siteType:'gh site',
+                preWrittenRate:500,
+                bloggerWriteRate:455,
+                acceptDofollow:'no',
+                negotiated:'yes',
+                bloggerName:'alpha',
+                contactDetails:'malaysia',
+                blogSource:null,
+                comments:null,
+                participated:'yes'
+            },
+            {
+                blogUrl:'www.github.com',
+                siteCategory:null,
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ];
+
+        _self.wrongSampleData = [
+            {
+                blogUrl:'www.google.com',           //Error here duplicate value passes
+                siteCategory:null,
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            },{
+                blogUrl:'www.wikipedia.com',
+                siteCategory:'abcd',            //Error here array value passed
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            },{
+                blogUrl:'www.gana.com',
+                siteCategory:['fashion','songs','movies'],
+                DA:'abc',                       //Error data type string passed
+                PR:'cde',                       //Error data type string passed
+                TF:'fgh',                       //Error data type string passed
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            },{
+                blogUrl:'www.panacloud.com',
+                siteCategory:['software','house'],
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:'free of cost',             //Error data type string passed
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ]
+
+
+
+        _self.singleBlogData1 = [
+            {
+                blogUrl:123,        //Error data type number passed
+                siteCategory:null,
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ];
+
+
+        _self.singleBlogData2 = [
+            {
+                blogUrl:'www.olx2.com',
+                siteCategory:'abcd',        //Error data type string passed here array required in string
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ];
+
+        _self.singleBlogData3 = [
+            {
+                blogUrl:'www.olx3.com',
+                siteCategory:[25,30],        //Error data type int passed here array required in string
+                DA:85,
+                PR:10,
+                TF:98,
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ];
+
+        _self.singleBlogData4 = [
+            {
+                blogUrl:'www.olx4.com',
+                siteCategory:['ab','cd'],
+                DA:'Ab',        //Error data type string passed
+                PR:'Bc',        //Error data type string passed
+                TF:'De',        //Error data type string passed
+                siteType:null,
+                preWrittenRate:110,
+                bloggerWriteRate:85,
+                acceptDofollow:null,
+                negotiated:null,
+                bloggerName:'Bravo',
+                contactDetails:null,
+                blogSource:null,
+                comments:null,
+                participated:null
+            }
+        ];
     }
 
 }());

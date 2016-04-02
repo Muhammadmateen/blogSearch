@@ -14,19 +14,22 @@ var api = express.Router();
 
 api.post("/addBlogs", function (req, res) {
 
-    addBlogs_schema.collection.insert(req.body, function (err, success) {
+    addBlogs_schema.insertMany(req.body, function (err, success) {
         if (err) {
-            if(err.index == 0)
+            res.send("Error : ",err);
+           /* if(err.index == 0)
             {
                 res.status(202).send("Duplicate URL Error : No record inserted");
             }
             else
             {
                 res.status(202).send("Duplicate URL Error : First "+err.index+" records data uploaded");
-            }
+            }*/
         }
         else {
-            res.status(200).send("Data Saved successfully");
+            res.send("Sucess : ",success);
+
+           /* res.status(200).send("Data Saved successfully");*/
         }
     });
 

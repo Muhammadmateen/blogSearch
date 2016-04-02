@@ -65,7 +65,7 @@
                     }
                 }
 
-            }
+            };
 
             return authServiceObj;
         }]);

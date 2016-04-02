@@ -4,7 +4,7 @@
 
 var mongoose = require("mongoose");
 
-var schema = mongoose.Schema({
+var schema = new mongoose.Schema({
     blogUrl:{
         type:String
         ,unique:true,

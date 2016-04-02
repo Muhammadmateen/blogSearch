@@ -23,6 +23,7 @@
 
             $stateProvider.state('/home', {
                     url: '/home',
+                    isLoggedIn:false,
                     views: {
                         'nav': navLoginBar,
                         'main': {
@@ -33,6 +34,7 @@
 
                 .state('login', {
                     url: '/login',
+                    isLoggedIn:false,
                     views: {
                         'nav': navLoginBar,
                         'main': {
@@ -45,6 +47,7 @@
 
                 .state('sign-up', {
                     url: '/sign-up',
+                    isLoggedIn:false,
                     views: {
                         'nav': navLoginBar,
                         'main': {
@@ -57,6 +60,7 @@
 
                 .state('forgot', {
                     url: '/forgot',
+                    isLoggedIn:false,
                     views: {
                         'nav': navLoginBar,
                         'main': {
@@ -69,6 +73,7 @@
 
                 .state('verify-account',{
                     url:'/verify-account/:id',
+                    isLoggedIn:false,
                     views:{
                         'nav' : {
                             templateUrl:'components/simple-toolBar/simple-toolBar.html'
@@ -125,6 +130,7 @@
 
                 .state('404', {
                     url: '/404',
+                    isLoggedIn:false,
                     views: {
                         'nav': navLoginBar,
                         'main': {

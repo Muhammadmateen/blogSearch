@@ -15,7 +15,7 @@
             </md-input-container>
             <md-input-container>
                 <label>DA</label>
-                <input ng-model="addBlogs.data.DA" type="number">
+                <input ng-model="addBlogs.data.DA" type="text">
             </md-input-container>
             <md-input-container>
                 <label>PR</label>
@@ -68,7 +68,7 @@
                 <input ng-model="addBlogs.data.participated">
             </md-input-container>
             <br>
-            <button type="submit" ng-disabled="blogDataForm.$invalid">Add Blog</button>
+            <button type="submit">Add Blog</button>
         </form>
     </div>
     <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">
