@@ -52,7 +52,7 @@
                 else
                 {
                     _self.loader = true;
-                    addBlogsService.csvFile($scope.csv.result).then(function(data)
+                    addBlogsService.csvFile(_self.correctSampleData).then(function(data)
                     {
                         _self.loader = data;
                     },function(err)
@@ -73,7 +73,7 @@
         {
             if(_self.data.blogUrl != undefined)
             {
-                addBlogsService.blogItem(_self.singleBlogData4).then(function(data)
+                addBlogsService.blogItem(_self.correctSampleData).then(function(data)
                 {
                     _self.loader = data;
                     $state.go($state.current,{},{reload:true});
@@ -89,7 +89,7 @@
             }
         };
 
-       /* _self.correctSampleData = [
+        _self.correctSampleData = [
             {
                 blogUrl:"www.yahoo.com",
                 siteCategory:['technology','social'],
@@ -139,7 +139,7 @@
                 blogSource:'facebook',
                 comments:null,
                 participated:null
-            },
+            }/*,
             {
                 blogUrl:'www.twitter.com',
                 siteCategory:['style','jwellery','gold'],
@@ -173,8 +173,8 @@
                 blogSource:null,
                 comments:null,
                 participated:null
-            }
-        ];*/
+            }*/
+        ];
 
         /*_self.wrongSampleData = [
             {

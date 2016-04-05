@@ -36,8 +36,8 @@
             Site Category :
             <md-input-container>
                 <label>To</label>
-                <md-select name="siteCategory" ng-model="searchBlogs.blog.siteCategory" required>
-                    <md-option ng-repeat="to in searchBlogs.hundredNo">
+                <md-select name="siteCategory"  ng-model="searchBlogs.blog.siteCategory" required>
+                    <md-option value="{{to}}" ng-repeat="to in searchBlogs.blogCategory">
                         {{to}}
                     </md-option>
                 </md-select>
@@ -198,7 +198,14 @@
                 <td>{{$index+1}}</td>
                 <td>{{item.bloggerName}}</td>
                 <td>{{item.blogUrl}}</td>
-                <td>{{item.siteCategory}}</td>
+                <!--<td>{{item.siteCategory}}</td>-->
+                <td>
+                    <span ng-repeat="site in item.siteCategory">{{site}}
+                        <span ng-hide="$last">
+                            ,
+                        </span>
+                    </span>
+                </td>
                 <td>{{item.DA}}</td>
                 <td>{{item.PR}}</td>
                 <td>{{item.TF}}</td>

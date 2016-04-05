@@ -45,6 +45,8 @@
          _self.hundredNo.push(i);
          }
 
+        _self.blogCategory = ['social','technology','fashion','medical'];
+
         /*_self.hundredNo =   [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
                             21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
                             41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,
@@ -65,12 +67,15 @@
             }
         }
 
+        //_self.man.type.abcd = ['name','Father Name'];
 
         _self.search = function()
         {
-            console.log(_self.blog);
-            $http.post("/searchBlogs",_self.blog).then(function(data)
+            $http({method:'GET',url:'/searchBlogs',params:_self.blog}).then(function(data)
             {
+                console.log(_self.blog);
+                //console.log(typeof(_self.blog.siteCategory));
+                console.log("Data : ",data);
                 if(data.status == 200)
                 {
                     _self.matchedItem = data.data;
@@ -84,10 +89,29 @@
 
             },function(err)
             {
-                toast_service.showSimpleToast(data.status+" : Internal server error");
+                toast_service.showSimpleToast(err.status+" : Internal server error");
                 console.log("Error ",err);
             })
+            /*if(_self.selectedItem.siteCategory)
+            {
+                //var siteCategory = [_self.blog.siteCategory.$in];
+                _self.blog.siteCategory.$in = [_self.blog.siteCategory.$in];
+                searchBlog(_self.blog);
+                console.log("If : ",_self.blog);
+            }
+            else
+            {
+                searchBlog(_self.blog);
+                console.log("Else Query : ",_self.blog);
+            }*/
         }
+
+      /* var searchBlog = function(query)
+        {
+
+        };*/
+
+
 
         _self.deleteBlog = function(id,index)
         {

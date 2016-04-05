@@ -10,9 +10,10 @@ var searchBlog_schema = schema.addBlogs;
 
 var api = express.Router();
 
-api.post("/searchBlogs",function(req,res)
+api.get("/searchBlogs",function(req,res)
 {
-    searchBlog_schema.find(req.body,function(err,data)
+    console.log("Query : ",req.query)
+    searchBlog_schema.find(req.query,function(err,data)
     {
         if (data)
         {

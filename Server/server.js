@@ -13,9 +13,9 @@ var mongoose = require("mongoose");
 var session = require('express-session');
 
 /*Local connection*/
-/*mongoose.connect("mongodb://localhost/blogs");*/
+mongoose.connect("mongodb://localhost/blogs");
 /*Mongolab connection*/
-mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
+/*mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');*/
 
 
 /*=========================Require Api=========================*/
@@ -122,7 +122,7 @@ app.post('/updateUsers',updateUsers_api);
 app.post('/verifyUser',verifyUser_api);
 
 /*Search Blogs*/
-app.post('/searchBlogs',searchBlogs_api);
+app.get('/searchBlogs',searchBlogs_api);
 
 
 /*Update Blog Item*/
