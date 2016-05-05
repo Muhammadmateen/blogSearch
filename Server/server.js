@@ -88,7 +88,7 @@ app.use(session({
 
 /*==================Post request on server using Api===========================*/
 
-app.post('/userStatus',userStatus_api);
+app.get('/userStatus',userStatus_api);
 
 /*Sign up*/
 app.post('/sign_up_user',signUp_api);
@@ -97,7 +97,7 @@ app.post('/sign_up_user',signUp_api);
 app.post('/check_email',signUp_api);
 
 /*User authentication (Login) */
-app.post('/login',login_api);
+app.get('/login',login_api);
 
 /*User logout*/
 app.post('/logout',function(req,res)
@@ -131,6 +131,12 @@ app.put('/updateBlogItem',updateBlogItem_api);
 
 /*Delete Blog Item*/
 app.delete('/deleteBlogItem/:id',deleteBlogItem_api);
+
+/*Get list of sites Categories*/
+app.get('/getSiteCategories',searchBlogs_api);
+
+/*Get list of Location (Country)*/
+app.get('/getLocations',searchBlogs_api);
 
 
 /*

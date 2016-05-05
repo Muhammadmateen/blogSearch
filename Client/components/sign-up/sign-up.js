@@ -83,10 +83,10 @@
         };
 
 
-        _self.setLocal = function()
+       /* _self.setLocal = function()
         {
             localStorage.setItem("uid","khsdbgfhsbvdhfbvsdf");
-        }
+        }*/
 
     };
 })();

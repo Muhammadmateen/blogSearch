@@ -52,6 +52,7 @@ api.post("/addBlogsItem",function(req,res)
     {
         if(err)
         {
+            console.log("Error : ",err);
             if(err.errors)
             {
                 console.log("Error : ",err);

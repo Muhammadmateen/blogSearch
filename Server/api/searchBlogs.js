@@ -36,5 +36,41 @@ api.get("/searchBlogs",function(req,res)
     })
 });
 
+api.get("/getSiteCategories",function(req,res)
+{
+    searchBlog_schema.distinct("siteCategory",function(err,data)
+    {
+        if(data)
+        {
+            //console.log("All sitecategory : ",data);
+            res.status(200).send(data);
+        }
+        else
+        {
+            //console.log("Error in sitecategory : ",err);
+            res.status(204).send(data);
+        }
+    })
+});
+
+
+api.get("/getLocations",function(req,res)
+{
+    searchBlog_schema.distinct("location",function(err,data)
+    {
+        if(data)
+        {
+            //console.log("All Locations : ",data);
+            res.status(200).send(data);
+        }
+        else
+        {
+            //console.log("Error in location : ",err);
+            res.status(204).send(data);
+        }
+
+    });
+});
+
 
 module.exports = api;

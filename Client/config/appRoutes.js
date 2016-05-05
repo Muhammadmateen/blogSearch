@@ -21,7 +21,7 @@
             }
 
 
-            $stateProvider.state('/home', {
+            $stateProvider.state('home', {
                     url: '/home',
                     isLoggedIn:false,
                     views: {
@@ -141,7 +141,7 @@
 
             $urlRouterProvider.otherwise( function($injector, $location) {
                 		var $state = $injector.get("$state");
-                		$state.go("404");
+                		$state.go("home");
                 	});
 
             //$locationProvider.html5Mode(true);
@@ -151,9 +151,13 @@
                 requireBase: false
             });*/
         })
-        /*.run(function ($rootScope, $state,authService) {
+        .run(function ($rootScope, $state,authService) {
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
                 authService.userStatus(toState,event);
             });
-        })*/
+
+            /*$rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
+                    console.log("State not Found");
+                })*/
+        })
 })();

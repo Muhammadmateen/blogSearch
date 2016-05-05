@@ -2,72 +2,128 @@
     <h1 class="md-display-2">Add Record</h1>
     <div>
         <form name="blogDataForm" ng-submit="addBlogs.addBlog()">
+
             <md-input-container>
                 <label>Blog Url</label>
-                <input name="blogUrl" ng-model="addBlogs.data.blogUrl" autofocus required>
+                <input name="blogUrl" ng-model="addBlogs.data.blogUrl" type="text" autofocus required>
             </md-input-container>
                             <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
                                 <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
                             </span>
-            <md-input-container>
-                <label>Site Category</label>
-                <input ng-model="addBlogs.data.siteCategory">
-            </md-input-container>
+
             <md-input-container>
                 <label>DA</label>
-                <input ng-model="addBlogs.data.DA" type="text">
+                <input name="DA" ng-model="addBlogs.data.DA" type="number" required>
             </md-input-container>
-            <md-input-container>
-                <label>PR</label>
-                <input ng-model="addBlogs.data.PR" type="number">
-            </md-input-container>
+                <span style="color: red" ng-show="blogDataForm.DA.$invalid && blogDataForm.DA.$dirty">
+                    <span ng-show="blogDataForm.DA.$error.required">DA is required</span>
+                </span>
+
+
             <md-input-container>
                 <label>TF</label>
                 <input ng-model="addBlogs.data.TF" type="number">
             </md-input-container>
-            <br>
+
             <md-input-container>
-                <label>Web Type</label>
-                <input ng-model="addBlogs.data.siteType">
+                <label>CF</label>
+                <input ng-model="addBlogs.data.CF" type="number">
             </md-input-container>
+
+            <br>
+
             <md-input-container>
                 <label>Pre Written Rate</label>
                 <input ng-model="addBlogs.data.preWrittenRate" type="number">
             </md-input-container>
+
             <md-input-container>
-                <label>Blog Write Rate</label>
-                <input ng-model="addBlogs.data.bloggerWriteRate" type="number">
+                <label>Blogger Rate</label>
+                <input ng-model="addBlogs.data.bloggerRate" type="number">
             </md-input-container>
+
             <md-input-container>
-                <label>Accept Do Follow</label>
-                <input ng-model="addBlogs.data.acceptDofollow">
+                <label>Negotiated Rate</label>
+                <input ng-model="addBlogs.data.negotiatedRate" type="number">
             </md-input-container>
-            <md-input-container>
-                <label>Negotiated</label>
-                <input ng-model="addBlogs.data.negotiated">
-            </md-input-container>
+
             <br>
+
             <md-input-container>
                 <label>Blogger Name</label>
-                <input ng-model="addBlogs.data.bloggerName">
+                <input ng-model="addBlogs.data.bloggerName" type="text">
             </md-input-container>
+
+            <md-input-container>
+                <label>Location</label>
+                <input ng-model="addBlogs.data.location">
+            </md-input-container>
+
             <md-input-container>
                 <label>Contact Details</label>
-                <input ng-model="addBlogs.data.contactDetails">
+                <input ng-model="addBlogs.data.contactDetails" type="text">
             </md-input-container>
-            <md-input-container>
-                <label>Blog Source</label>
-                <input ng-model="addBlogs.data.blogSource">
-            </md-input-container>
+
             <md-input-container>
                 <label>Comments</label>
-                <input ng-model="addBlogs.data.comments">
+                <input ng-model="addBlogs.data.comments" type="text">
             </md-input-container>
+
+            <br>
+
+
+            <md-input-container>
+                <label>Accept Casino</label>
+                <md-select ng-model="addBlogs.data.acceptCasino">
+                    <md-option value="yes">Yes</md-option>
+                    <md-option value="no">No</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Web Type</label>
+                <md-select ng-model="addBlogs.data.siteType">
+                    <md-option value="real">Real</md-option>
+                    <md-option value="bpn">BPN</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Accept Do Follow</label>
+                <md-select ng-model="addBlogs.data.acceptDofollow">
+                    <md-option value="yes">Yes</md-option>
+                    <md-option value="no">No</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Google Index</label>
+                <md-select ng-model="addBlogs.data.googleIndex">
+                    <md-option value="index">Index</md-option>
+                    <md-option value="de-index">De-Index</md-option>
+                </md-select>
+            </md-input-container>
+
+            <br>
+            <md-input-container>
+                <label>Ip Address</label>
+                <input ng-model="addBlogs.data.ipAddress">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Blog Source</label>
+                <input ng-model="addBlogs.data.blogSource" type="text">
+            </md-input-container>
+
+
             <md-input-container>
                 <label>Participated</label>
-                <input ng-model="addBlogs.data.participated">
+                <input ng-model="addBlogs.data.participated" type="text">
             </md-input-container>
+
             <br>
+
+            <md-chips ng-model="addBlogs.siteCategory" readonly="ctrl.readonly"></md-chips>
             <button type="submit" ng-disabled="blogDataForm.$invalid">Add Blog</button>
         </form>
     </div>

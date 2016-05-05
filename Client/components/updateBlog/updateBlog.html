@@ -19,6 +19,128 @@
                             <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
                                 <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
                             </span>
+
+            <md-input-container>
+                <label>DA</label>
+                <input name="DA" ng-model="updateBlog.data.DA" type="number" required>
+            </md-input-container>
+                <span style="color: red" ng-show="blogDataForm.DA.$invalid && blogDataForm.DA.$dirty">
+                    <span ng-show="blogDataForm.DA.$error.required">DA is required</span>
+                </span>
+
+
+            <md-input-container>
+                <label>TF</label>
+                <input ng-model="updateBlog.data.TF" type="number">
+            </md-input-container>
+
+            <md-input-container>
+                <label>CF</label>
+                <input ng-model="updateBlog.data.CF" type="number">
+            </md-input-container>
+
+            <br>
+
+            <md-input-container>
+                <label>Pre Written Rate</label>
+                <input ng-model="updateBlog.data.preWrittenRate" type="number">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Blogger Rate</label>
+                <input ng-model="updateBlog.data.bloggerRate" type="number">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Negotiated Rate</label>
+                <input ng-model="updateBlog.data.negotiatedRate" type="number">
+            </md-input-container>
+
+            <br>
+
+            <md-input-container>
+                <label>Blogger Name</label>
+                <input ng-model="updateBlog.data.bloggerName" type="text">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Location</label>
+                <input ng-model="updateBlog.data.location">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Contact Details</label>
+                <input ng-model="updateBlog.data.contactDetails" type="text">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Comments</label>
+                <input ng-model="updateBlog.data.comments" type="text">
+            </md-input-container>
+
+            <br>
+
+
+            <md-input-container>
+                <label>Accept Casino</label>
+                <md-select ng-model="updateBlog.data.acceptCasino">
+                    <md-option value="yes">Yes</md-option>
+                    <md-option value="no">No</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Web Type</label>
+                <md-select ng-model="updateBlog.data.siteType">
+                    <md-option value="real">Real</md-option>
+                    <md-option value="bpn">BPN</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Accept Do Follow</label>
+                <md-select ng-model="updateBlog.data.acceptDofollow">
+                    <md-option value="yes">Yes</md-option>
+                    <md-option value="no">No</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Google Index</label>
+                <md-select ng-model="updateBlog.data.googleIndex">
+                    <md-option value="index">Index</md-option>
+                    <md-option value="de-index">De-Index</md-option>
+                </md-select>
+            </md-input-container>
+
+            <br>
+            <md-input-container>
+                <label>Ip Address</label>
+                <input ng-model="updateBlog.data.ipAddress">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Blog Source</label>
+                <input ng-model="updateBlog.data.blogSource" type="text">
+            </md-input-container>
+
+
+            <md-input-container>
+                <label>Participated</label>
+                <input ng-model="updateBlog.data.participated" type="text">
+            </md-input-container>
+
+            <br>
+
+            <md-chips ng-model="updateBlog.siteCategory" readonly="ctrl.readonly"></md-chips>
+
+            <!--<md-input-container>
+                <label>Blog Url</label>
+                <input name="blogUrl" ng-model="updateBlog.data.blogUrl" autofocus required>
+            </md-input-container>
+                            <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
+                                <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
+                            </span>
             <md-input-container>
                 <label>Site Category</label>
                 <input ng-model="updateBlog.data.siteCategory">
@@ -76,7 +198,8 @@
             <md-input-container>
                 <label>Participated</label>
                 <input ng-model="updateBlog.data.participated">
-            </md-input-container>
+            </md-input-container>-->
+
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <span flex></span>

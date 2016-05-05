@@ -6,51 +6,74 @@ var mongoose = require("mongoose");
 
 var schema = new mongoose.Schema({
     blogUrl:{
-        type:String
-        ,unique:true,
+        type:String,
+        unique: true,
         required:true
     },
-    siteCategory:{
-        type:[String]
-    },
     DA:{
-        type:Number
-    },
-    PR:{
-        type:Number
+        type:Number,
+        min:0,
+        max:100,
+        required:true
     },
     TF:{
-        type:Number
+        type:Number,
+        min:0,
+        max:100
     },
-    siteType:{
-        type:String
+    CF:{
+        type:Number,
+        min:0,
+        max:100
     },
     preWrittenRate:{
         type:Number
     },
-    bloggerWriteRate:{
+    bloggerRate:{
         type:Number
     },
-    acceptDofollow:{
-        type:String
-    },
-    negotiated:{
-        type:String
+    negotiatedRate:{
+        type:Number
     },
     bloggerName:{
+        type:String
+    },
+    location:{
         type:String
     },
     contactDetails:{
         type:String
     },
-    blogSource:{
+    comments:{
         type:String
     },
-    comments:{
+    acceptCasino:{
+        type:String,
+        enum:['yes','no']
+    },
+    siteType:{
+        type:String,
+        enum:['real','bpn']
+    },
+    acceptDofollow:{
+        type:String,
+        enum:['yes','no']
+    },
+    googleIndex:{
+        type:Boolean,
+        enum:['de-index','index']
+    },
+    ipAddress:{
+      type:String
+    },
+    blogSource:{
         type:String
     },
     participated:{
         type:String
+    },
+    siteCategory:{
+        type:[String]
     }
 });
 

@@ -1,0 +1,82 @@
+<div id="exportable">
+    <table width="100%" border="1">
+        <thead>
+        <tr>
+            <th>S.no</th>
+            <th>Blog Url</th>
+            <th>Site Category</th>
+            <th>DA</th>
+            <th>TF</th>
+            <th>CF</th>
+            <th>Pre Written Rate</th>
+            <th>Blogger Rate</th>
+            <th>Negotiated Rate</th>
+            <th>Blogger Name</th>
+            <th>Location</th>
+            <th>Contact Details</th>
+            <th>Comments</th>
+            <th>Accept Casino</th>
+            <th>Site Type</th>
+            <th>Accept Do follow</th>
+            <th>Google Index</th>
+            <th>Ip Address</th>
+            <th>Blog Source</th>
+            <th>Participated</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in searchBlogs.matchedItem">
+            <td>{{$index+1}}</td>
+            <td>{{item.blogUrl}}</td>
+            <td>
+                    <span ng-repeat="site in item.siteCategory">{{site}}
+                        <span ng-hide="$last">
+                            ,
+                        </span>
+                    </span>
+            </td>
+            <td>{{item.DA}}</td>
+            <td>{{item.TF}}</td>
+            <td>{{item.CF}}</td>
+            <td>{{item.preWrittenRate | currency}}</td>
+            <td>{{item.bloggerRate | currency}}</td>
+            <td>{{item.negotiatedRate | currency}}</td>
+            <td>{{item.bloggerName}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.contactDetails}}</td>
+            <td>{{item.comments}}</td>
+            <td>{{item.acceptCasino}}</td>
+            <td>{{item.siteType}}</td>
+            <td>{{item.acceptDofollow}}</td>
+            <td>{{item.googleIndex}}</td>
+            <td>{{item.ipAddress}}</td>
+            <td>{{item.blogSource}}</td>
+            <td>{{item.participated}}</td>
+            <td>
+                <md-menu>
+                    <md-button ng-click="searchBlogs.openMenu($mdOpenMenu, $event)">
+                        <ng-md-icon size="30" icon="expand_more"></ng-md-icon>
+                        <md-tooltip>
+                            Expand
+                        </md-tooltip>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="searchBlogs.editBlog($event,item,$index)">
+                                Edit
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="searchBlogs.deleteBlog(item._id,$index)">
+                                Delete
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

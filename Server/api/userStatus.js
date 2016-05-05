@@ -7,7 +7,7 @@ var express = require("express");
 var api = express.Router();
 
 
-api.post("/userStatus",function(req,res)
+api.get("/userStatus",function(req,res)
 {
     console.log("Request come on checking userstatus");
     if(req.session.loginUserDetails)

@@ -1,0 +1,271 @@
+<form name="searchForm">
+    <!--Blog URL-->
+    <div ng-if="searchBlogs.selectedItem.blogUrl">
+        <md-input-container>
+            <label>Blog URL :</label>
+            <input name="blogUrl" ng-model="searchBlogs.blog.blogUrl" type="text" required>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.blogUrl.$invalid && searchForm.blogUrl.$dirty">
+                    <span ng-show="searchForm.blogUrl.$error.required">Blog Url is required</span>
+    </span>-->
+    <!--Site Category-->
+    <div ng-if="searchBlogs.selectedItem.siteCategory">
+        Site Category :
+        <md-input-container>
+            <label>To</label>
+            <md-select name="siteCategory"  ng-model="searchBlogs.blog.siteCategory" required>
+                <md-option value="{{siteCategory}}" ng-repeat="siteCategory in searchBlogs.blogCategory">
+                    {{siteCategory}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.siteCategory.$invalid && searchForm.siteCategory.$dirty">
+                    <span ng-show="searchForm.siteCategory.$error.required">Site category is required</span>
+    </span>-->
+    <!--DA-->
+    <div ng-if="searchBlogs.selectedItem.DA">
+        DA :
+        <md-input-container>
+            <label>Start</label>
+            <md-select name="DAto" ng-model="searchBlogs.blog.DA.$gte" required>
+                <md-option ng-repeat="to in searchBlogs.hundredNo">
+                    {{to}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>End</label>
+            <md-select name="DAfrom" ng-model="searchBlogs.blog.DA.$lte" required>
+                <md-option ng-repeat="from in searchBlogs.hundredNo">
+                    {{from}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.DAto.$invalid && searchForm.DAto.$dirty">
+                    <span ng-show="searchForm.DAto.$error.required">DA To is required</span>
+    </span>
+    <span style="color: red" ng-show="searchForm.DAfrom.$invalid && searchForm.DAfrom.$dirty">
+                    <span ng-show="searchForm.DAfrom.$error.required">DA From is required</span>
+    </span>-->
+
+    <!--CF-->
+    <div ng-if="searchBlogs.selectedItem.CF">
+        CF :
+        <md-input-container>
+            <label>Start</label>
+            <md-select name="CFto" ng-model="searchBlogs.blog.CF.$gte" required>
+                <md-option ng-repeat="to in searchBlogs.hundredNo">
+                    {{to}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>End</label>
+            <md-select name="CFfrom" ng-model="searchBlogs.blog.CF.$lte" required>
+                <md-option ng-repeat="from in searchBlogs.hundredNo">
+                    {{from}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.CFto.$invalid && searchForm.CFto.$dirty">
+                    <span ng-show="searchForm.CFto.$error.required">CF To is required</span>
+    </span>
+    <span style="color: red" ng-show="searchForm.CFfrom.$invalid && searchForm.CFfrom.$dirty">
+                    <span ng-show="searchForm.CFfrom.$error.required">CF From is required</span>
+    </span>-->
+
+    <!--TF-->
+    <div ng-if="searchBlogs.selectedItem.TF">
+        TF:
+        <md-input-container>
+            <label>Start</label>
+            <md-select name="TFto" ng-model="searchBlogs.blog.TF.$gte" required>
+                <md-option ng-repeat="to in searchBlogs.hundredNo">
+                    {{to}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>End</label>
+            <md-select name="TFfrom" ng-model="searchBlogs.blog.TF.$lte" required>
+                <md-option ng-repeat="from in searchBlogs.hundredNo">
+                    {{from}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.TFto.$invalid && searchForm.TFto.$dirty">
+                    <span ng-show="searchForm.TFto.$error.required">PR To is required</span>
+    </span>
+    <span style="color: red" ng-show="searchForm.TFfrom.$invalid && searchForm.TFfrom.$dirty">
+                    <span ng-show="searchForm.TFfrom.$error.required">PR From is required</span>
+    </span>-->
+
+
+    <!--Pre Written Rate-->
+    <div ng-if="searchBlogs.selectedItem.preWrittenRate">
+        <md-input-container>
+            <label>Pre Wriiten Rate</label>
+            <input name="preWrittenRate" ng-model="searchBlogs.blog.preWrittenRate" type="number" required>
+        </md-input-container>
+    </div>
+
+
+    <!--Blogger Rate-->
+    <div ng-if="searchBlogs.selectedItem.bloggerRate">
+        <md-input-container>
+            <label>Blogger Rate</label>
+            <input name="bloggerRate" ng-model="searchBlogs.blog.bloggerRate" type="number" required>
+        </md-input-container>
+    </div>
+
+
+    <!--Negotiated Rate-->
+    <div ng-if="searchBlogs.selectedItem.negotiatedRate">
+        <md-input-container>
+            <label>Negotiated Rate</label>
+            <input name="negotiatedRate" ng-model="searchBlogs.blog.negotiatedRate" type="number" required>
+        </md-input-container>
+    </div>
+
+
+    <!--Blogger Name-->
+    <div ng-if="searchBlogs.selectedItem.bloggerName">
+        <md-input-container>
+            <label>Blogger Name</label>
+            <input name="negotiatedRate" ng-model="searchBlogs.blog.bloggerName" type="text" required>
+        </md-input-container>
+    </div>
+
+    <!--Location-->
+    <div ng-if="searchBlogs.selectedItem.location">
+        <md-input-container>
+            <label>Location</label>
+            <md-select name="location" ng-model="searchBlogs.blog.location" required>
+                <md-option value="{{country}}" ng-repeat="country in searchBlogs.location">
+                    {{country}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+    <!--Contact Details-->
+    <div ng-if="searchBlogs.selectedItem.contactDetails">
+        <md-input-container>
+            <label>Contact Details</label>
+            <input name="contactDetails" ng-model="searchBlogs.blog.contactDetails" type="text" required>
+        </md-input-container>
+    </div>
+
+    <!--Comments-->
+    <div ng-if="searchBlogs.selectedItem.comments">
+        <md-input-container>
+            <label>Comments</label>
+            <input name="comments" ng-model="searchBlogs.blog.comments" type="text" required>
+        </md-input-container>
+    </div>
+
+    <!--Accept Casino-->
+    <div ng-if="searchBlogs.selectedItem.acceptCasino">
+        <md-input-container>
+            <label>Accept Casino</label>
+            <md-select name="acceptCasino" ng-model="searchBlogs.blog.acceptCasino" required>
+                <md-option value="yes">
+                    Yes
+                </md-option>
+                <md-option value="no">
+                    No
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+
+    <!--Site Type-->
+    <div ng-if="searchBlogs.selectedItem.siteType">
+        <md-input-container>
+            <label>Site Type</label>
+            <md-select name="siteType" ng-model="searchBlogs.blog.siteType" required>
+                <md-option value="real">
+                    Real
+                </md-option>
+                <md-option value="bpn">
+                    BPN
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <!--<span style="color: red" ng-show="searchForm.siteType.$invalid && searchForm.siteType.$dirty">
+                    <span ng-show="searchForm.siteType.$error.required">Site Type is required</span>
+    </span>-->
+
+
+    <!--Accept Do Follow-->
+    <div ng-if="searchBlogs.selectedItem.acceptDofollow">
+        <md-input-container>
+            <label>Accept Do Follow</label>
+            <md-select name="acceptDofollow" ng-model="searchBlogs.blog.acceptDofollow" required>
+                <md-option value="yes">
+                    Yes
+                </md-option>
+                <md-option value="no">
+                    No
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+
+    <!--Google Index-->
+    <div ng-if="searchBlogs.selectedItem.googleIndex">
+        <md-input-container>
+            <label>Google Index</label>
+            <md-select name="googleIndex" ng-model="searchBlogs.blog.googleIndex" required>
+                <md-option value="index">
+                    Index
+                </md-option>
+                <md-option value="de-index">
+                    De-Index
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+
+
+
+    <!--Ip Address-->
+    <div ng-if="searchBlogs.selectedItem.ipAddress">
+        <md-input-container>
+            <label>Ip Address</label>
+            <input name="ipAddress" ng-model="searchBlogs.blog.ipAddress" type="text" required>
+        </md-input-container>
+    </div>
+
+
+
+    <!--Blog Source-->
+    <div ng-if="searchBlogs.selectedItem.blogSource">
+        <md-input-container>
+            <label>Blog Source</label>
+            <input name="blogSource" ng-model="searchBlogs.blog.blogSource" type="text" required>
+        </md-input-container>
+    </div>
+
+
+ <!--Participated-->
+    <div ng-if="searchBlogs.selectedItem.participated">
+        <md-input-container>
+            <label>Participated</label>
+            <input name="participated" ng-model="searchBlogs.blog.participated" type="text" required>
+        </md-input-container>
+    </div>
+
+
+
+    <input type="button" value="Check" ng-click="searchBlogs.search()">
+</form>

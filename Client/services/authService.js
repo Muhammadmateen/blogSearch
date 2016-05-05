@@ -21,7 +21,30 @@
                 {
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
-                        $http.post("/userStatus",loggedInUser).then(function(data)
+                        $http({method:'GET',url:'/userStatus',params:loggedInUser}).then(function(data)
+                    {
+                        if(data.status == 200)
+                        {
+                            if(stateName.isLoggedIn)
+                            {
+                                console.log("Redirecting to user page")
+                            }
+                            else
+                            {
+                                event.preventDefault();
+                                $state.go("dashboard.searchBlogs");
+                            }
+                        }
+                    },function(err)
+                    {
+                        if(stateName.isLoggedIn)
+                        {
+                            event.preventDefault();
+                            $state.go("login");
+                            localStorage.removeItem("loggedInUser");
+                        }
+                    })
+                        /*$http.get("/userStatus",loggedInUser).then(function(data)
                         {
                             if(data.status == 200)
                             {
@@ -43,7 +66,7 @@
                                 $state.go("login");
                                 localStorage.removeItem("loggedInUser");
                             }
-                        })
+                        })*/
                     }
                     else
                     {

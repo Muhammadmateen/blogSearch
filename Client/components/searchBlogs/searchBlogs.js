@@ -13,7 +13,38 @@
     {
         var _self = this;
         _self.loader = false;
-        _self.matchedItem = [] ;
+        _self.matchedItem = [];
+
+        _self.blogCategory = [];
+        _self.location = [];
+
+
+        //Get Site categories
+        $http({method:'GET',url:'/getSiteCategories'}).then(function(data)
+        {
+            if(data.status == 200)
+            {
+                _self.blogCategory = data.data;
+            }
+            console.log("Data of sitecategory : ",data);
+        }/*,function(err)
+        {
+            console.log("Error in sending Request of sitecategory : ",err);
+        }*/);
+
+        //Get Locations
+        $http({method:'GET',url:'/getLocations'}).then(function(data)
+        {
+            if(data.status == 200)
+            {
+                _self.location = data.data;
+            }
+            console.log("Data of location : ",data);
+        }/*,function(err)
+        {
+            console.log("Error in sending Request of location : ",err);
+        }*/);
+
 
         _self.exportExcelFile = function()
         {
@@ -24,17 +55,21 @@
             blogUrl:"Blog Url",
             siteCategory:"Site category",
             DA:"DA",
-            PR:"PR",
+            CF:"CF",
             TF:"TF",
-            siteType:"Site Type",
             preWrittenRate:"Pre Written Rate",
-            bloggerWriteRate:"Blogger Write Rate",
-            acceptDofollow:"Accept Dofollow",
-            negotiated:"Negotiated",
+            bloggerRate:"Blogger Rate",
+            negotiatedRate:"Negotiated Rate",
             bloggerName:"Blogger Name",
+            location:"Location",
             contactDetails:"Contact Details",
-            blogSource:"Blog Source",
             comments:"Comments",
+            acceptCasino:"Accept Casino",
+            siteType:"Site Type",
+            acceptDofollow:"Accept Dofollow",
+            googleIndex:"Google Index",
+            ipAddress:"Ip Address",
+            blogSource:"Blog Source",
             participated:"Participated"
         }
 
@@ -45,7 +80,7 @@
          _self.hundredNo.push(i);
          }
 
-        _self.blogCategory = ['social','technology','fashion','medical'];
+
 
         /*_self.hundredNo =   [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
                             21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
@@ -71,9 +106,9 @@
 
         _self.search = function()
         {
+            console.log("Sending Data : ",_self.blog);
             $http({method:'GET',url:'/searchBlogs',params:_self.blog}).then(function(data)
             {
-                console.log(_self.blog);
                 //console.log(typeof(_self.blog.siteCategory));
                 console.log("Data : ",data);
                 if(data.status == 200)
@@ -104,7 +139,7 @@
                 searchBlog(_self.blog);
                 console.log("Else Query : ",_self.blog);
             }*/
-        }
+        };
 
       /* var searchBlog = function(query)
         {
@@ -133,7 +168,7 @@
             });
         };
 
-        _self.updateBlog = function(ev,item,$index)
+        _self.editBlog = function(ev,item,$index)
         {
             //console.log("Data ",item);
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;

@@ -18,7 +18,7 @@
         _self.login_auth =   function()
         {
             _self.loader = true;
-            $http.post("/login",_self.user).then(function(data)
+            $http({method:'GET',url:'/login',params:_self.user}).then(function(data)
             {
                 _self.loader = false;
                 if(data.status == 200 )
@@ -55,6 +55,7 @@
                 toast_service.showSimpleToast(err.data);
                 $state.go($state.current,{},{reload:true})
             });
+            //$http.post("/login",_self.user)
         };
 
         /*_self.abcdef = function()

@@ -52,7 +52,7 @@
                 else
                 {
                     _self.loader = true;
-                    addBlogsService.csvFile(_self.correctSampleData).then(function(data)
+                    addBlogsService.csvFile(_self.wrongSampleData).then(function(data)
                     {
                         _self.loader = data;
                     },function(err)
@@ -65,15 +65,17 @@
             {
                 toast_service.showSimpleToast("Select the file first");
             }
-        }
+        };
 
 
+        _self.siteCategory = [];
         //Single blog item
         _self.addBlog = function()
         {
             if(_self.data.blogUrl != undefined)
             {
-                addBlogsService.blogItem(_self.correctSampleData).then(function(data)
+                _self.data.siteCategory = _self.siteCategory;
+                addBlogsService.blogItem(_self.data).then(function(data)
                 {
                     _self.loader = data;
                     $state.go($state.current,{},{reload:true});
@@ -92,53 +94,66 @@
         _self.correctSampleData = [
             {
                 blogUrl:"www.yahoo.com",
-                siteCategory:['technology','social'],
+                siteCategory:['technology','social','health'],
                 DA:32,
-                PR:7,
+                CF:7,
                 TF:52,
-                siteType:'ab site',
                 preWrittenRate:300,
-                bloggerWriteRate:250,
-                acceptDofollow:'no',
-                negotiated:'no',
-                bloggerName:'Joshef',
-                contactDetails:'UK',
-                blogSource:'yahoo',
+                bloggerRate:250,
+                negotiatedRate:500,
+                bloggerName:'John',
+                location:'USA',
+                contactDetails:'john@hotmail.com',
                 comments:'good blogger',
-                participated:'yes'
+                acceptCasino:'yes',
+                siteType:'real',
+                acceptDofollow:'no',
+                googleIndex:'de-index',
+                ipAddress:'192.168.1.1',
+                blogSource:'yahoo',
+                participated:'interested in participaton'
+
             },{
                 blogUrl:"www.google.com",
-                siteCategory:['fashion','technology','medical'],
-                DA:22,
-                PR:8,
-                TF:42,
-                siteType:'bc site',
-                preWrittenRate:220,
-                bloggerWriteRate:200,
+                siteCategory:['technology','networking'],
+                DA:32,
+                CF:7,
+                TF:52,
+                preWrittenRate:300,
+                bloggerRate:250,
+                negotiatedRate:500,
+                bloggerName:'John',
+                location:'USA',
+                contactDetails:'john@hotmail.com',
+                comments:'good blogger',
+                acceptCasino:'yes',
+                siteType:'real',
                 acceptDofollow:'no',
-                negotiated:'yes',
-                bloggerName:'Michel',
-                contactDetails:'USA',
-                blogSource:'google',
-                comments:'responisble blooger',
-                participated:'yes'
+                googleIndex:'de-index',
+                ipAddress:'192.168.1.1',
+                blogSource:'yahoo',
+                participated:'interested in participaton'
             },
             {
                 blogUrl:'www.facebook.com',
                 siteCategory:['social'],
-                DA:65,
-                PR:3,
-                TF:88,
-                siteType:'de site',
-                preWrittenRate:430,
-                bloggerWriteRate:380,
-                acceptDofollow:'yes',
-                negotiated:'yes',
-                bloggerName:'johny',
-                contactDetails:'AUS',
-                blogSource:'facebook',
-                comments:null,
-                participated:null
+                DA:32,
+                CF:7,
+                TF:52,
+                preWrittenRate:300,
+                bloggerRate:250,
+                negotiatedRate:500,
+                bloggerName:'John',
+                location:'USA',
+                contactDetails:'john@hotmail.com',
+                comments:'good blogger',
+                acceptCasino:'yes',
+                siteType:'real',
+                acceptDofollow:'no',
+                googleIndex:'de-index',
+                ipAddress:'192.168.1.1',
+                blogSource:'yahoo',
+                participated:'interested in participaton'
             }/*,
             {
                 blogUrl:'www.twitter.com',
@@ -176,73 +191,89 @@
             }*/
         ];
 
-        /*_self.wrongSampleData = [
+        _self.wrongSampleData = [
             {
-                blogUrl:'www.google.com',           //Error here duplicate value passes
-                siteCategory:null,
-                DA:85,
-                PR:10,
-                TF:98,
-                siteType:null,
-                preWrittenRate:110,
-                bloggerWriteRate:85,
-                acceptDofollow:null,
-                negotiated:null,
-                bloggerName:'Bravo',
-                contactDetails:null,
-                blogSource:null,
-                comments:null,
-                participated:null
+                 blogUrl:'www.google3.com',           //Error here duplicate value passes
+                 siteCategory:'cloud',
+                 DA:25,
+                 CF:7,
+                 TF:52,
+                 preWrittenRate:300,
+                 bloggerRate:250,
+                 negotiatedRate:500,
+                 bloggerName:'John',
+                 location:'USA',
+                 contactDetails:'john@hotmail.com',
+                 comments:'good blogger',
+                 acceptCasino:'yes',
+                 siteType:'real',
+                 acceptDofollow:'no',
+                 googleIndex:'de-index',
+                 ipAddress:'192.168.1.1',
+                 blogSource:'yahoo',
+                 participated:null
             },{
-                blogUrl:'www.wikipedia.com',
-                siteCategory:'abcd',            //Error here array value passed
-                DA:85,
-                PR:10,
-                TF:98,
-                siteType:null,
-                preWrittenRate:110,
-                bloggerWriteRate:85,
-                acceptDofollow:null,
-                negotiated:null,
-                bloggerName:'Bravo',
-                contactDetails:null,
-                blogSource:null,
-                comments:null,
-                participated:null
+                 blogUrl:'www.google4.com',
+                 siteCategory:['technology','social','health'],
+                 DA:32,
+                 CF:7,
+                 TF:52,
+                 preWrittenRate:300,
+                 bloggerRate:250,
+                 negotiatedRate:500,
+                 bloggerName:'John',
+                 location:'USA',
+                 contactDetails:'john@hotmail.com',
+                 comments:'good blogger',
+                 acceptCasino:'yes',
+                 siteType:'real',
+                 acceptDofollow:'no',
+                 googleIndex:'de-index',
+                 ipAddress:'192.168.1.1',
+                 blogSource:'yahoo',
+                 participated:'interested in participaton'
             },{
-                blogUrl:'www.gana.com',
-                siteCategory:['fashion','songs','movies'],
-                DA:'abc',                       //Error data type string passed
-                PR:'cde',                       //Error data type string passed
-                TF:'fgh',                       //Error data type string passed
-                siteType:null,
-                preWrittenRate:110,
-                bloggerWriteRate:85,
-                acceptDofollow:null,
-                negotiated:null,
-                bloggerName:'Bravo',
-                contactDetails:null,
-                blogSource:null,
-                comments:null,
-                participated:null
+                 blogUrl:'www.google4.com',
+                 siteCategory:['technology','social','health'],
+                 DA:32,
+                 CF:7,
+                 TF:52,
+                 preWrittenRate:300,
+                 bloggerRate:250,
+                 negotiatedRate:500,
+                 bloggerName:'John',
+                 location:'USA',
+                 contactDetails:'john@hotmail.com',
+                 comments:'good blogger',
+                 acceptCasino:'yes',
+                 siteType:'real',
+                 acceptDofollow:'no',
+                 googleIndex:'de-index',
+                 ipAddress:'192.168.1.1',
+                 blogSource:'yahoo',
+                 participated:'interested in participaton'
             },{
-                blogUrl:'www.panacloud.com',
-                siteCategory:['software','house'],
-                DA:85,
-                PR:10,
-                TF:98,
-                siteType:null,
-                preWrittenRate:'free of cost',             //Error data type string passed
-                bloggerWriteRate:85,
-                acceptDofollow:null,
-                negotiated:null,
-                bloggerName:'Bravo',
-                contactDetails:null,
-                blogSource:null,
-                comments:null,
-                participated:null
+                 blogUrl:'www.panacloud.com',
+                 siteCategory:['technology','social','health'],
+                 DA:32,
+                 CF:7,
+                 TF:52,
+                 preWrittenRate:300,
+                 bloggerRate:250,
+                 negotiatedRate:500,
+                 bloggerName:'John',
+                 location:'USA',
+                 contactDetails:'john@hotmail.com',
+                 comments:'good blogger',
+                 acceptCasino:'yes',
+                 siteType:'real',
+                 acceptDofollow:'no',
+                 googleIndex:'de-index',
+                 ipAddress:'192.168.1.1',
+                 blogSource:'yahoo',
+                 participated:'interested in participaton'
             }
-        ];*/
+        ];
 
 
         //Working on single
