@@ -152,9 +152,11 @@
             });*/
         })
         .run(function ($rootScope, $state,authService) {
+/*
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
                 authService.userStatus(toState,event);
             });
+*/
 
             /*$rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
                     console.log("State not Found");

@@ -15,15 +15,16 @@
 
         _self.checkUser = function()
         {
-            if(authService.localData().role == 1)
+             //IMPortant
+            /*if(authService.localData().role == 1)
             {
                 return true;
             }
             else
             {
                 return false;
-            }
-        }
+            }*/
+        };
 
 
 

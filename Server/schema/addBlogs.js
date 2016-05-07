@@ -60,7 +60,7 @@ var schema = new mongoose.Schema({
         enum:['yes','no']
     },
     googleIndex:{
-        type:Boolean,
+        type:String,
         enum:['de-index','index']
     },
     ipAddress:{

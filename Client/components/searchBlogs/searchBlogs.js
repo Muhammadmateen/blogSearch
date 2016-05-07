@@ -26,7 +26,7 @@
             {
                 _self.blogCategory = data.data;
             }
-            console.log("Data of sitecategory : ",data);
+            //console.log("Data of sitecategory : ",data);
         }/*,function(err)
         {
             console.log("Error in sending Request of sitecategory : ",err);
@@ -39,7 +39,7 @@
             {
                 _self.location = data.data;
             }
-            console.log("Data of location : ",data);
+            //console.log("Data of location : ",data);
         }/*,function(err)
         {
             console.log("Error in sending Request of location : ",err);
@@ -48,7 +48,7 @@
 
         _self.exportExcelFile = function()
         {
-            exportExcelService.exportExcel();
+           exportExcelService.exportExcel();
         }
 
         _self.searchBy = {
@@ -92,19 +92,27 @@
 
 
 
+        _self.totalSelectedItem = 0;
         _self.checkSelectedItem = function(a)
         {
             if (_self.selectedItem[a] == false) {
+                _self.totalSelectedItem--;
+                //console.log("Selected Item ",_self.totalSelectedItem);
                 if(_self.blog)
                 {
                     delete _self.blog[a];
                 }
             }
-        }
+            else
+            {
+                _self.totalSelectedItem++;
+                //console.log("Selected Item ",_self.totalSelectedItem);
+            }
+        };
 
         //_self.man.type.abcd = ['name','Father Name'];
 
-        _self.search = function()
+        /*_self.search = function()
         {
             console.log("Sending Data : ",_self.blog);
             $http({method:'GET',url:'/searchBlogs',params:_self.blog}).then(function(data)
@@ -118,7 +126,8 @@
                 }
                 else
                 {
-                    toast_service.showSimpleToast("No record found");
+                    _self.matchedItem = null;
+                    toast_service.showSimpleToast("No record found")
                     console.log("No data found",data.data);
                 }
 
@@ -127,24 +136,35 @@
                 toast_service.showSimpleToast(err.status+" : Internal server error");
                 console.log("Error ",err);
             })
-            /*if(_self.selectedItem.siteCategory)
+        };*/
+
+        _self.search = function()
+        {
+            console.log("Selected Items : ",_self.selectedItem);
+            console.log("Sending Data : ",_self.blog);
+            $http.post('/searchBlogs',_self.blog).then(function(data)
             {
-                //var siteCategory = [_self.blog.siteCategory.$in];
-                _self.blog.siteCategory.$in = [_self.blog.siteCategory.$in];
-                searchBlog(_self.blog);
-                console.log("If : ",_self.blog);
-            }
-            else
+                //console.log(typeof(_self.blog.siteCategory));
+                console.log("Data : ",data);
+                if(data.status == 200)
+                {
+                    _self.matchedItem = data.data;
+                    console.log("Data found ",_self.matchedItem);
+                }
+                else
+                {
+                    _self.matchedItem = null;
+                    toast_service.showSimpleToast("No record found")
+                    console.log("No data found",data.data);
+                }
+
+            },function(err)
             {
-                searchBlog(_self.blog);
-                console.log("Else Query : ",_self.blog);
-            }*/
+                toast_service.showSimpleToast(err.status+" : Internal server error");
+                console.log("Error ",err);
+            })
         };
 
-      /* var searchBlog = function(query)
-        {
-
-        };*/
 
 
 
@@ -170,7 +190,8 @@
 
         _self.editBlog = function(ev,item,$index)
         {
-            //console.log("Data ",item);
+            console.log("Data ",item);
+            //console.log("Index ",$index);
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
                 $mdDialog.show({
                         controller:'updateBlogController',
@@ -193,7 +214,7 @@
                 }, function(wantsFullScreen) {
                     $scope.customFullscreen = (wantsFullScreen === true);
                 });*/
-        }
+        };
 
 
         /*angular.forEach(_self.selectedItem,function(key,val)

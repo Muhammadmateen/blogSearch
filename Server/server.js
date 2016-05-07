@@ -122,7 +122,7 @@ app.post('/updateUsers',updateUsers_api);
 app.post('/verifyUser',verifyUser_api);
 
 /*Search Blogs*/
-app.get('/searchBlogs',searchBlogs_api);
+app.post('/searchBlogs',searchBlogs_api);
 
 
 /*Update Blog Item*/
@@ -146,8 +146,8 @@ app.get('/getLocations',searchBlogs_api);
 
 /*======================Set port environment==============================*/
 
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 4000);
 app.listen(app.get('port'),function()
 {
-    console.log("App running on port : 3000");
+    console.log("App running on port : 4000");
 })

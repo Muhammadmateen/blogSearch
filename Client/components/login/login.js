@@ -23,6 +23,10 @@
                 _self.loader = false;
                 if(data.status == 200 )
                 {
+                    console.log("OK OK ");
+                    console.log("Data : ",data.data);
+                    localStorage.setItem("abcd",JSON.stringify({1:'A',2:'B'}));
+                    console.log(typeof(localStorage.getItem('abcd')));
                     localStorage.setItem("loggedInUser",JSON.stringify(data.data));
                     toast_service.showSimpleToast("Welcome "+data.data.name);
                     if(data.data.role == 1)

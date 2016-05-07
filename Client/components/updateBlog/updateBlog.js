@@ -19,10 +19,12 @@
 
         _self.updateBlogData = function()
         {
-            if(_self.data && _self.data.blogUrl && _self.data._id)
+            console.log("Data for update : ",_self.data);
+            if(_self.data && _self.data.blogUrl && _self.data._id && _self.data.DA)
             {
                 $http.put("/updateBlogItem",_self.data).then(function(data)
                 {
+                    console.log("After update : ",data);
                     if(data.status == 200)
                     {
                         toast_service.showSimpleToast("Data Updated Successfully");
@@ -35,6 +37,7 @@
                     }
                 },function(err)
                 {
+                    console.log("After update err : ",data);
                     toast_service.showSimpleToast("Error : ",data.data);
                     $mdDialog.cancel();
                 });

@@ -6,9 +6,9 @@
             <input name="blogUrl" ng-model="searchBlogs.blog.blogUrl" type="text" required>
         </md-input-container>
     </div>
-    <!--<span style="color: red" ng-show="searchForm.blogUrl.$invalid && searchForm.blogUrl.$dirty">
+    <span style="color: red" ng-show="searchForm.blogUrl.$invalid && searchForm.blogUrl.$dirty">
                     <span ng-show="searchForm.blogUrl.$error.required">Blog Url is required</span>
-    </span>-->
+    </span>
     <!--Site Category-->
     <div ng-if="searchBlogs.selectedItem.siteCategory">
         Site Category :
@@ -27,14 +27,14 @@
     <!--DA-->
     <div ng-if="searchBlogs.selectedItem.DA">
         DA :
-        <md-input-container>
+        <!--<md-input-container>
             <label>Start</label>
             <md-select name="DAto" ng-model="searchBlogs.blog.DA.$gte" required>
                 <md-option ng-repeat="to in searchBlogs.hundredNo">
                     {{to}}
                 </md-option>
             </md-select>
-        </md-input-container>
+        </md-input-container>-->
         <md-input-container>
             <label>End</label>
             <md-select name="DAfrom" ng-model="searchBlogs.blog.DA.$lte" required>
@@ -46,22 +46,22 @@
     </div>
     <!--<span style="color: red" ng-show="searchForm.DAto.$invalid && searchForm.DAto.$dirty">
                     <span ng-show="searchForm.DAto.$error.required">DA To is required</span>
-    </span>
-    <span style="color: red" ng-show="searchForm.DAfrom.$invalid && searchForm.DAfrom.$dirty">
+    </span>-->
+    <!--<span style="color: red" ng-show="searchForm.DAfrom.$invalid && searchForm.DAfrom.$dirty">
                     <span ng-show="searchForm.DAfrom.$error.required">DA From is required</span>
     </span>-->
 
     <!--CF-->
     <div ng-if="searchBlogs.selectedItem.CF">
         CF :
-        <md-input-container>
+        <!--<md-input-container>
             <label>Start</label>
             <md-select name="CFto" ng-model="searchBlogs.blog.CF.$gte" required>
                 <md-option ng-repeat="to in searchBlogs.hundredNo">
                     {{to}}
                 </md-option>
             </md-select>
-        </md-input-container>
+        </md-input-container>-->
         <md-input-container>
             <label>End</label>
             <md-select name="CFfrom" ng-model="searchBlogs.blog.CF.$lte" required>
@@ -73,22 +73,22 @@
     </div>
     <!--<span style="color: red" ng-show="searchForm.CFto.$invalid && searchForm.CFto.$dirty">
                     <span ng-show="searchForm.CFto.$error.required">CF To is required</span>
-    </span>
-    <span style="color: red" ng-show="searchForm.CFfrom.$invalid && searchForm.CFfrom.$dirty">
+    </span>-->
+    <!--<span style="color: red" ng-show="searchForm.CFfrom.$invalid && searchForm.CFfrom.$dirty">
                     <span ng-show="searchForm.CFfrom.$error.required">CF From is required</span>
     </span>-->
 
     <!--TF-->
     <div ng-if="searchBlogs.selectedItem.TF">
         TF:
-        <md-input-container>
+        <!--<md-input-container>
             <label>Start</label>
             <md-select name="TFto" ng-model="searchBlogs.blog.TF.$gte" required>
                 <md-option ng-repeat="to in searchBlogs.hundredNo">
                     {{to}}
                 </md-option>
             </md-select>
-        </md-input-container>
+        </md-input-container>-->
         <md-input-container>
             <label>End</label>
             <md-select name="TFfrom" ng-model="searchBlogs.blog.TF.$lte" required>
@@ -100,9 +100,9 @@
     </div>
     <!--<span style="color: red" ng-show="searchForm.TFto.$invalid && searchForm.TFto.$dirty">
                     <span ng-show="searchForm.TFto.$error.required">PR To is required</span>
-    </span>
-    <span style="color: red" ng-show="searchForm.TFfrom.$invalid && searchForm.TFfrom.$dirty">
-                    <span ng-show="searchForm.TFfrom.$error.required">PR From is required</span>
+    </span>-->
+    <!--<span style="color: red" ng-show="searchForm.TFfrom.$invalid && searchForm.TFfrom.$dirty">
+                    <span ng-show="searchForm.TFfrom.$error.required">TF From is required</span>
     </span>-->
 
 
@@ -110,36 +110,48 @@
     <div ng-if="searchBlogs.selectedItem.preWrittenRate">
         <md-input-container>
             <label>Pre Wriiten Rate</label>
-            <input name="preWrittenRate" ng-model="searchBlogs.blog.preWrittenRate" type="number" required>
+            <input name="preWrittenRate" ng-model="searchBlogs.blog.preWrittenRate.$lte" type="number" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.preWrittenRate.$invalid && searchForm.preWrittenRate.$dirty">
+                    <span ng-show="searchForm.preWrittenRate.$error.required">Pre Written Rate is required</span>
+    </span>
 
 
     <!--Blogger Rate-->
     <div ng-if="searchBlogs.selectedItem.bloggerRate">
         <md-input-container>
             <label>Blogger Rate</label>
-            <input name="bloggerRate" ng-model="searchBlogs.blog.bloggerRate" type="number" required>
+            <input name="bloggerRate" ng-model="searchBlogs.blog.bloggerRate.$lte" type="number" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.bloggerRate.$invalid && searchForm.bloggerRate.$dirty">
+                    <span ng-show="searchForm.bloggerRate.$error.required">Blogger Rate is required</span>
+    </span>
 
 
     <!--Negotiated Rate-->
     <div ng-if="searchBlogs.selectedItem.negotiatedRate">
         <md-input-container>
             <label>Negotiated Rate</label>
-            <input name="negotiatedRate" ng-model="searchBlogs.blog.negotiatedRate" type="number" required>
+            <input name="negotiatedRate" ng-model="searchBlogs.blog.negotiatedRate.$lte" type="number" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.negotiatedRate.$invalid && searchForm.negotiatedRate.$dirty">
+                    <span ng-show="searchForm.negotiatedRate.$error.required">Negotiated Rate is required</span>
+    </span>
 
 
     <!--Blogger Name-->
     <div ng-if="searchBlogs.selectedItem.bloggerName">
         <md-input-container>
             <label>Blogger Name</label>
-            <input name="negotiatedRate" ng-model="searchBlogs.blog.bloggerName" type="text" required>
+            <input name="bloggerName" ng-model="searchBlogs.blog.bloggerName" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.bloggerName.$invalid && searchForm.bloggerName.$dirty">
+                    <span ng-show="searchForm.bloggerName.$error.required">Blogger Name is required</span>
+    </span>
 
     <!--Location-->
     <div ng-if="searchBlogs.selectedItem.location">
@@ -152,6 +164,9 @@
             </md-select>
         </md-input-container>
     </div>
+    <!--<span style="color: red" ng-show="searchForm.location.$invalid && searchForm.location.$dirty">
+                    <span ng-show="searchForm.location.$error.required">Location is required</span>
+    </span>-->
 
     <!--Contact Details-->
     <div ng-if="searchBlogs.selectedItem.contactDetails">
@@ -160,6 +175,9 @@
             <input name="contactDetails" ng-model="searchBlogs.blog.contactDetails" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.contactDetails.$invalid && searchForm.contactDetails.$dirty">
+                    <span ng-show="searchForm.contactDetails.$error.required">Contact Details is required</span>
+    </span>
 
     <!--Comments-->
     <div ng-if="searchBlogs.selectedItem.comments">
@@ -168,6 +186,9 @@
             <input name="comments" ng-model="searchBlogs.blog.comments" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.comments.$invalid && searchForm.comments.$dirty">
+                    <span ng-show="searchForm.comments.$error.required">Comments is required</span>
+    </span>
 
     <!--Accept Casino-->
     <div ng-if="searchBlogs.selectedItem.acceptCasino">
@@ -183,6 +204,9 @@
             </md-select>
         </md-input-container>
     </div>
+    <!--<span style="color: red" ng-show="searchForm.acceptCasino.$invalid && searchForm.acceptCasino.$dirty">
+                    <span ng-show="searchForm.acceptCasino.$error.required">Accept Casino is required</span>
+    </span>-->
 
 
     <!--Site Type-->
@@ -218,6 +242,9 @@
             </md-select>
         </md-input-container>
     </div>
+    <!--<span style="color: red" ng-show="searchForm.acceptDofollow.$invalid && searchForm.acceptDofollow.$dirty">
+                    <span ng-show="searchForm.acceptDofollow.$error.required">Accept Do Follow is required</span>
+    </span>-->
 
 
     <!--Google Index-->
@@ -234,6 +261,9 @@
             </md-select>
         </md-input-container>
     </div>
+    <!--<span style="color: red" ng-show="searchForm.googleIndex.$invalid && searchForm.googleIndex.$dirty">
+                    <span ng-show="searchForm.googleIndex.$error.required">Google Index is required</span>
+    </span>-->
 
 
 
@@ -242,9 +272,12 @@
     <div ng-if="searchBlogs.selectedItem.ipAddress">
         <md-input-container>
             <label>Ip Address</label>
-            <input name="ipAddress" ng-model="searchBlogs.blog.ipAddress" type="text" required>
+                <input name="ipAddress" ng-model="searchBlogs.blog.ipAddress" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.ipAddress.$invalid && searchForm.ipAddress.$dirty">
+                    <span ng-show="searchForm.ipAddress.$error.required">Ip Address is required</span>
+    </span>
 
 
 
@@ -255,6 +288,9 @@
             <input name="blogSource" ng-model="searchBlogs.blog.blogSource" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.blogSource.$invalid && searchForm.blogSource.$dirty">
+                    <span ng-show="searchForm.blogSource.$error.required">Blog Source is required</span>
+    </span>
 
 
  <!--Participated-->
@@ -264,8 +300,11 @@
             <input name="participated" ng-model="searchBlogs.blog.participated" type="text" required>
         </md-input-container>
     </div>
+    <span style="color: red" ng-show="searchForm.participated.$invalid && searchForm.participated.$dirty">
+                    <span ng-show="searchForm.participated.$error.required">Participated is required</span>
+    </span>
 
 
 
-    <input type="button" value="Check" ng-click="searchBlogs.search()">
+    <input type="button" value="Check" ng-click="searchBlogs.search()" ng-disabled="searchForm.$invalid || searchBlogs.totalSelectedItem == 0">
 </form>
