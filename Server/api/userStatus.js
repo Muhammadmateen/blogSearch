@@ -9,25 +9,21 @@ var api = express.Router();
 
 api.get("/userStatus",function(req,res)
 {
-    console.log("Request come on checking userstatus");
     if(req.session.loginUserDetails)
     {
-        if(req.body.uid == req.session.loginUserDetails.uid && req.body.name == req.session.loginUserDetails.name && req.body.role == req.session.loginUserDetails.role)
+        if(req.query.uid == req.session.loginUserDetails.uid && req.query.name == req.session.loginUserDetails.name && req.query.role == req.session.loginUserDetails.role)
         {
-            console.log("Session available and all data matched successfully");
             res.status(200).send(true);
         }
         else
         {
             delete req.session.loginUserDetails;
-            console.log("Session and local storage data not match");
             res.status(404).send(false);
         }
     }
     else
     {
         delete req.session.loginUserDetails;
-        console.log("Session not found on server");
         res.status(404).send(false);
     }
 })

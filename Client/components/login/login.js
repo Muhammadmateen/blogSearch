@@ -23,29 +23,20 @@
                 _self.loader = false;
                 if(data.status == 200 )
                 {
-                    console.log("OK OK ");
-                    console.log("Data : ",data.data);
-                    localStorage.setItem("abcd",JSON.stringify({1:'A',2:'B'}));
-                    console.log(typeof(localStorage.getItem('abcd')));
                     localStorage.setItem("loggedInUser",JSON.stringify(data.data));
                     toast_service.showSimpleToast("Welcome "+data.data.name);
                     if(data.data.role == 1)
                     {
                         $state.go("dashboard.searchBlogs");
-                        console.log(data.data);
-                        console.log("Localstorage",loggedInUser);
                     }
                     else if(data.data.role == 2)
                     {
                         $state.go("dashboard.searchBlogs");
-                        console.log(data.data);
-                        console.log("Localstorage",loggedInUser);
                     }
                     else
                     {
                         $state.go("dashboard.searchBlogs");
-                        console.log(data.data);
-                        console.log("Localstorage",loggedInUser);
+
                     }
                 }
                 else
@@ -59,13 +50,19 @@
                 toast_service.showSimpleToast(err.data);
                 $state.go($state.current,{},{reload:true})
             });
-            //$http.post("/login",_self.user)
         };
 
-        /*_self.abcdef = function()
+       /* _self.setLocalData = function()
         {
-            authService.redirect1();
-            console.log("sdbfnmmmmm")
-        }*/
-    }
+            localStorage.setItem("loggedInUser",JSON.stringify({name:'Muhammad Mateen',role:2}));
+            //console.log("Local Storage Data is set : ",JSON.parse(localStorage.getItem("loggedInUser")));
+            /!*authService.redirect1();
+            //console.log("sdbfnmmmmm")*!/
+        }
+
+        _self.getLocalData = function()
+        {
+            console.log("Get local Data : ",JSON.parse(localStorage.getItem("loggedInUser")));
+        }
+*/    }
 })();

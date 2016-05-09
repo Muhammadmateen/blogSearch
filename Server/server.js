@@ -81,9 +81,12 @@ app.use(bodyParser.json());
 /*=====================Sessions====================================*/
 app.use(session({
     secret:"ksdf5i01siu8sdfj7mjsdi",
-    resave:false,
+    resave:true,
     saveUninitialized: true,
-    expire:8.64e+7
+    cookie:{
+        maxAge:8.64e+7
+    }
+    /*expire:8.64e+7*/
 }))
 
 /*==================Post request on server using Api===========================*/

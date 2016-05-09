@@ -19,6 +19,7 @@
                 var loggedInUser = authServiceObj.localData();
                 if(loggedInUser)
                 {
+                    console.log("Data : ",loggedInUser);
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
                         $http({method:'GET',url:'/userStatus',params:loggedInUser}).then(function(data)
@@ -27,7 +28,7 @@
                         {
                             if(stateName.isLoggedIn)
                             {
-                                console.log("Redirecting to user page")
+                                //console.log("Redirecting to user page")
                             }
                             else
                             {
@@ -37,12 +38,14 @@
                         }
                     },function(err)
                     {
+                        //console.log("After http request err working ",err);
+                        localStorage.removeItem("loggedInUser");
                         if(stateName.isLoggedIn)
                         {
                             event.preventDefault();
                             $state.go("login");
-                            localStorage.removeItem("loggedInUser");
                         }
+
                     })
                         /*$http.get("/userStatus",loggedInUser).then(function(data)
                         {
@@ -70,17 +73,20 @@
                     }
                     else
                     {
+                        localStorage.removeItem("loggedInUser");
+                        //console.log("loggeninuser all paramerter not set localstorage remove");
                         if(stateName.isLoggedIn)
                         {
                             event.preventDefault();
                             $state.go("login");
-                            localStorage.removeItem("loggedInUser");
+
                         }
                     }
 
                 }
                 else
                 {
+                    //console.log("No local storage found");
                     if(stateName.isLoggedIn)
                     {
                         event.preventDefault();
