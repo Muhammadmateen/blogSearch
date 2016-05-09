@@ -5,9 +5,9 @@
 {
     angular.module("blogApp")
 
-        .controller("invitationsController",['$http','toast_service','$state',invitationsController])
+        .controller("invitationsController",['$http','toast_service','$state','heroku_url',invitationsController])
 
-    function invitationsController($http,toast_service,$state)
+    function invitationsController($http,toast_service,$state,heroku_url)
     {
         var _self = this;
         _self.users ;
@@ -18,7 +18,7 @@
 
         function userData()
         {
-            $http.post("/getUsers").then(function(data)
+            $http.post(heroku_url+"/getUsers").then(function(data)
             {
                 _self.loader  = false;
                 if(data.status == 200)
@@ -65,7 +65,7 @@
         //Update User Details
         _self.updateDetails = function(a,b)
         {
-            $http.post("/updateUsers",{id:a,role:b}).then(function(data)
+            $http.post(heroku_url+"/updateUsers",{id:a,role:b}).then(function(data)
             {
                 if(data.status != 500)
                 {

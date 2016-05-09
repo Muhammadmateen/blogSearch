@@ -7,9 +7,9 @@
 {
 
     angular.module("blogApp")
-        .controller("loginController",['$http','toast_service','$state','authService',loginController])
+        .controller("loginController",['$http','toast_service','$state','authService','heroku_url',loginController])
 
-    function loginController($http,toast_service,$state,authService)
+    function loginController($http,toast_service,$state,authService,heroku_url)
     {
         var _self = this;
         _self.loader = false;
@@ -18,7 +18,7 @@
         _self.login_auth =   function()
         {
             _self.loader = true;
-            $http({method:'GET',url:'/login',params:_self.user}).then(function(data)
+            $http({method:'GET',url:heroku_url+'/login',params:_self.user}).then(function(data)
             {
                 _self.loader = false;
                 if(data.status == 200 )

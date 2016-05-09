@@ -9,10 +9,10 @@
 (function () {
     angular.module("blogApp")
 
-        .controller("signUpController", ['$http', '$state', 'alert_dialog_service', 'toast_service', signUpController])
+        .controller("signUpController", ['$http', '$state', 'alert_dialog_service', 'toast_service','heroku_url', signUpController])
 
 
-    function signUpController($http, $state, alert_dialog_service, toast_service) {
+    function signUpController($http, $state, alert_dialog_service, toast_service,heroku_url) {
         var _self = this;
         _self.email_loader = false;
         _self.email_in_used = false;
@@ -26,7 +26,7 @@
         _self.sign_up = function (ev) {
             if (!_self.email_in_used) {
                 _self.loader = true;
-                $http.post('/sign_up_user', _self.user).then(function (result) {
+                $http.post(heroku_url+'/sign_up_user', _self.user).then(function (result) {
                     _self.loader = false;
                     switch (result.data) {
                         case '200':
@@ -57,7 +57,7 @@
         _self.checkEmail = function (response) {
             if (response != undefined) {
                 _self.email_loader = true;
-                $http.post("/check_email", {email: response}).then(function (result) {
+                $http.post(heroku_url+"/check_email", {email: response}).then(function (result) {
                     _self.email_loader = false;
                     switch (result.data) {
                         case '200':

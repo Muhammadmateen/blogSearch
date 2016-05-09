@@ -7,9 +7,9 @@
 {
     angular.module("blogApp")
 
-        .controller("searchBlogsController",['$http','toast_service','exportExcelService','$scope','$mdMedia','$mdDialog',searchBlogsController])
+        .controller("searchBlogsController",['$http','toast_service','exportExcelService','$scope','$mdMedia','$mdDialog','heroku_url',searchBlogsController])
 
-    function searchBlogsController($http,toast_service,exportExcelService,$scope,$mdMedia,$mdDialog)
+    function searchBlogsController($http,toast_service,exportExcelService,$scope,$mdMedia,$mdDialog,heroku_url)
     {
         var _self = this;
         _self.loader = false;
@@ -20,7 +20,7 @@
 
 
         //Get Site categories
-        $http({method:'GET',url:'/getSiteCategories'}).then(function(data)
+        $http({method:'GET',url:heroku_url+'/getSiteCategories'}).then(function(data)
         {
             if(data.status == 200)
             {
@@ -33,7 +33,7 @@
         }*/);
 
         //Get Locations
-        $http({method:'GET',url:'/getLocations'}).then(function(data)
+        $http({method:'GET',url:heroku_url+'/getLocations'}).then(function(data)
         {
             if(data.status == 200)
             {
@@ -142,7 +142,7 @@
         {
             console.log("Selected Items : ",_self.selectedItem);
             console.log("Sending Data : ",_self.blog);
-            $http.post('/searchBlogs',_self.blog).then(function(data)
+            $http.post(heroku_url+'/searchBlogs',_self.blog).then(function(data)
             {
                 //console.log(typeof(_self.blog.siteCategory));
                 console.log("Data : ",data);
@@ -170,7 +170,7 @@
 
         _self.deleteBlog = function(id,index)
         {
-            $http.delete("/deleteBlogItem/"+id).then(function(data)
+            $http.delete(heroku_url+"/deleteBlogItem/"+id).then(function(data)
             {
                 if(data.status == 200)
                 {

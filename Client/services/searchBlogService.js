@@ -5,14 +5,14 @@
 {
     'use strict';
     angular.module('blogApp')
-        .factory('searchBlogService',function($http,toast_service,$q)
+        .factory('searchBlogService',function($http,toast_service,$q,heroku_url)
         {
             var obj = {};
 
             //
             obj.searchBlog = function(query)
             {
-                $http.post("/searchBlogs",query).then(function(data)
+                $http.post(heroku_url+"/searchBlogs",query).then(function(data)
                 {
 
                     if(data.status == 200)

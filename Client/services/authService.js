@@ -5,7 +5,7 @@
 
 
     angular.module("blogApp")
-        .factory("authService",['$state','$q','$http','$location',function($state,$q,$http,$location)
+        .factory("authService",['$state','$q','$http','$location','heroku_url',function($state,$q,$http,$location,heroku_url)
         {
             var authServiceObj = {};
 
@@ -22,7 +22,7 @@
                     console.log("Data : ",loggedInUser);
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
-                        $http({method:'GET',url:'/userStatus',params:loggedInUser}).then(function(data)
+                        $http({method:'GET',url:heroku_url+'/userStatus',params:loggedInUser}).then(function(data)
                     {
                         if(data.status == 200)
                         {

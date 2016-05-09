@@ -6,6 +6,7 @@
 (function () {
     'use strict';
     angular.module("blogApp")
+        .constant("heroku_url","https://blog-search.herokuapp.com/")
         .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
 
             var navLoginBar = {

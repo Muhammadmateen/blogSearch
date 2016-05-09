@@ -7,7 +7,7 @@
 {
     'use strict';
     angular.module('blogApp')
-        .factory('addBlogsService',function($http,toast_service,$q)
+        .factory('addBlogsService',function($http,toast_service,$q,heroku_url)
         {
             var obj = {};
 
@@ -15,7 +15,7 @@
             obj.csvFile = function(fileData)
             {
                 var deffer = $q.defer();
-                $http.post("/addBlogsFile",fileData).then(function(data)
+                $http.post(heroku_url+"/addBlogsFile",fileData).then(function(data)
                 {
                     console.log("Data : ",data);
                     deffer.resolve(false);
@@ -27,14 +27,14 @@
                     toast_service.showSimpleToast(err.data);
                 })
                 return deffer.promise;
-            }
+            };
 
 
             //Single Blog item data
             obj.blogItem = function(fileData)
             {
                 var deffer = $q.defer();
-                $http.post("/addBlogsItem",fileData).then(function(data)
+                $http.post(heroku_url+"/addBlogsItem",fileData).then(function(data)
                 {
                     console.log("Data : ",data);
                     deffer.resolve(false);

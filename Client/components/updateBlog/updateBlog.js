@@ -4,9 +4,9 @@
 (function()
 {
     angular.module("blogApp")
-        .controller("updateBlogController",['$http','local','$mdDialog','toast_service',updateBlogController])
+        .controller("updateBlogController",['$http','local','$mdDialog','toast_service','heroku_url',updateBlogController])
 
-    function updateBlogController($http,local,$mdDialog,toast_service)
+    function updateBlogController($http,local,$mdDialog,toast_service,heroku_url)
     {
 
         var _self = this;
@@ -22,7 +22,7 @@
             console.log("Data for update : ",_self.data);
             if(_self.data && _self.data.blogUrl && _self.data._id && _self.data.DA)
             {
-                $http.put("/updateBlogItem",_self.data).then(function(data)
+                $http.put(heroku_url+"/updateBlogItem",_self.data).then(function(data)
                 {
                     console.log("After update : ",data);
                     if(data.status == 200)

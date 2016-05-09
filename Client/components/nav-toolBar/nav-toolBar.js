@@ -6,9 +6,9 @@
 {
     angular.module("blogApp")
 
-        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','$state','authService',navToolBarController])
+        .controller("navToolBarController",['$http','$mdToast','toast_service','$timeout','$mdSidenav','$state','authService','heroku_url',navToolBarController])
 
-    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav,$state,authService)
+    function navToolBarController($http,$mdToast,toast_service,$timeout,$mdSidenav,$state,authService,heroku_url)
     {
         var _self = this;
         _self.loader = false;
@@ -31,7 +31,7 @@
         //Logout function
         _self.logout = function()
         {
-            $http.post("/logout").then(function(data)
+            $http.post(heroku_url+"/logout").then(function(data)
             {
                localStorage.removeItem("loggedInUser");
                 $state.go("login");
