@@ -13,9 +13,9 @@ var mongoose = require("mongoose");
 var session = require('express-session');
 
 /*Local connection*/
-mongoose.connect("mongodb://localhost/blogs");
+/*mongoose.connect("mongodb://localhost/blogs");*/
 /*Mongolab connection*/
-/*mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');*/
+mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
 
 
 /*=========================Require Api=========================*/
