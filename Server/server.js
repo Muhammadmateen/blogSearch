@@ -11,6 +11,7 @@ var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
 var session = require('express-session');
+var cors = require("cors");
 
 /*Local connection*/
 /*mongoose.connect("mongodb://localhost/blogs");*/
@@ -36,10 +37,11 @@ var updateBlogItem_api = require("./api/updateBlogItem.js");
 /*=====================Initialize express app==============================*/
 var app = express();
 
+app.use(cors);
 
 /*=====================Files Path====================================*/
 //Path of files
-var viewsPath = path.resolve(__dirname,"../client");
+var viewsPath = path.resolve(__dirname,"../Client");
 app.use(express.static(viewsPath));
 
 
