@@ -4,6 +4,7 @@
   "description": "maintain and search of different kinds of blogs",
   "main": "./Server/server.js",
   "scripts": {
+    "start": "node Server/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Muhammad Mateen",
