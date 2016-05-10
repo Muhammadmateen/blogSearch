@@ -11,11 +11,13 @@ var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
 var session = require('express-session');
-var cors = require("cors");
+const MongoStore = require('connect-mongo')(session);
+/*var cors = require("cors");*/
 
 /*Local connection*/
 /*mongoose.connect("mongodb://localhost/blogs");*/
 /*Mongolab connection*/
+
 mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
 
 
@@ -37,7 +39,7 @@ var updateBlogItem_api = require("./api/updateBlogItem.js");
 /*=====================Initialize express app==============================*/
 var app = express();
 
-app.use(cors);
+/*app.use(cors);*/
 
 /*=====================Files Path====================================*/
 //Path of files
@@ -81,14 +83,25 @@ app.use(bodyParser.json());
 
 
 /*=====================Sessions====================================*/
+/*app.use(session({
+    secret:"ksdf5i01siu8sdfj7mjsdi",
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    ttl: 8.64e+7
+}));*/
+
+
+
+
+
+
 app.use(session({
     secret:"ksdf5i01siu8sdfj7mjsdi",
     resave:true,
     saveUninitialized: true,
-    cookie:{
-        maxAge:8.64e+7
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: {
+        maxAge: 8.64e+7 // 24 hours
     }
-    /*expire:8.64e+7*/
 }))
 
 /*==================Post request on server using Api===========================*/

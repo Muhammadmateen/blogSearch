@@ -15,14 +15,18 @@
 
         _self.checkUser = function()
         {
-            if(authService.localData().role == 1)
+            if(authService.localData() != null)
             {
-                return true;
+                if(authService.localData().role == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+
         };
 
 
@@ -40,7 +44,7 @@
                 toast_service.showSimpleToast("Error ",err);
             })
 
-        }
+        };
 
 
 

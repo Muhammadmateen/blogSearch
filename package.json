@@ -4,7 +4,7 @@
   "description": "maintain and search of different kinds of blogs",
   "main": "./Server/server.js",
   "scripts": {
-    "start": "node Server/server",
+    "start":"node ./Server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Muhammad Mateen",
@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
+    "connect-mongo": "^1.1.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",

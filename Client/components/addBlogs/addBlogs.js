@@ -5,9 +5,9 @@
 {
     angular.module("blogApp")
 
-        .controller("addBlogsController",['$http','toast_service','$timeout','$mdSidenav','$scope','addBlogsService','$state',addBlogsController])
+        .controller("addBlogsController",['toast_service','$timeout','$mdSidenav','$scope','addBlogsService','$state',addBlogsController])
 
-    function addBlogsController($http,toast_service,$timeout,$mdSidenav,$scope,addBlogsService,$state)
+    function addBlogsController(toast_service,$timeout,$mdSidenav,$scope,addBlogsService,$state)
     {
         var _self = this;
         _self.loader = false;

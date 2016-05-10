@@ -13,7 +13,7 @@
     {
         var _self = this;
         _self.loader = false;
-        var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        //var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
         _self.login_auth =   function()
         {

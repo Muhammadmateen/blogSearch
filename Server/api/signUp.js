@@ -64,7 +64,7 @@ var transporter = nodemailer.createTransport({
 //Email send function
 function sendMail_func(email,id)
 {
-    var verifyUrl = "http://localhost:3000/#/verify-account/"+id;
+    var verifyUrl = "http://localhost:4000/#/verify-account/"+id;
     var mailOptions = {
         to: email,
         subject: 'Blog Search',
