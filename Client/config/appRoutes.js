@@ -128,6 +128,14 @@
                     controllerAs: 'invitations'
                 })
 
+                .state('dashboard.changePassword', {
+                    url: '/changePassword',
+                    isLoggedIn:true,
+                    templateUrl: 'components/change-password/change-password.html',
+                    controller: 'changePassController',
+                    controllerAs: 'changePass'
+                })
+
 
                 .state('404', {
                     url: '/404',

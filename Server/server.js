@@ -33,6 +33,7 @@ var verifyUser_api = require("./api/verifyUser.js");
 var searchBlogs_api = require("./api/searchBlogs.js");
 var deleteBlogItem_api = require("./api/deleteBlogItem.js");
 var updateBlogItem_api = require("./api/updateBlogItem.js");
+var updatePass_api = require("./api/updatePassword.js");
 
 
 
@@ -155,6 +156,9 @@ app.get('/getSiteCategories',searchBlogs_api);
 
 /*Get list of Location (Country)*/
 app.get('/getLocations',searchBlogs_api);
+
+/*Change Password*/
+app.put('/updatePass',updatePass_api);
 
 
 /*
