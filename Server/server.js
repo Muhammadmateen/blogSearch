@@ -161,6 +161,10 @@ app.get('/getLocations',searchBlogs_api);
 app.put('/updatePass',updatePass_api);
 
 
+/*Check url is exist or not*/
+app.get('/checkBlogUrl',addBlogs_api);
+
+
 /*
  app.post('/fileConversion',conversionApi);*/
 

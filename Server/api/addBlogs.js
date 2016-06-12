@@ -79,5 +79,22 @@ api.post("/addBlogsItem",function(req,res)
     })
 });
 
+api.get("/checkBlogUrl",function(req,res)
+{
+    addBlogs_schema.findOne({blogUrl:req.query.blogUrl},{_id:1},function(err,data)
+    {
+        if(data)
+        {
+            console.log("url check : ",data);
+            res.status(200).send(true);
+        }
+        else
+        {
+            console.log("url check Error : ",err);
+            res.status(204).send(err);                 //204 No content matched
+        }
+    })
+});
+
 //Export the Api
 module.exports = api;

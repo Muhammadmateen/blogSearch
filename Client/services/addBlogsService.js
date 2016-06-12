@@ -37,12 +37,12 @@
                 $http.post(heroku_url+"/addBlogsItem",fileData).then(function(data)
                 {
                     console.log("Data : ",data);
-                    deffer.resolve(false);
+                    deffer.resolve();
                     toast_service.showSimpleToast(data.data);
                 },function(err)
                 {
                     console.log("Error : ",err);
-                    deffer.resolve(false);
+                    deffer.resolve();
                     toast_service.showSimpleToast(err.data);
                 })
                 return deffer.promise;

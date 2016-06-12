@@ -49,6 +49,21 @@
     <!--Filter-->
     <script src="./filters/roles.js"></script>
 
+    <!--Firebase ref for Image storage-->
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCmvFErkHECmyMfmixWXv5LD1FJZ_lCKyM",
+            authDomain: "project-8927058939748730200.firebaseapp.com",
+            databaseURL: "https://project-8927058939748730200.firebaseio.com",
+            storageBucket: "project-8927058939748730200.appspot.com",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
     <!--<base href="/">-->
 </head>
 <body ng-app="blogApp">

@@ -1,15 +1,21 @@
 
     <h1 class="md-display-2">Add Record</h1>
     <div>
+        {{addBlogs.blogUrl_in_used}}
         <form name="blogDataForm" ng-submit="addBlogs.addBlog()">
 
             <md-input-container>
                 <label>Blog Url</label>
-                <input name="blogUrl" ng-model="addBlogs.data.blogUrl" type="text" autofocus required>
+                <input name="blogUrl" ng-model="addBlogs.data.blogUrl" type="text" ng-blur="addBlogs.checkBlogUrl(addBlogs.data.blogUrl)" autofocus required>
             </md-input-container>
+
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="40px"
+                                  ng-show="addBlogs.blogUrl_loader"></md-progress-circular>
+
                             <span style="color: red" ng-show="blogDataForm.blogUrl.$invalid && blogDataForm.blogUrl.$dirty">
                                 <span ng-show="blogDataForm.blogUrl.$error.required">Blog URL is required</span>
                             </span>
+            <span style="color: red" ng-show="addBlogs.blogUrl_in_used">Blog url is already exist.</span>
 
             <md-input-container>
                 <label>DA</label>
@@ -124,7 +130,7 @@
             <br>
 
             <md-chips ng-model="addBlogs.siteCategory" readonly="ctrl.readonly"></md-chips>
-            <button type="submit" ng-disabled="blogDataForm.$invalid">Add Blog</button>
+            <button type="submit" ng-disabled="blogDataForm.$invalid || addBlogs.blogUrl_in_used">Add Blog</button>
         </form>
     </div>
     <div layout="row" layout-sm="column" layout-align="space-around" ng-if="addBlogs.loader">

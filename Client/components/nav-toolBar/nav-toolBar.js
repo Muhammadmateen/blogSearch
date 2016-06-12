@@ -29,6 +29,27 @@
 
         };
 
+        var storageRef = firebase.storage().ref();
+        _self.uploadPic = function()
+        {
+            var picId = authService.localData().uid;
+            console.log("UID : ",authService.localData().uid);
+            var picData = document.getElementById("profilePic").files[0];
+            console.log("Data : ",picData);
+
+            var uploadTask = storageRef.child('blogSearch/users/' + picId).put(picData);
+
+            uploadTask.on('state_changed', function(snapshot){
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+            }, function(error) {
+                console.log("Error in uploading",error);
+            }, function() {
+
+                var downloadURL = uploadTask.snapshot.downloadURL;
+                console.log("File upload successfully: ",downloadURL);
+            });
+        };
 
 
 

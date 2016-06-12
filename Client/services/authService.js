@@ -19,7 +19,7 @@
                 var loggedInUser = authServiceObj.localData();
                 if(loggedInUser)
                 {
-                    console.log("Data : ",loggedInUser);
+                    //console.log("Data : ",loggedInUser);
                     if(loggedInUser.uid && loggedInUser.name && loggedInUser.role)
                     {
                         $http({method:'GET',url:heroku_url+'/userStatus',params:loggedInUser}).then(function(data)

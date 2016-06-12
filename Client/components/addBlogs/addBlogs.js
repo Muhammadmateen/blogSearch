@@ -5,12 +5,14 @@
 {
     angular.module("blogApp")
 
-        .controller("addBlogsController",['toast_service','$timeout','$mdSidenav','$scope','addBlogsService','$state',addBlogsController])
+        .controller("addBlogsController",['toast_service','$timeout','$mdSidenav','$scope','addBlogsService','$state','$http','heroku_url',addBlogsController])
 
-    function addBlogsController(toast_service,$timeout,$mdSidenav,$scope,addBlogsService,$state)
+    function addBlogsController(toast_service,$timeout,$mdSidenav,$scope,addBlogsService,$state,$http,heroku_url)
     {
         var _self = this;
         _self.loader = false;
+        _self.blogUrl_in_used = false;
+        _self.blogUrl_loader = false;
 
         $scope.csv = {
             content: null,
@@ -72,23 +74,65 @@
         //Single blog item
         _self.addBlog = function()
         {
+            _self.loader = true;
             if(_self.data.blogUrl != undefined)
             {
                 _self.data.siteCategory = _self.siteCategory;
-                addBlogsService.blogItem(_self.data).then(function(data)
+                addBlogsService.blogItem(_self.data).then(function()
                 {
-                    _self.loader = data;
+                    _self.loader = false;
+                    console.log("data addded",data);
                     $state.go($state.current,{},{reload:true});
                 },function(err)
                 {
+                    console.log("Error : ",err);
+                    _self.loader = false;
                     $state.go($state.current,{},{reload:true});
-                    _self.loader = data;
+
                 });
             }
             else
             {
                 toast_service.showSimpleToast("Please Enter URL");
             }
+        };
+
+
+        _self.checkBlogUrl = function(url)
+        {
+            _self.blogUrl_loader = true;
+            console.log("url : ", url);
+            if(_self.data.blogUrl)
+            {
+                $http({method:'GET',url:heroku_url+'/checkBlogUrl',params:{blogUrl:url}}).then(function(data)
+                {
+                    _self.blogUrl_loader = false;
+                    console.log("Daat : ",data.data);
+                    if(data.data)
+                    {
+                        console.log("Already exist url");
+                        _self.blogUrl_in_used = true;
+                    }
+                    else
+                    {
+                        console.log("Url allow to enter");
+                        _self.blogUrl_in_used = false;
+                    }
+
+
+                },function(err)
+                {
+                    _self.blogUrl_loader = false;
+                    _self.blogUrl_in_used = err.data;
+                    console.log("Error :",err.data);
+                })
+
+            }
+            else
+            {
+                console.log("Else working");
+            }
+
         };
 
         _self.correctSampleData = [
