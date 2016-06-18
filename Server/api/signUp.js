@@ -3,6 +3,7 @@
  */
 var express = require("express");
 var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 var path = require("path");
 
 /*Sign up Schema require */
@@ -48,7 +49,7 @@ api.post("/sign_up_user",function(req,res)
 
 
 //Authnetication for sent an email to any one account
-var transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport(smtpTransport({
     service: 'Gmail',
     auth: {
         user: 'gayyasabcd@gmail.com',
@@ -59,7 +60,7 @@ var transporter = nodemailer.createTransport({
         //'meanstack02@gmail.com'
         //meanstack
     }
-});
+}));
 
 //Email send function
 function sendMail_func(email,id)
@@ -67,6 +68,7 @@ function sendMail_func(email,id)
     console.log("Email Function Call");
     var verifyUrl = "https://blog-search.herokuapp.com/#/verify-account/"+id;
     var mailOptions = {
+        from : 'info@searchblogs.com',
         to: email,
         subject: 'Blog Search',
         html: "<h1 style='color: blue'>Welcome To Blog Search</h1><br><br><b>Open this link and verify the account : "+verifyUrl+"</b>"
