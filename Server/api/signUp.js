@@ -64,6 +64,7 @@ var transporter = nodemailer.createTransport({
 //Email send function
 function sendMail_func(email,id)
 {
+    console.log("Email Function Call");
     var verifyUrl = "https://blog-search.herokuapp.com/#/verify-account/"+id;
     var mailOptions = {
         to: email,
@@ -76,6 +77,7 @@ function sendMail_func(email,id)
             console.log("Email Not sent ",error);
             //res.json({yo: 'error'});
         }else{
+            console.log("Email send object : ",info);
             console.log("Email sent: " + info.response);
             //res.json({yo: info.response});
         };

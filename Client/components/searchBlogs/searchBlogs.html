@@ -5,7 +5,7 @@
 
     <button ng-disabled="searchBlogs.matchedItem == null || searchBlogs.matchedItem.length == 0" ng-click="searchBlogs.exportExcelFile()">Export</button>
 
-    <md-input-container class="md-block" flex-gt-sm>
+    <!--<md-input-container class="md-block" flex-gt-sm>
         <label>Select</label>
         <md-select ng-model="searchBlogs.val">
             <md-option ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}" ng-click="searchBlogs.checkSelectedItem(searchKey)">
@@ -14,7 +14,13 @@
                 </md-checkbox>
             </md-option>
         </md-select>
-    </md-input-container>
+    </md-input-container>-->
+
+    <span ng-repeat="(searchKey,searchVal) in searchBlogs.searchBy" value="{{searchKey}}" ng-click="searchBlogs.checkSelectedItem(searchKey)">
+        <md-checkbox ng-model="searchBlogs.selectedItem[searchKey]">
+            {{searchVal}}
+        </md-checkbox>
+    </span>
 
 
     <!--Form-->

@@ -97,6 +97,7 @@
         {
             if (_self.selectedItem[a] == false) {
                 _self.totalSelectedItem--;
+                console.log("Items false : ",_self.blog);
                 //console.log("Selected Item ",_self.totalSelectedItem);
                 if(_self.blog)
                 {
@@ -106,6 +107,7 @@
             else
             {
                 _self.totalSelectedItem++;
+                console.log("Items true : ",_self.blog);
                 //console.log("Selected Item ",_self.totalSelectedItem);
             }
         };
