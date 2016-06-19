@@ -53,7 +53,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
     service: 'Gmail',
     auth: {
         user: 'gayyasabcd@gmail.com',
-        pass:  'abcdef123456'
+        pass:  'oqkeaolhelyobumj'
 
         //gayyasabcd@gmail.com
         //abcdef123456
@@ -61,6 +61,22 @@ var transporter = nodemailer.createTransport(smtpTransport({
         //meanstack
     }
 }));
+
+/*//Authnetication for sent an email to any one account
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'gayyasabcd@gmail.com',
+        pass:  'oqkeaolhelyobumj'
+        //pass:  'Abcdef654321'
+
+        //gayyasabcd@gmail.com
+        //abcdef123456
+        //'meanstack02@gmail.com'
+        //meanstack
+    }
+});*/
+
 
 //Email send function
 function sendMail_func(email,id)
