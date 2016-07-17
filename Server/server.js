@@ -34,6 +34,7 @@ var searchBlogs_api = require("./api/searchBlogs.js");
 var deleteBlogItem_api = require("./api/deleteBlogItem.js");
 var updateBlogItem_api = require("./api/updateBlogItem.js");
 var updatePass_api = require("./api/updatePassword.js");
+var updateAllDA_api = require("./api/updateAllDA.js");
 
 
 
@@ -135,7 +136,10 @@ app.post('/addBlogsItem',addBlogs_api);
 app.post('/getUsers',getUsers_api);
 
 /*Access user to as A Member or admin*/
-app.post('/updateUsers',updateUsers_api);
+app.put('/updaterole',updateUsers_api);
+
+/*Access user to as A Member or admin*/
+app.put('/updatePic',updateUsers_api);
 
 /*Verify user Account*/
 app.post('/verifyUser',verifyUser_api);
@@ -163,6 +167,18 @@ app.put('/updatePass',updatePass_api);
 
 /*Check url is exist or not*/
 app.get('/checkBlogUrl',addBlogs_api);
+
+/*get all blogs DA*/
+app.get('/getblogsda',updateAllDA_api);
+
+/*Update all Blogs Da with Moz Api*/
+app.put('/updatemozda',updateAllDA_api);
+
+
+
+
+
+
 
 
 /*

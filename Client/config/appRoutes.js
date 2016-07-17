@@ -128,6 +128,14 @@
                     controllerAs: 'invitations'
                 })
 
+                .state('dashboard.updateDA', {
+                    url: '/updatedomainauth',
+                    isLoggedIn:true,
+                    templateUrl: 'components/updateDA/updateDA.html',
+                    controller: 'updateDAController',
+                    controllerAs: 'updateDA'
+                })
+
                 .state('dashboard.changePassword', {
                     url: '/changePassword',
                     isLoggedIn:true,

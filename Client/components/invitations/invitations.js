@@ -45,27 +45,10 @@
 
 
 
-        //_self.sNo = 0;
-       /* _self.checkRole = function(role)
-        {
-            //console.log("Value :",role)
-            if(role == 3)
-            {
-                return true;
-            }
-            else
-            {
-                //console.log("2")
-                return false;
-            }
-
-        }
-*/
-
         //Update User Details
         _self.updateDetails = function(a,b)
         {
-            $http.post(heroku_url+"/updateUsers",{id:a,role:b}).then(function(data)
+            $http.put(heroku_url+"/updaterole",{id:a,role:b}).then(function(data)
             {
                 if(data.status != 500)
                 {
@@ -82,7 +65,7 @@
                 toast_service.showSimpleToast("Internal Server Error");
                 console.log(err)
             });
-        }
+        };
 
         //Expand more logo appearance
         _self.openMenu = function($mdOpenMenu, ev) {

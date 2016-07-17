@@ -6,7 +6,6 @@ var bcrypt = require("bcrypt-nodejs");
 var mongoose = require("mongoose");
 //var connection = mongoose.connect("mongodb://localhost/blogs");
 
-
 /* Sales Man Schema */
 var schema = mongoose.Schema({
     firstName: {
@@ -36,6 +35,11 @@ var schema = mongoose.Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    pic: {
+        type:String,
+        required: true,
+        default:'https://firebasestorage.googleapis.com/v0/b/project-8927058939748730200.appspot.com/o/blogSearch%2Fusers%2Fdefault-profile.png?alt=media&token=b70201eb-3aef-4cc1-ad49-18cab97e2402'
     },
     role: {
         type:Number,

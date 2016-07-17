@@ -4,7 +4,7 @@
   "description": "maintain and search of different kinds of blogs",
   "main": "./Server/server.js",
   "scripts": {
-    "start":"node ./Server/server.js",
+    "start": "node ./Server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Muhammad Mateen",
@@ -17,6 +17,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "mongoose": "^4.4.5",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "mozscape": "^0.1.4"
   }
 }

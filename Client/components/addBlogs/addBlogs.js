@@ -78,7 +78,7 @@
             if(_self.data.blogUrl != undefined)
             {
                 _self.data.siteCategory = _self.siteCategory;
-                addBlogsService.blogItem(_self.data).then(function()
+                addBlogsService.blogItem(_self.data).then(function(data)
                 {
                     _self.loader = false;
                     console.log("data addded",data);

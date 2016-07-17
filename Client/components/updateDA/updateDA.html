@@ -1,0 +1,18 @@
+
+<div ng-cloak>
+    <md-content>
+        <h3>Updating DA</h3>
+        <md-slider-container>
+            <md-slider ng-model="updateDA.updatedLength" aria-label="Disabled 1" flex md-discrete ng-readonly="true" ng-disabled="true"></md-slider>
+        </md-slider-container>
+
+        <md-button class="md-raised md-primary" ng-click="updateDA.updateAllDa()">Update DA</md-button>
+    </md-content>
+
+    <h1>Total Length : {{updateDA.totalLength}}</h1>
+    <h1>Updated Length : {{updateDA.updatedLength}}</h1>
+    <h1>Percentge : {{updateDA.updatedLength * 100/updateDA.totalLength}} </h1>
+
+    {{updateDA.isDisabled}}
+
+</div>

@@ -8,7 +8,7 @@ var getUsers_model = model.sign_up_schema;
 
 var api = express.Router();
 
-api.post("/updateUsers",function(req,res)
+api.put("/updaterole",function(req,res)
 {
     getUsers_model.update({_id:req.body.id},{$set:{role:req.body.role}},function(err,data)
     {
@@ -23,6 +23,24 @@ api.post("/updateUsers",function(req,res)
             res.status(500).send(err);
         }
     });
-})
+});
+
+
+api.put("/updatePic",function(req,res)
+{
+    getUsers_model.update({_id:req.body.id},{$set:{pic:req.body.profilePic}},function(err,data)
+    {
+        if (data)
+        {
+            // 200 Data found
+            res.status(200).send(data);
+        }
+        else
+        {
+            // 500 Server Error
+            res.status(500).send(err);
+        }
+    });
+});
 
 module.exports = api;

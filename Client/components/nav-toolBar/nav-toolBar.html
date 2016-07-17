@@ -39,6 +39,13 @@
                 </md-button>
             </md-list-item>
 
+            <md-list-item ng-if="navToolBar.checkUser()">
+                <md-button aria-label="User Invitations" class="md-primary" ui-sref="dashboard.updateDA" ng-click="navToolBar.closeMenu()">
+                    <ng-md-icon icon=""></ng-md-icon>
+                    <span class="txt_color">Update Domain Authority</span>
+                </md-button>
+            </md-list-item>
+
             <md-list-item>
                 <md-button aria-label="logout" class="md-primary" ui-sref="dashboard.changePassword" ng-click="navToolBar.closeMenu()">
                     <ng-md-icon icon="logout"></ng-md-icon>
