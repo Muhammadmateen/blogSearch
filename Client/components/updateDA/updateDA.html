@@ -15,4 +15,8 @@
 
     {{updateDA.isDisabled}}
 
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-if="updateDA.loader">
+        <md-progress-circular md-mode="indeterminate">Updated : {{updateDA.updatedLength * 100/updateDA.totalLength}}</md-progress-circular>
+    </div>
+
 </div>

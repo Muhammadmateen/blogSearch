@@ -35,18 +35,20 @@ api.put("/updatemozda",function(req,res)
 
     console.log("Data in body : ",req.body);
 
-        var mozDA = getMozDA(req.body.blogUrl);
-        if(mozDA[0])
-        {
-            if(req.body.DA != mozDA[1])
+
+    moz.urlMetrics(req.body.blogUrl, ['domain_authority'], function(apiErr, apiRes) {
+        if (apiRes) {
+            console.log("Result in mozscape api : ",apiRes);
+            if(req.body.DA != apiRes.pda)
             {
                 //call update method
-                update_blogSchema.update({_id:blogsDA[i]._id},{$set:{DA:mozDA[1]}},function(err,data)
+                console.log("ID : "+req.body._id + " ",req.body.blogUrl);
+                update_blogSchema.update({blogUrl:req.body._id},{$set:{DA:apiRes.pda}},function(err,data)
                 {
                     if(data)
                     {
                         console.log("Data updated",data);
-                        res.status(200).send("DA updated " ,data);
+                        res.status(200).send(data);
                     }
                     else
                     {
@@ -61,108 +63,12 @@ api.put("/updatemozda",function(req,res)
         }
         else
         {
-            res.status(400).send("Error : ",mozDA[1]);
-        }
-});
-
-
-
-
-
-/* var blogsDA
-
-
-   /!* Get all blogs DA , blogUrl and _id*!/
-api.use("/updatemozda",function(req,res)
-{
-    update_blogSchema.find({},{_id:1,blogUrl:1,DA:1},function(err,data)
-    {
-        if(data)
-        {
-            blogsDA = data;
-            console.log("Data fetched",data);
-            res.next();
-
-            //res.status(200).send(data);
-        }
-        else
-        {
-            console.log("Error in fetching record ",err);
-            res.status(204).send(err);                 //204 No content matched
+            console.log("Error in mozscape api url is : "+req.body.blogUrl+" ",apiErr);
+            res.status(400).send(apiErr);
         }
     });
+
 });
-
-
-    /!*Update all blogs DA*!/
-api.put("/updatemozda",function(req,res)
-{
-
-    console.log("Length og Blog Data : ",blogsDA.length);
-    for(var i = 0; i < blogsDA.length; i++)
-    {
-       var mozDA = getMozDA(blogsDA[i].blogUrl);
-        if(mozDA[0])
-        {
-            if(blogsDA[i].DA != mozDA[1])
-            {
-                //call update method
-                update_blogSchema.update({_id:blogsDA[i]._id},{$set:{DA:mozDA[1]}},function(err,data)
-                {
-                    if(data)
-                    {
-                        console.log("Data fetched",data);
-                        //res.status(200).send(true);
-                    }
-                    else
-                    {
-                        console.log("Error in fetching record ",err);
-                        //res.status(204).send(err);                 //204 No content matched
-                    }
-                });
-            }
-        }
-        else
-        {
-            res.send("Error : ",mozDA[1]);
-        }
-    }
-
-
-
-});*/
-
-
-
-function getMozDA(url)
-{
-
-    moz.urlMetrics(url, ['domain_authority'], function(err, res) {
-        if (res) {
-            console.log("Result in mozscape api : ",res);
-            return [true,res];
-        }
-        console.log("Error in mozscape api : ",err);
-        return [false,err];
-    });
-};
-
-
-
-
-
-
-/*var moz = new Mozscape('mozscape-248c5abf37', '6aed937922ce01ddde2fac9e8d8038ae');
-moz.urlMetrics('www.google.com', ['title','url', 'links','domain_authority'], function(err, res) {
-    if (err) {
-        console.log("Error in mozscape api : ",err);
-        return;
-    }
-
-    console.log("Result in mozscape api : ",res);
-});*/
-
-
 
 
 module.exports = api;
