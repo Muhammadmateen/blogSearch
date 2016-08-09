@@ -43,7 +43,7 @@ api.put("/updatemozda",function(req,res)
             {
                 //call update method
                 console.log("ID : "+req.body._id + " ",req.body.blogUrl);
-                update_blogSchema.update({blogUrl:req.body._id},{$set:{DA:apiRes.pda}},function(err,data)
+                update_blogSchema.update({_id:req.body._id},{$set:{DA:apiRes.pda}},function(err,data)
                 {
                     if(data)
                     {
