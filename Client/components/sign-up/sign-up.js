@@ -47,7 +47,6 @@
             }
             else {
                 toast_service.showSimpleToast("Please enter valid email address");
-                //console.log("function not call first enter valid email address");
             }
 
         };
@@ -61,32 +60,24 @@
                     _self.email_loader = false;
                     switch (result.data) {
                         case '200':
-                            //console.log("you can create account with this email");
+                            //you can create account with this email
                             _self.email_in_used = false;
                             break;
                         case '1100':
-                            //console.log("Email id already exist");
+                            //Email id already exist
                             _self.email_in_used = true;
                             break;
                         default :
                             toast_service.showSimpleToast(result);
-                        //console.log("Mongo Error :",result);
 
                     }
 
                 }, function (err) {
                     _self.email_loader = false;
                     toast_service.showSimpleToast(err);
-                    //console.log("Request not send on server : ",err);
                 });
             }
         };
-
-
-       /* _self.setLocal = function()
-        {
-            localStorage.setItem("uid","khsdbgfhsbvdhfbvsdf");
-        }*/
 
     };
 })();

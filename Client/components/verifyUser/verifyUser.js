@@ -25,7 +25,7 @@
                 _self.loader = false;
                 if(data.data.n == 1 && data.data.nModified == 0 && data.data.ok == 1)
                 {
-                    _self.result = "You have already verified your account...";
+                    _self.result = "The invitation link isn't valid. Perhaps you already use it?";
                 }
                 else if(data.data.n == 1 && data.data.nModified == 1 && data.data.ok == 1)
                 {

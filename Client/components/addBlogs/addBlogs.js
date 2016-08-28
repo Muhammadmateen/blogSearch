@@ -100,11 +100,15 @@
 
         _self.checkBlogUrl = function(url)
         {
-            _self.blogUrl_loader = true;
-            console.log("url : ", url);
-            if(_self.data.blogUrl)
+            if(url)
             {
-                $http({method:'GET',url:heroku_url+'/checkBlogUrl',params:{blogUrl:url}}).then(function(data)
+            _self.blogUrl_loader = true;
+            var str_url = url;
+            var url_split = str_url.split("www.",2);
+            var final_url_split = url_split[1].split(".com");
+            _self.data.blogUrl = "www."+final_url_split[0]+".com";
+
+                $http({method:'GET',url:heroku_url+'/checkBlogUrl',params:{blogUrl:_self.data.blogUrl}}).then(function(data)
                 {
                     _self.blogUrl_loader = false;
                     console.log("Daat : ",data.data);
@@ -128,9 +132,7 @@
                 })
 
             }
-            else
-            {
-                console.log("Else working");
+            else{
             }
 
         };

@@ -1,7 +1,7 @@
 
     <h1 class="md-display-2">Add Record</h1>
     <div>
-        {{addBlogs.blogUrl_in_used}}
+        
         <form name="blogDataForm" ng-submit="addBlogs.addBlog()">
 
             <md-input-container>
@@ -19,22 +19,25 @@
 
             <md-input-container>
                 <label>DA</label>
-                <input name="DA" ng-model="addBlogs.data.DA" type="number" required>
+                <input name="DA" ng-model="addBlogs.data.DA" type="number" min="0" max="100" required>
             </md-input-container>
                 <span style="color: red" ng-show="blogDataForm.DA.$invalid && blogDataForm.DA.$dirty">
                     <span ng-show="blogDataForm.DA.$error.required">DA is required</span>
                 </span>
+                <span ng-show="blogDataForm.DA.$error.min || blogDataForm.DA.$error.max">The value must be in range 0 to 100!</span>
 
 
             <md-input-container>
                 <label>TF</label>
-                <input ng-model="addBlogs.data.TF" type="number">
+                <input name="TF" ng-model="addBlogs.data.TF" type="number" min="0" max="100">
             </md-input-container>
+            <span ng-show="blogDataForm.TF.$error.min || blogDataForm.TF.$error.max">The value must be in range 0 to 100!</span>
 
             <md-input-container>
                 <label>CF</label>
-                <input ng-model="addBlogs.data.CF" type="number">
+                <input name="CF" ng-model="addBlogs.data.CF" type="number" min="0" max="100">
             </md-input-container>
+            <span ng-show="blogDataForm.CF.$error.min || blogDataForm.CF.$error.max">The value must be in range 0 to 100!</span>
 
             <br>
 
