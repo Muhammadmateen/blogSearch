@@ -38,7 +38,6 @@
             {
                 _self.loader  = false;
                 toast_service.showSimpleToast("Internal Server Error");
-                console.log(err);
             });
         };
         userData();
@@ -52,8 +51,8 @@
             {
                 if(data.status != 500)
                 {
-                    toast_service.showSimpleToast("User data updated");
-                    $state.go($state.current,{},{reload:true});
+                    toast_service.showSimpleToast("Role updated");
+                    $state.reload();
                 }
                 else
                 {
@@ -63,7 +62,6 @@
             },function(err)
             {
                 toast_service.showSimpleToast("Internal Server Error");
-                console.log(err)
             });
         };
 

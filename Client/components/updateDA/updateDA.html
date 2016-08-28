@@ -2,21 +2,13 @@
 <div ng-cloak>
     <md-content>
         <h3>Updating DA</h3>
-        <md-slider-container>
-            <md-slider ng-model="updateDA.updatedLength" aria-label="Disabled 1" flex md-discrete ng-readonly="true" ng-disabled="true"></md-slider>
-        </md-slider-container>
 
         <md-button class="md-raised md-primary" ng-click="updateDA.updateAllDa()">Update DA</md-button>
     </md-content>
 
-    <h1>Total Length : {{updateDA.totalLength}}</h1>
-    <h1>Updated Length : {{updateDA.updatedLength}}</h1>
-    <h1>Percentge : {{updateDA.updatedLength * 100/updateDA.totalLength}} </h1>
-
-    {{updateDA.isDisabled}}
 
     <div layout="row" layout-sm="column" layout-align="space-around" ng-if="updateDA.loader">
-        <md-progress-circular md-mode="indeterminate">Updated : {{updateDA.updatedLength * 100/updateDA.totalLength}}</md-progress-circular>
+        <md-progress-circular md-mode="indeterminate" md-diameter="150px"></md-progress-circular>
+        <span class="md-display-3">{{(updateDA.updatedError + updateDA.updateDalength) * 100/updateDA.totalLength | number : 0}} %</span>
     </div>
-
 </div>

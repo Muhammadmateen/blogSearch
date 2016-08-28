@@ -6,39 +6,40 @@
 (function()
 {
     angular.module("blogApp")
-        .controller("changePassController",['$http','toast_service','heroku_url',changePassController])
+        .controller("changePassController",['$http','toast_service','heroku_url','$state',changePassController])
 
 
-    function changePassController($http,toast_service,heroku_url)
+    function changePassController($http,toast_service,heroku_url,$state)
     {
 
         var _self = this;
+        _self.loader = false;
 
         _self.updatePass = function()
         {
-            //console.log("OK ",_self.user);
-
             if(_self.user)
             {
                 if(_self.user.oldPass && _self.user.newPass && _self.user.cnfrmPass)
                 {
                     if(_self.user.newPass == _self.user.cnfrmPass)
                     {
-                        console.log("verified Data : ",_self.user);
+                        _self.loader = true;
                         $http.put(heroku_url+"/updatePass",_self.user).then(function(data)
                         {
-                            console.log("Data : ",data.data);
+                            toast_service.showSimpleToast(data.data);
+                            _self.loader = false;
+                            $state.reload();
 
                         },function(err)
                         {
                             toast_service.showSimpleToast("Error : ",err);
-                            console.log("Error : ",err);
+                            _self.loader = false;
+                            $state.reload();
                         });
                     }
                     else
                     {
                         toast_service.showSimpleToast("Confirm Password does not match");
-                        console.log("confirm password does not match");
                     }
                 }
             }

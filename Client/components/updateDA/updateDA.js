@@ -4,17 +4,19 @@
 (function()
 {
     angular.module("blogApp")
-        .controller("updateDAController",['$http','updateDAService','heroku_url',updateDAController])
+        .controller("updateDAController",['$http','updateDAService','heroku_url','toast_service',updateDAController])
 
-    function updateDAController($http,updateDAService,heroku_url)
+    function updateDAController($http,updateDAService,heroku_url,toast_service)
     {
 
         var _self = this;
         _self.loader = false;
         _self.blogsDA;
         _self.totalLength = 0;
-        _self.updatedLength = 0;
+        _self.updateDalength = 0;
+        _self.updatedError = 0;
         _self.isDisabled = true;
+
 
 
 
@@ -30,30 +32,26 @@
                 {
                     _self.blogsDA = data.data;
                     _self.totalLength = _self.blogsDA.length;
-                    console.log("Blogs Length : ",_self.blogsDA.length);
-                    console.log("All Item fetched of DA fetched : ",_self.blogsDA);
                     getUpdateDa();
                 }
                 else
                 {
-                    //toast_service.showSimpleToast("No record found");
-                    console.log("No data found in blogsDA",data.data);
+                    toast_service.showSimpleToast("No record found");
+                    _self.loader = false;
                 }
 
             },function(err)
             {
                 toast_service.showSimpleToast(data.status+" : Internal server error");
+                _self.loader = false;
                 console.log("Error ",err);
             })
 
             updateDAService.updateData();
-            /////console.log("Update all da function call in controller");
-//            console.log(_self.updatedLength);
-            //updateMozBlogDA();
         };
 
 
-        var updatedError = 0;
+        
 
         var getUpdateDa = function()
         {
@@ -67,9 +65,13 @@
                 },function(err)
                 {
                     console.log("Index : "+i+"Error : ",err);
-                    updatedError = updatedError+1;
-                    console.log("error updated da length : ",updatedError);
-                    //Break Loop if wanted
+                    _self.updatedError = _self.updatedError+1;
+                })
+               .finally(function() {
+                    if(_self.updatedError+_self.updateDalength == _self.totalLength){
+                        _self.loader = false;
+                        toast_service.showSimpleToast("Totlal : "+_self.totalLength+" updated : "+_self.updateDalength+" Not Updated : "+_self.updatedError);
+                    }
                 })
             }
         };
