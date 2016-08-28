@@ -19,12 +19,10 @@ api.get('/getblogsda',function(req,res)
     {
         if(data)
         {
-            console.log("Data fetched",data);
             res.status(200).send(data);
         }
         else
         {
-            console.log("Error in fetching record ",err);
             res.status(204).send(err);                 //204 No content matched
         }
     });
@@ -33,26 +31,20 @@ api.get('/getblogsda',function(req,res)
 api.put("/updatemozda",function(req,res)
 {
 
-    console.log("Data in body : ",req.body);
-
 
     moz.urlMetrics(req.body.blogUrl, ['domain_authority'], function(apiErr, apiRes) {
         if (apiRes) {
-            console.log("Result in mozscape api : ",apiRes);
             if(req.body.DA != apiRes.pda)
             {
                 //call update method
-                console.log("ID : "+req.body._id + " ",req.body.blogUrl);
                 update_blogSchema.update({_id:req.body._id},{$set:{DA:apiRes.pda}},function(err,data)
                 {
                     if(data)
                     {
-                        console.log("Data updated",data);
                         res.status(200).send(data);
                     }
                     else
                     {
-                        console.log("Error in updating record ",err);
                         res.status(400).send(err);                 //update failed
                     }
                 });
@@ -63,7 +55,6 @@ api.put("/updatemozda",function(req,res)
         }
         else
         {
-            console.log("Error in mozscape api url is : "+req.body.blogUrl+" ",apiErr);
             res.status(400).send(apiErr);
         }
     });
