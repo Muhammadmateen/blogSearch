@@ -37,6 +37,7 @@ var deleteBlogItem_api = require("./api/deleteBlogItem.js");
 var updateBlogItem_api = require("./api/updateBlogItem.js");
 var updatePass_api = require("./api/updatePassword.js");
 var updateAllDA_api = require("./api/updateAllDA.js");
+var updateImage_api = require("./api/imageUpload.js");
 
 
 
