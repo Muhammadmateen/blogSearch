@@ -119,7 +119,7 @@ app.post('/sign_up_user',signUp_api);
 app.post('/check_email',signUp_api);
 
 /*User authentication (Login) */
-app.get('/login',login_api);
+app.post('/login',login_api);
 
 /*User logout*/
 app.post('/logout',function(req,res)

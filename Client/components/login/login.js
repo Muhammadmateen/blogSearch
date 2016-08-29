@@ -18,7 +18,7 @@
         _self.login_auth =   function()
         {
             _self.loader = true;
-            $http({method:'GET',url:heroku_url+'/login',params:_self.user}).then(function(data)
+            $http({method:'POST',url:heroku_url+'/login',data: _self.user}).then(function(data)
             {
                 _self.loader = false;
                 if(data.status == 200 )
@@ -51,18 +51,5 @@
                 $state.go($state.current,{},{reload:true})
             });
         };
-
-       /* _self.setLocalData = function()
-        {
-            localStorage.setItem("loggedInUser",JSON.stringify({name:'Muhammad Mateen',role:2}));
-            //console.log("Local Storage Data is set : ",JSON.parse(localStorage.getItem("loggedInUser")));
-            /!*authService.redirect1();
-            //console.log("sdbfnmmmmm")*!/
-        }
-
-        _self.getLocalData = function()
-        {
-            console.log("Get local Data : ",JSON.parse(localStorage.getItem("loggedInUser")));
-        }
-*/    }
+  }
 })();

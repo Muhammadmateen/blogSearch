@@ -13,18 +13,16 @@ var api = express.Router();
 
 api.use("/login",function(req,res,next)
 {
-    console.log("Api Middleware");
     next();
 })
 
-api.get("/login",function(req,res)
+api.post("/login",function(req,res)
 {
-    console.log("Query : ",req.query);
-    login_model.findOne({email:req.query.email},function(err,data)
+    login_model.findOne({email:req.body.email},function(err,data)
     {
         if (data)
         {
-            bcrypt.compare(req.query.pass,data.pass,function(err,isMatch)
+            bcrypt.compare(req.body.pass,data.pass,function(err,isMatch)
             {
                 if(isMatch)
                 {
