@@ -3,6 +3,19 @@
     <md-sidenav class="md-sidenav-left md-whiteframe-z2 sidenav_back_color" md-component-id="left">
 
         <div class="backgroundImage">
+            <input type="file" id="profilePic" ng-hide="true">
+            <div class="profilePic" layout="row" layout-align="start center" layout-padding>
+                <img class="hidesquarebox" ng-src="{{navToolBar.user_details.profilePic || 'images/defaultPic.png'}}" alt="Profile Picture">
+                <span class="txt_color md-headline">{{navToolBar.user_details.firstName}} {{navToolBar.user_details.lastName}}</span>
+                <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="navToolBar.uploadPic()">
+                    <ng-md-icon icon="add_circle_outline"></ng-md-icon>
+                </md-button>
+            </div>
+
+        </div>
+
+
+        <!--<div class="backgroundImage">
             <div class="profilePic" layout="column" layout-align="start center" layout-padding>
 
                 <input type="file" id="profilePic">
@@ -12,7 +25,7 @@
                      ng-click="navToolBar.pictureDialog()">
                 <span class="txt_color md-headline">{{navToolBar.user_details.firstName}} {{navToolBar.user_details.lastName}}</span>
             </div>
-        </div>
+        </div>-->
 
 
         <md-list>
