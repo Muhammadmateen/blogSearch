@@ -37,6 +37,7 @@ var deleteBlogItem_api = require("./api/deleteBlogItem.js");
 var updateBlogItem_api = require("./api/updateBlogItem.js");
 var updatePass_api = require("./api/updatePassword.js");
 var updateAllDA_api = require("./api/updateAllDA.js");
+var updateImage_api = require("./api/imageUpload.js");
 
 
 
@@ -119,7 +120,7 @@ app.post('/sign_up_user',signUp_api);
 app.post('/check_email',signUp_api);
 
 /*User authentication (Login) */
-app.get('/login',login_api);
+app.post('/login',login_api);
 
 /*User logout*/
 app.post('/logout',function(req,res)
