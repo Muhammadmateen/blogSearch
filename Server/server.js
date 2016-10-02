@@ -18,8 +18,8 @@ const MongoStore = require('connect-mongo')(session);
 /*mongoose.connect("mongodb://localhost/blogs");*/
 /*Mongolab connection*/
 
-// mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
-mongoose.connect('mongodb://ovais:ovaisaptech786@ds147905.mlab.com:47905/blogdash');
+mongoose.connect('mongodb://mateen:mateen@ds061325.mongolab.com:61325/blogdash');
+// mongoose.connect('mongodb://ovais:ovaisaptech786@ds147905.mlab.com:47905/blogdash');
 
 
 
