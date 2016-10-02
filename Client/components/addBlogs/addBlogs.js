@@ -104,9 +104,30 @@
             {
             _self.blogUrl_loader = true;
             var str_url = url;
-            var url_split = str_url.split("www.",2);
-            var final_url_split = url_split[1].split(".com");
-            _self.data.blogUrl = "www."+final_url_split[0]+".com";
+            var url_split = null;
+            var final_url_split = null;
+            switch(str_url.indexOf("www.")) {
+                case -1:
+                    if(str_url.indexOf("http://")==0 || str_url.indexOf("https://")==0)
+                    {
+                        url_split = str_url.split("://",2);
+                        final_url_split = "www."+url_split[1];
+                    }
+                    else{
+                        final_url_split = "www."+str_url;
+                    }
+                    break;
+                default:
+                    if(str_url.indexOf("www.")==0){
+                        final_url_split = str_url;
+                    }
+                    else{
+                        url_split = str_url.split("www.",2);
+                        final_url_split = "www."+url_split[1];
+                    }
+            }
+            _self.data.blogUrl = final_url_split;
+            console.log("Final url is : ",final_url_split);
 
                 $http({method:'GET',url:heroku_url+'/checkBlogUrl',params:{blogUrl:_self.data.blogUrl}}).then(function(data)
                 {

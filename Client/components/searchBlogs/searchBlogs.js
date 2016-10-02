@@ -142,11 +142,16 @@
 
         _self.search = function()
         {
-            console.log("Selected Items : ",_self.selectedItem);
-            console.log("Sending Data : ",_self.blog);
-            $http.post(heroku_url+'/searchBlogs',_self.blog).then(function(data)
+            var blogData = angular.copy(_self.blog);
+            if(_self.blog.blogUrl){
+                //alter blog url
+                var alter_blog_Url = {
+                    '$regex': blogData.blogUrl
+                }
+                blogData.blogUrl = alter_blog_Url;
+            }
+            $http.post(heroku_url+'/searchBlogs',blogData).then(function(data)
             {
-                //console.log(typeof(_self.blog.siteCategory));
                 console.log("Data : ",data);
                 if(data.status == 200)
                 {
